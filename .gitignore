@@ -1,0 +1,28 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Frontend
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Imported papers, indexes, and user data
+/backend/data/
+/data/
+
+# Local logs and editor files
+*.log
+.DS_Store
+Thumbs.db
+.idea/
