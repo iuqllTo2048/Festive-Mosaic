@@ -1,0 +1,25 @@
+{
+  "reference_location_checks": 18,
+  "independent_human_verified": 0,
+  "case_categories": {
+    "fact_numeric": 3,
+    "multi_condition": 2,
+    "cross_paper": 2,
+    "chinese_paraphrase": 2,
+    "unanswerable": 2,
+    "negation_comparison_trap": 1
+  },
+  "online_runs": 6,
+  "actual_online_requests": 14,
+  "source_integrity_checked_online_runs": 6,
+  "production_source_unchanged": true,
+  "git_exclusions": {
+    "backend/.env": ".gitignore:2:.env\tbackend/.env",
+    "backend/data/evidence.sqlite3": ".gitignore:21:/backend/data/\tbackend/data/evidence.sqlite3",
+    "backend/data/pdfs/b0456bdb5080d60db357a5f5aedbd7fe2518dd9ae861fce31babe089c0d9ddc2.pdf": ".gitignore:21:/backend/data/\tbackend/data/pdfs/b0456bdb5080d60db357a5f5aedbd7fe2518dd9ae861fce31babe089c0d9ddc2.pdf"
+  },
+  "tracked_private_data_files": [],
+  "results_sha256": "7b23f107d34c62a8bdb7ea88aae85ab0df399e0e0a0a0b9f35196b0fff591cae",
+  "results_sha256_normalization": "UTF-8 text with CRLF normalized to LF",
+  "meaning": "Completed source/budget/git checks; not semantic gold or scientific accuracy"
+}

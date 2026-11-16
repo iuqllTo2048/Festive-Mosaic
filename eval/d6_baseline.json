@@ -1,0 +1,48 @@
+{
+  "baseline_commit": "602d42508a89f3eadeb5f6e73f3514a6d9ca2e73",
+  "date": "2026-11-16T05:57:43.355739+00:00",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "fastapi": "0.163.1",
+    "rank-bm25": "0.2.2",
+    "pypdf": "7.1.0",
+    "openai": "2.54.0"
+  },
+  "model": "deepseek-flash",
+  "max_tokens": 1800,
+  "temperature": "not explicitly set",
+  "thinking": "disabled",
+  "seed": "not set",
+  "budget": {
+    "max_full_runs": 6,
+    "max_actual_requests": 24,
+    "max_reported_tokens": 50000,
+    "max_wall_seconds": 300
+  },
+  "corpus": [
+    {
+      "paper_id": "kg2rag",
+      "document_id": "doc_b0456bdb5080d60db357a5f5",
+      "sha256": "b0456bdb5080d60db357a5f5aedbd7fe2518dd9ae861fce31babe089c0d9ddc2",
+      "pages": 13,
+      "chunks": 77
+    },
+    {
+      "paper_id": "lightrag",
+      "document_id": "doc_bd72eebf611df1366b251c16",
+      "sha256": "bd72eebf611df1366b251c16ce4eac7aac699e519783c586feb2c5c43899347a",
+      "pages": 16,
+      "chunks": 94
+    },
+    {
+      "paper_id": "paperqa2",
+      "document_id": "doc_7d45adf85d98a9a2f4e619f4",
+      "sha256": "7d45adf85d98a9a2f4e619f4f6c0e380c8ad842d678d50497ab5a20b6ae79f9c",
+      "pages": 25,
+      "chunks": 150
+    }
+  ],
+  "human_independent_review": false,
+  "production_code_modified": false
+}

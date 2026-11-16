@@ -1,0 +1,495 @@
+{
+  "all_semantic_labels": "provisional",
+  "human_verified_cases": 0,
+  "formal_evidence_recall": null,
+  "formal_reason": "No independently human-verified semantic reference",
+  "retrieval": {
+    "bm25_top10": {
+      "5": {
+        "hit_references": 10,
+        "candidate_references": 16,
+        "micro": 0.625,
+        "macro": 0.7037037037037037,
+        "cases": 9,
+        "exploratory_only": true
+      },
+      "10": {
+        "hit_references": 14,
+        "candidate_references": 16,
+        "micro": 0.875,
+        "macro": 0.8888888888888888,
+        "cases": 9,
+        "exploratory_only": true
+      }
+    },
+    "native_6_plus_2": {
+      "5": {
+        "hit_references": 10,
+        "candidate_references": 16,
+        "micro": 0.625,
+        "macro": 0.7037037037037037,
+        "cases": 9,
+        "exploratory_only": true
+      },
+      "10": {
+        "hit_references": 10,
+        "candidate_references": 16,
+        "micro": 0.625,
+        "macro": 0.7037037037037037,
+        "cases": 9,
+        "exploratory_only": true
+      }
+    }
+  },
+  "categories": {
+    "fact_numeric": {
+      "cases": 3,
+      "bm25_5_macro": 1.0,
+      "bm25_10_macro": 1.0,
+      "expansion_10_macro": 1.0
+    },
+    "multi_condition": {
+      "cases": 2,
+      "bm25_5_macro": 1.0,
+      "bm25_10_macro": 1.0,
+      "expansion_10_macro": 1.0
+    },
+    "cross_paper": {
+      "cases": 1,
+      "bm25_5_macro": 0.3333333333333333,
+      "bm25_10_macro": 1.0,
+      "expansion_10_macro": 0.3333333333333333
+    },
+    "chinese_paraphrase": {
+      "cases": 2,
+      "bm25_5_macro": 0.0,
+      "bm25_10_macro": 0.5,
+      "expansion_10_macro": 0.0
+    },
+    "negation_comparison_trap": {
+      "cases": 1,
+      "bm25_5_macro": 1.0,
+      "bm25_10_macro": 1.0,
+      "expansion_10_macro": 1.0
+    }
+  },
+  "online": [
+    {
+      "case_id": "A04",
+      "repair": false,
+      "run_id": "a0d1d3fc-7d97-4db0-a95a-82b179b4ec8e",
+      "supported": 3,
+      "requirements": 4,
+      "unresolved": 1,
+      "duration_ms": 3937,
+      "actual_requests": 2,
+      "tokens": 3478,
+      "repair_rounds": 0,
+      "stop": "repair_disabled",
+      "initial_evidence_ids": [
+        "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0004"
+      ],
+      "repair_evidence_ids": [],
+      "new_retrieved_chunk_ids": [],
+      "new_model_accepted_chunk_ids": [],
+      "reused_model_accepted_chunk_ids": [],
+      "triggered_requirement_ids": [],
+      "repair_queries": [],
+      "candidate_reference_retrieval_coverage": {
+        "initial": 1.0,
+        "union_after_repair": 1.0
+      },
+      "new_candidate_reference_ids": [],
+      "semantic_reference_coverage": null,
+      "semantic_reason": "provisional, model acceptance is not semantic gold",
+      "initial_model_supported": 3,
+      "within_run_model_support_delta": 0,
+      "derivation_version": "trace_stages_v2",
+      "supersedes_raw_C_derived_fields": true,
+      "analysis_revision": 2
+    },
+    {
+      "case_id": "A04",
+      "repair": true,
+      "run_id": "6f618c56-96c9-45e4-89b1-a92f289ecb49",
+      "supported": 3,
+      "requirements": 4,
+      "unresolved": 1,
+      "duration_ms": 6562,
+      "actual_requests": 4,
+      "tokens": 8878,
+      "repair_rounds": 1,
+      "stop": "repair_exhausted",
+      "initial_evidence_ids": [
+        "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0004"
+      ],
+      "repair_evidence_ids": [
+        "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+        "doc_b0456bdb5080d60db357a5f5_p0007_c0004"
+      ],
+      "new_retrieved_chunk_ids": [],
+      "new_model_accepted_chunk_ids": [],
+      "reused_model_accepted_chunk_ids": [],
+      "triggered_requirement_ids": [
+        "req_6f618c56-96c9-45e4-89b1-a92f289ecb49_4"
+      ],
+      "repair_queries": [
+        "fullwiki setting irrelevant supporting material distractor documents"
+      ],
+      "candidate_reference_retrieval_coverage": {
+        "initial": 1.0,
+        "union_after_repair": 1.0
+      },
+      "new_candidate_reference_ids": [],
+      "semantic_reference_coverage": null,
+      "semantic_reason": "provisional, model acceptance is not semantic gold",
+      "initial_model_supported": 3,
+      "within_run_model_support_delta": 0,
+      "derivation_version": "trace_stages_v2",
+      "supersedes_raw_C_derived_fields": true,
+      "analysis_revision": 2
+    },
+    {
+      "case_id": "A08",
+      "repair": false,
+      "run_id": "06b3fb39-7000-4840-bdfa-a3538c3936c6",
+      "supported": 0,
+      "requirements": 2,
+      "unresolved": 2,
+      "duration_ms": 1031,
+      "actual_requests": 1,
+      "tokens": 271,
+      "repair_rounds": 0,
+      "stop": "repair_disabled",
+      "initial_evidence_ids": [],
+      "repair_evidence_ids": [],
+      "new_retrieved_chunk_ids": [],
+      "new_model_accepted_chunk_ids": [],
+      "reused_model_accepted_chunk_ids": [],
+      "triggered_requirement_ids": [],
+      "repair_queries": [],
+      "candidate_reference_retrieval_coverage": {
+        "initial": 0.0,
+        "union_after_repair": 0.0
+      },
+      "new_candidate_reference_ids": [],
+      "semantic_reference_coverage": null,
+      "semantic_reason": "provisional, model acceptance is not semantic gold",
+      "initial_model_supported": 0,
+      "within_run_model_support_delta": 0,
+      "derivation_version": "trace_stages_v2",
+      "supersedes_raw_C_derived_fields": true,
+      "analysis_revision": 2
+    },
+    {
+      "case_id": "A08",
+      "repair": true,
+      "run_id": "5e8249d2-a67b-48f9-ad6f-be79a48969bf",
+      "supported": 2,
+      "requirements": 2,
+      "unresolved": 0,
+      "duration_ms": 2516,
+      "actual_requests": 2,
+      "tokens": 2391,
+      "repair_rounds": 1,
+      "stop": "covered_after_repair",
+      "initial_evidence_ids": [],
+      "repair_evidence_ids": [
+        "doc_bd72eebf611df1366b251c16_p0001_c0000",
+        "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "doc_bd72eebf611df1366b251c16_p0006_c0000",
+        "doc_bd72eebf611df1366b251c16_p0007_c0006",
+        "doc_bd72eebf611df1366b251c16_p0008_c0003",
+        "doc_bd72eebf611df1366b251c16_p0013_c0002",
+        "doc_bd72eebf611df1366b251c16_p0014_c0001",
+        "doc_bd72eebf611df1366b251c16_p0015_c0000"
+      ],
+      "new_retrieved_chunk_ids": [
+        "doc_bd72eebf611df1366b251c16_p0001_c0000",
+        "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "doc_bd72eebf611df1366b251c16_p0006_c0000",
+        "doc_bd72eebf611df1366b251c16_p0007_c0006",
+        "doc_bd72eebf611df1366b251c16_p0008_c0003",
+        "doc_bd72eebf611df1366b251c16_p0013_c0002",
+        "doc_bd72eebf611df1366b251c16_p0014_c0001",
+        "doc_bd72eebf611df1366b251c16_p0015_c0000"
+      ],
+      "new_model_accepted_chunk_ids": [
+        "doc_bd72eebf611df1366b251c16_p0002_c0002"
+      ],
+      "reused_model_accepted_chunk_ids": [],
+      "triggered_requirement_ids": [
+        "req_5e8249d2-a67b-48f9-ad6f-be79a48969bf_1",
+        "req_5e8249d2-a67b-48f9-ad6f-be79a48969bf_2"
+      ],
+      "repair_queries": [
+        "low-level retrieval focus",
+        "high-level retrieval focus"
+      ],
+      "candidate_reference_retrieval_coverage": {
+        "initial": 0.0,
+        "union_after_repair": 1.0
+      },
+      "new_candidate_reference_ids": [
+        "A08_r1",
+        "A08_r2"
+      ],
+      "semantic_reference_coverage": null,
+      "semantic_reason": "provisional, model acceptance is not semantic gold",
+      "initial_model_supported": 0,
+      "within_run_model_support_delta": 2,
+      "derivation_version": "trace_stages_v2",
+      "supersedes_raw_C_derived_fields": true,
+      "analysis_revision": 2
+    },
+    {
+      "case_id": "A10",
+      "repair": false,
+      "run_id": "26e6c6e2-c1c1-4def-8bac-8b019d7cdd1c",
+      "supported": 0,
+      "requirements": 2,
+      "unresolved": 2,
+      "duration_ms": 2563,
+      "actual_requests": 2,
+      "tokens": 2888,
+      "repair_rounds": 0,
+      "stop": "repair_disabled",
+      "initial_evidence_ids": [
+        "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0003_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0005_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+        "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0013_c0003"
+      ],
+      "repair_evidence_ids": [],
+      "new_retrieved_chunk_ids": [],
+      "new_model_accepted_chunk_ids": [],
+      "reused_model_accepted_chunk_ids": [],
+      "triggered_requirement_ids": [],
+      "repair_queries": [],
+      "candidate_reference_retrieval_coverage": {
+        "initial": null,
+        "union_after_repair": null
+      },
+      "new_candidate_reference_ids": [],
+      "semantic_reference_coverage": null,
+      "semantic_reason": "provisional, model acceptance is not semantic gold",
+      "initial_model_supported": 0,
+      "within_run_model_support_delta": 0,
+      "derivation_version": "trace_stages_v2",
+      "supersedes_raw_C_derived_fields": true,
+      "analysis_revision": 2
+    },
+    {
+      "case_id": "A10",
+      "repair": true,
+      "run_id": "e4b26425-accd-4727-b724-cd27e1109c81",
+      "supported": 1,
+      "requirements": 2,
+      "unresolved": 1,
+      "duration_ms": 3735,
+      "actual_requests": 3,
+      "tokens": 5305,
+      "repair_rounds": 1,
+      "stop": "repair_exhausted",
+      "initial_evidence_ids": [
+        "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0003_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0005_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+        "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0013_c0003"
+      ],
+      "repair_evidence_ids": [
+        "doc_b0456bdb5080d60db357a5f5_p0001_c0001",
+        "doc_b0456bdb5080d60db357a5f5_p0003_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0005_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+        "doc_b0456bdb5080d60db357a5f5_p0008_c0003",
+        "doc_b0456bdb5080d60db357a5f5_p0010_c0000",
+        "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+        "doc_b0456bdb5080d60db357a5f5_p0013_c0003"
+      ],
+      "new_retrieved_chunk_ids": [
+        "doc_b0456bdb5080d60db357a5f5_p0001_c0001",
+        "doc_b0456bdb5080d60db357a5f5_p0008_c0003",
+        "doc_b0456bdb5080d60db357a5f5_p0010_c0000"
+      ],
+      "new_model_accepted_chunk_ids": [],
+      "reused_model_accepted_chunk_ids": [],
+      "triggered_requirement_ids": [
+        "req_e4b26425-accd-4727-b724-cd27e1109c81_2"
+      ],
+      "repair_queries": [
+        "KG2RAG energy consumption joules per query"
+      ],
+      "candidate_reference_retrieval_coverage": {
+        "initial": null,
+        "union_after_repair": null
+      },
+      "new_candidate_reference_ids": [],
+      "semantic_reference_coverage": null,
+      "semantic_reason": "provisional, model acceptance is not semantic gold",
+      "initial_model_supported": 1,
+      "within_run_model_support_delta": 0,
+      "derivation_version": "trace_stages_v2",
+      "supersedes_raw_C_derived_fields": true,
+      "analysis_revision": 2
+    }
+  ],
+  "adversarial": {
+    "fixture_cases": 9,
+    "provisional_false_support_count": 5,
+    "provisional_false_rejection_count": 1,
+    "expected_negative_count": 7,
+    "api_requests": 0,
+    "note": "Controlled upstream errors; not a frequency estimate for real model outputs"
+  },
+  "bm25_at_8_equal_budget": {
+    "hit_references": 10,
+    "candidate_references": 16,
+    "micro": 0.625
+  },
+  "matched_phrasing_probe": {
+    "test": "A_probe",
+    "id": "matched_phrasing",
+    "recorded_at": "2026-11-16T09:15:27.071914+00:00",
+    "scope": "lightrag only; same two candidate references as A08/A09",
+    "explicit_terms_question": "What do low-level retrieval and high-level retrieval focus on in LightRAG?",
+    "explicit_terms_recall": {
+      "5": 1.0,
+      "10": 1.0
+    },
+    "ordered_chunk_ids": [
+      "doc_bd72eebf611df1366b251c16_p0015_c0000",
+      "doc_bd72eebf611df1366b251c16_p0013_c0002",
+      "doc_bd72eebf611df1366b251c16_p0007_c0006",
+      "doc_bd72eebf611df1366b251c16_p0008_c0003",
+      "doc_bd72eebf611df1366b251c16_p0002_c0002",
+      "doc_bd72eebf611df1366b251c16_p0007_c0005",
+      "doc_bd72eebf611df1366b251c16_p0007_c0004",
+      "doc_bd72eebf611df1366b251c16_p0001_c0001",
+      "doc_bd72eebf611df1366b251c16_p0007_c0003",
+      "doc_bd72eebf611df1366b251c16_p0002_c0004"
+    ],
+    "chinese_source_case": "A08",
+    "synonym_source_case": "A09",
+    "posthoc_alternative_references": [
+      {
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0004_c0004",
+        "paper_id": "lightrag",
+        "page": 4,
+        "quote": "Low-Level Retrieval. This level is primarily focused on retrieving specific entities along with their associated attributes or relationships. Queries at this level are detail-oriented and aim to extract precise info",
+        "label": "provisional_posthoc_not_in_primary_metrics"
+      },
+      {
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0004_c0005",
+        "paper_id": "lightrag",
+        "page": 4,
+        "quote": "High-Level Retrieval. This level addresses broader topics and overarching themes. Queries at this level aggregate information across multiple related entities and relationships, providing insights into higher-level conce",
+        "label": "provisional_posthoc_not_in_primary_metrics"
+      }
+    ],
+    "formal_metric": false
+  },
+  "online_actual_requests": 14,
+  "online_reported_tokens": 23211,
+  "online_model_returned": [
+    "deepseek-flash"
+  ],
+  "pairing": [
+    {
+      "case_id": "A04",
+      "plans_identical": false,
+      "initial_evidence_identical": true,
+      "strict_pair": false
+    },
+    {
+      "case_id": "A08",
+      "plans_identical": false,
+      "initial_evidence_identical": true,
+      "strict_pair": false
+    },
+    {
+      "case_id": "A10",
+      "plans_identical": false,
+      "initial_evidence_identical": true,
+      "strict_pair": false
+    }
+  ],
+  "boundary": {
+    "test": "A_boundary",
+    "id": "cuts",
+    "recorded_at": "2026-11-16T05:57:50.256359+00:00",
+    "total_chunks": 321,
+    "cuts_inside_alphanumeric_token": 165,
+    "examples": [
+      {
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0001_c0000",
+        "page": 1,
+        "boundary": "ation retrieval, summarization, and cont"
+      },
+      {
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0001_c0001",
+        "page": 1,
+        "boundary": "y contradictions within the scientific l"
+      },
+      {
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0001_c0003",
+        "page": 1,
+        "boundary": "Thus, it\nremains unclear whether languag"
+      },
+      {
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0002_c0001",
+        "page": 2,
+        "boundary": "ppear only once in the set of\nall scient"
+      },
+      {
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0003_c0002",
+        "page": 3,
+        "boundary": "ep. RCS prevents irrelevant chunks from "
+      },
+      {
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0003_c0005",
+        "page": 3,
+        "boundary": "anges to PaperQA2. The accuracy of Paper"
+      },
+      {
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0003_c0006",
+        "page": 3,
+        "boundary": " tools and paper access provided by\nthei"
+      },
+      {
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0004_c0000",
+        "page": 4,
+        "boundary": "the agent will sometimes return to an ad"
+      }
+    ]
+  },
+  "derivation_note": "Initial C instrumentation mistook the first audit for the initial evidence when retrieval was empty. Original C rows retained; use C_analysis trace_stages_v2 derived from retrieve/graph_expand before repair_start. No online reruns or output relabeling."
+}

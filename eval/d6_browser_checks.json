@@ -1,0 +1,78 @@
+{
+  "test": "D_browser",
+  "id": "source_linkage",
+  "recorded_at": "2026-11-16T09:09:06.255Z",
+  "run_id": "34a31bea-9831-4492-bf93-2e15913e0ebc",
+  "checks": [
+    {
+      "check": "supported_requirement_sidebar",
+      "text": "来源链聚焦 · 核查KG2RAG使用的评测数据集名称及具体设置 · 7 节点 / 8 关系\n清除 · Esc"
+    },
+    {
+      "check": "gap_requirement_sidebar",
+      "text": "来源链聚焦 · 核查论文是否报告每查询能耗（焦耳/查询）及具体数值 · 1 节点 / 0 关系\n清除 · Esc"
+    },
+    {
+      "check": "canvas_supported_requirement",
+      "text": "来源链聚焦 · 核查KG2RAG使用的评测数据集名称及具体设置 · 7 节点 / 8 关系\n清除 · Esc"
+    },
+    {
+      "check": "canvas_paper_source",
+      "title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+      "pdf": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=1"
+    },
+    {
+      "check": "citation_source",
+      "title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+      "chunk": "doc_b0456bdb5080d60db357a5f5_p0005_c0002\n1400–2200",
+      "pdf": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=5"
+    },
+    {
+      "canvas": 0,
+      "check": "equivalent_list",
+      "heading": "证据来源列表 22 节点 · 42 关系",
+      "nodes": 22
+    },
+    {
+      "check": "list_chunk_source",
+      "chunk": "doc_b0456bdb5080d60db357a5f5_p0005_c0002\n1400–2200",
+      "pdf": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=5"
+    },
+    {
+      "check": "native_pdf_link",
+      "href": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=5",
+      "result": "Link click did not expose a PDF reader tab in IAB; visual page jump remains unverified"
+    },
+    {
+      "canvas": 1,
+      "check": "replay_reset_cycle",
+      "cycle": 1,
+      "heading": "三维证据空间 22 节点 · 42 关系"
+    },
+    {
+      "canvas": 1,
+      "check": "replay_reset_cycle",
+      "cycle": 2,
+      "heading": "三维证据空间 22 节点 · 42 关系"
+    },
+    {
+      "canvas": 1,
+      "check": "replay_reset_cycle",
+      "cycle": 3,
+      "heading": "三维证据空间 22 节点 · 42 关系"
+    },
+    {
+      "canvas": 1,
+      "check": "restore_run",
+      "citationButtons": 2,
+      "heading": "三维证据空间 22 节点 · 42 关系",
+      "url": "http://127.0.0.1:5173/?run=34a31bea-9831-4492-bf93-2e15913e0ebc"
+    }
+  ],
+  "human_independent_review": false,
+  "visual_review": "AI screenshot inspection",
+  "gpu_memory_leak_verified": false,
+  "large_graph_renderer_performance_verified": false,
+  "webgl_fault_injection": false,
+  "ambiguous_pick_observation": "At 1280px a coordinate intended for a requirement selected MSTs; coordinate ambiguity, not a confirmed defect. Requirement click verified at 1440px."
+}

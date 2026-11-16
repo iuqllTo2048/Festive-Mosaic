@@ -1,0 +1,15 @@
+{
+  "test": "E",
+  "date": "2026-11-16",
+  "baseline_commit": "602d42508a89f3eadeb5f6e73f3514a6d9ca2e73",
+  "source": "Recorded from actual exec command outputs; no model self-evaluation",
+  "checks": [
+    {"cwd":"E:/VerifiAtlas/backend","command":"uv run --locked pytest","exit_code":0,"passed":64,"failed":0,"skipped":0,"warnings":1,"seconds":5.37},
+    {"cwd":"E:/VerifiAtlas/frontend","command":"npm.cmd test","exit_code":0,"passed":4,"failed":0,"skipped":0},
+    {"cwd":"E:/VerifiAtlas/frontend","command":"npm.cmd run typecheck","exit_code":0,"result":"passed","count":"not a test runner"},
+    {"cwd":"E:/VerifiAtlas/frontend","command":"npm.cmd run build","exit_code":0,"result":"passed","warnings":"3D lazy chunks exceed 500kB"}
+  ],
+  "backend_warning":"Starlette TestClient httpx deprecation; no dependency change made",
+  "production_files_modified":false,
+  "synthetic_adversarial_mismatches_are_not_counted_as_regression_passes":true
+}

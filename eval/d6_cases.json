@@ -1,0 +1,461 @@
+[
+  {
+    "id": "A01",
+    "category": "fact_numeric",
+    "paper_ids": [
+      "kg2rag"
+    ],
+    "question": "In the fullwiki setting, how many Wikipedia documents are searched?",
+    "reference_need": "候选范围66,581，需保留fullwiki条件",
+    "must_abstain_or_qualify": false,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A01_r1",
+        "paper_id": "kg2rag",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 5,
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "equivalent_chunk_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003"
+        ],
+        "quote": "In the fullwiki setting, it is required to identify useful knowledge from the entire 66,581 documents extracted from Wikipedia.",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A02",
+    "category": "fact_numeric",
+    "paper_ids": [
+      "kg2rag"
+    ],
+    "question": "What average retrieval and generation time per query does KG2RAG report in Table 10?",
+    "reference_need": "25ms检索、2,300ms生成，不是能耗",
+    "must_abstain_or_qualify": false,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A02_r1",
+        "paper_id": "kg2rag",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13,
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+        "equivalent_chunk_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0003"
+        ],
+        "quote": "KG2RAG 25ms 2,300ms",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A03",
+    "category": "fact_numeric",
+    "paper_ids": [
+      "paperqa2"
+    ],
+    "question": "What max_sources values were used for Answer cutoff @ 5 and other experiments?",
+    "reference_need": "分别5和15，保留实验条件",
+    "must_abstain_or_qualify": false,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A03_r1",
+        "paper_id": "paperqa2",
+        "document_id": "doc_7d45adf85d98a9a2f4e619f4",
+        "page": 13,
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0013_c0000",
+        "equivalent_chunk_ids": [
+          "doc_7d45adf85d98a9a2f4e619f4_p0013_c0000"
+        ],
+        "quote": "This parameter was 5 in the top-performing Answer cutoff @ 5, but 15 for all other experiments.",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A04",
+    "category": "multi_condition",
+    "paper_ids": [
+      "kg2rag"
+    ],
+    "question": "Compare distractor and fullwiki settings: document counts and whether irrelevant supporting material is present.",
+    "reference_need": "同时核查十篇/无关内容和66,581候选范围",
+    "must_abstain_or_qualify": false,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A04_r1",
+        "paper_id": "kg2rag",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 5,
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "equivalent_chunk_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003"
+        ],
+        "quote": "In the distractor setting, a total of ten documents are provided as supporting ma- terials, including all useful knowledge as well as some irrelevant content.",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      },
+      {
+        "reference_id": "A04_r2",
+        "paper_id": "kg2rag",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 5,
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "equivalent_chunk_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003"
+        ],
+        "quote": "In the fullwiki setting, it is required to identify useful knowledge from the entire 66,581 documents extracted from Wikipedia.",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A05",
+    "category": "multi_condition",
+    "paper_ids": [
+      "paperqa2"
+    ],
+    "question": "How did PaperQA2 compare with humans in precision and accuracy, and were both differences statistically significant?",
+    "reference_need": "precision显著；accuracy未显著不同，不能混淆",
+    "must_abstain_or_qualify": false,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A05_r1",
+        "paper_id": "paperqa2",
+        "document_id": "doc_7d45adf85d98a9a2f4e619f4",
+        "page": 3,
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0003_c0007",
+        "equivalent_chunk_ids": [
+          "doc_7d45adf85d98a9a2f4e619f4_p0003_c0007"
+        ],
+        "quote": "superhuman precision on this task (t(8.6) = 3.49, p = 0.0036)",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      },
+      {
+        "reference_id": "A05_r2",
+        "paper_id": "paperqa2",
+        "document_id": "doc_7d45adf85d98a9a2f4e619f4",
+        "page": 3,
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0003_c0007",
+        "equivalent_chunk_ids": [
+          "doc_7d45adf85d98a9a2f4e619f4_p0003_c0007"
+        ],
+        "quote": "did not differ significantly from humans in accuracy (t(8.5) = −0.42, p = 0.66)",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A06",
+    "category": "cross_paper",
+    "paper_ids": [
+      "kg2rag",
+      "lightrag",
+      "paperqa2"
+    ],
+    "question": "Can we conclude LightRAG outperforms KG2RAG on every retrieval task?",
+    "reference_need": "仅有局部MuSiQue比较，普遍结论不足",
+    "must_abstain_or_qualify": true,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A06_r1",
+        "paper_id": "kg2rag",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13,
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+        "equivalent_chunk_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000"
+        ],
+        "quote": "LightRAG 0.248 0.170 0.289 GraphRAG 0.231 0.156 0.273 KG2RAG 0.419 0.303 0.451 Table 7: Comparison results on MuSiQue.",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "context_only_not_answer_evidence",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A07",
+    "category": "cross_paper",
+    "paper_ids": [
+      "kg2rag",
+      "lightrag"
+    ],
+    "question": "Compare LightRAG low-level and high-level retrieval with KG2RAG maximum spanning tree chunk organization.",
+    "reference_need": "分别找两篇方法原文，不把结构差异推成排名",
+    "must_abstain_or_qualify": false,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A07_r1",
+        "paper_id": "lightrag",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2,
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "equivalent_chunk_ids": [
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "quote": "low-level retrieval, which focuses on precise information about specific entities and their relationships",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      },
+      {
+        "reference_id": "A07_r2",
+        "paper_id": "lightrag",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2,
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "equivalent_chunk_ids": [
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "quote": "high-level retrieval, which encompasses broader topics and themes",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      },
+      {
+        "reference_id": "A07_r3",
+        "paper_id": "kg2rag",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 4,
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0004_c0006",
+        "equivalent_chunk_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0004_c0006"
+        ],
+        "quote": "spanning tree (MST) of each connected component",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A08",
+    "category": "chinese_paraphrase",
+    "paper_ids": [
+      "lightrag"
+    ],
+    "question": "这篇论文的低层级和高层级检索分别关注什么？",
+    "reference_need": "具体实体关系与广泛主题；与A09同证据",
+    "must_abstain_or_qualify": false,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A08_r1",
+        "paper_id": "lightrag",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2,
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "equivalent_chunk_ids": [
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "quote": "low-level retrieval, which focuses on precise information about specific entities and their relationships",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      },
+      {
+        "reference_id": "A08_r2",
+        "paper_id": "lightrag",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2,
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "equivalent_chunk_ids": [
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "quote": "high-level retrieval, which encompasses broader topics and themes",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A09",
+    "category": "chinese_paraphrase",
+    "paper_ids": [
+      "lightrag"
+    ],
+    "question": "How does the method look up fine grained items versus broad themes?",
+    "reference_need": "同义改写，比较与原始dual-level术语召回差异",
+    "must_abstain_or_qualify": false,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A09_r1",
+        "paper_id": "lightrag",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2,
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "equivalent_chunk_ids": [
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "quote": "low-level retrieval, which focuses on precise information about specific entities and their relationships",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      },
+      {
+        "reference_id": "A09_r2",
+        "paper_id": "lightrag",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2,
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "equivalent_chunk_ids": [
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "quote": "high-level retrieval, which encompasses broader topics and themes",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A10",
+    "category": "unanswerable",
+    "paper_ids": [
+      "kg2rag"
+    ],
+    "question": "Which dataset does KG2RAG use and what energy consumption in joules per query is measured?",
+    "reference_need": "数据集部分可答，焦耳能耗需声明不足；时延仅作相关反例",
+    "must_abstain_or_qualify": true,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A10_r1",
+        "paper_id": "kg2rag",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13,
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+        "equivalent_chunk_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0003"
+        ],
+        "quote": "KG2RAG 25ms 2,300ms",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "context_only_not_answer_evidence",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  },
+  {
+    "id": "A11",
+    "category": "unanswerable",
+    "paper_ids": [
+      "paperqa2"
+    ],
+    "question": "What were PaperQA2's outcomes in a private clinical trial conducted in 2028?",
+    "reference_need": "语料不能直接回答，不编造未来私人实验",
+    "must_abstain_or_qualify": true,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [],
+    "reference_absence_reason": "No positive source for the requested private future trial; do not fabricate a quote. Abstention label remains provisional."
+  },
+  {
+    "id": "A12",
+    "category": "negation_comparison_trap",
+    "paper_ids": [
+      "paperqa2"
+    ],
+    "question": "Does PaperQA2 significantly outperform human annotators in accuracy rather than only precision?",
+    "reference_need": "不得将precision显著改写成accuracy显著",
+    "must_abstain_or_qualify": true,
+    "human_verified": false,
+    "label_status": "provisional",
+    "references": [
+      {
+        "reference_id": "A12_r1",
+        "paper_id": "paperqa2",
+        "document_id": "doc_7d45adf85d98a9a2f4e619f4",
+        "page": 3,
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0003_c0007",
+        "equivalent_chunk_ids": [
+          "doc_7d45adf85d98a9a2f4e619f4_p0003_c0007"
+        ],
+        "quote": "superhuman precision on this task (t(8.6) = 3.49, p = 0.0036)",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      },
+      {
+        "reference_id": "A12_r2",
+        "paper_id": "paperqa2",
+        "document_id": "doc_7d45adf85d98a9a2f4e619f4",
+        "page": 3,
+        "chunk_id": "doc_7d45adf85d98a9a2f4e619f4_p0003_c0007",
+        "equivalent_chunk_ids": [
+          "doc_7d45adf85d98a9a2f4e619f4_p0003_c0007"
+        ],
+        "quote": "did not differ significantly from humans in accuracy (t(8.5) = −0.42, p = 0.66)",
+        "pdf_page_quote_verified": true,
+        "chunk_quote_verified": true,
+        "role": "candidate_support",
+        "semantic_label": "provisional",
+        "human_verified": false
+      }
+    ]
+  }
+]
