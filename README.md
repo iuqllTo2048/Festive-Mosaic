@@ -1,6 +1,6 @@
 # VerifiAtlas——面向科研知识探索的智能交互可视化系统
 
-科研证据工作台。当前完成至 **D4：科研证据工作台**：真实 PDF 检索、带引文问答、需求审计与一次补检，配合三维来源图、原文抽屉和执行记录回放。后续开发严格按 [阶段计划](02_BUILD_PLAYBOOK.md#5-五个开发阶段每次只执行一个阶段完成后提交一次) 推进，每阶段完成后只提交一次。
+科研证据工作台。**D1–D5 的 MVP 已完成**：真实 PDF 检索、带引文问答、需求审计与一次补检，配合三维来源图、原文抽屉和执行记录回放。五题真实对照、已知限制和复核命令见 [D5 验收记录](docs/D5_VERIFICATION.md)，演示步骤见 [演示指南](docs/DEMO.md)。每阶段只提交一次，并按用户授权推送到远程仓库。
 
 界面品牌简称 VerifiAtlas；GitHub 仓库名保留 verifyAtlas。
 
@@ -16,7 +16,7 @@
 - DeepSeek 结构化回答，每段必须有本轮检索片段中的有效原文引句；引用的文档、页码、片段 ID 和 PDF 地址由后端确定。不能核对的段落被移除，无证据时明确报告不足。
 - 点击回答中的引用定位到完整原文片段；问答及引用映射保存到本机 SQLite，提供稳定的 run ID。
 - 问答成功后 URL 带有 `?run=<ID>`，刷新可恢复该记录，不重复请求 LLM；记录仅在这台机器的本地服务中有效。
-- 审计模式拆解 1–4 个证据需求；只有模型提出直接支持、回答有效且引句能在本轮片段中定位时，才计为“有引用支持”。回答中的拉丁术语和数字还需出现在所引用片段中；裁剪未要求的释义任务。失败候选保留为审计记录，不产生支持边。
+- 审计模式拆解 1–4 个证据需求；只有模型提出直接支持、回答有效且引句能在本轮片段中定位时，才计为“有引用支持”。回答中的拉丁术语和数字还需出现在实际引句中，审计解释中的术语和数字需在所引用完整片段中出现；裁剪未要求的释义任务。失败候选保留为审计记录，不产生支持边。新记录标记 `quoted_claims_v2`，旧记录提示重新核查。
 - 对不足需求最多执行一轮定向补检，之后明确停止；请求次数和模型调用共享时间预算，失败时保留已经核对的证据。
 - 论文 / 片段 / 术语 / 需求的真实来源关系与 trace 保存在本机。术语由原文规则提取并记录字符位置，每个片段最多 3 个术语，每次检索最多扩展 2 个片段；共现只表示检索关联，不是语义事实。
 
@@ -24,7 +24,7 @@
 - 完成后的真实 trace 可逐步或自动回放；当前事件之前的支持状态、最终答案和引用不会提前呈现。系统启用减少动态效果时改为手动逐步操作。
 - 3D 可切换为同一批节点和关系的等价列表，窄屏默认使用列表；明暗主题覆盖界面与图谱。
 
-模型支持判断加上引文存在性检查，仍不证明科学事实；请核对上下文。没有向量模型和完整语义知识图谱；审计模式可用规划/补检的英文关键词辅助检索，基本 BM25 模式仍依赖词面匹配。**尚未完成 D5** 的五题真实对比与最终交付验收。
+模型支持判断加上引文存在性检查，仍不证明科学事实；请核对上下文。没有向量模型和完整语义知识图谱；审计模式可用规划/补检的英文关键词辅助检索，基本 BM25 模式仍依赖词面匹配。五题对照是小样本探索，独立需求规划与模型输出可能变化，不能视作准确率或补检因果效果的证明。
 
 ## 环境与首次安装（Windows PowerShell）
 
@@ -180,7 +180,18 @@ uv run --locked python scripts/verify_d3_live.py
 
 报告为 `E:\VerifiAtlas\artifacts\d3\live-check.json`，检查一次真实补检、未解决需求、图边出处、引文、覆盖计数、trace 引用与持久化。加 `--run-id <ID>` 可复核已有记录，不再次调用模型。
 
-实际验证记录见 [D1](docs/D1_VERIFICATION.md)、[D2](docs/D2_VERIFICATION.md)、[D3](docs/D3_VERIFICATION.md)、[D4](docs/D4_VERIFICATION.md)。自动测试里的合成 PDF、LLM Stub 和 HTTP Mock 仅用于测试；不使用真实密钥，不调用付费接口。至少 5 个标注问题见 [evaluation_questions.md](samples/evaluation_questions.md)，尚未执行的问题有明确标记。D4 截图与对比度记录保存在 `artifacts/d4/`，构建产物为 `E:\VerifiAtlas\frontend\dist\`。
+实际验证记录见 [D1](docs/D1_VERIFICATION.md)、[D2](docs/D2_VERIFICATION.md)、[D3](docs/D3_VERIFICATION.md)、[D4](docs/D4_VERIFICATION.md)、[D5](docs/D5_VERIFICATION.md)。自动测试里的合成 PDF、LLM Stub 和 HTTP Mock 仅用于测试；不使用真实密钥，不调用付费接口。标注问题及实际观察见 [evaluation_questions.md](samples/evaluation_questions.md)；D5 的五题输入为 [d5_questions.json](samples/d5_questions.json)。截图与报告保存在 `E:\VerifiAtlas\artifacts\d5\`；对比度见 `artifacts/d4/contrast-check.json`，构建产物为 `E:\VerifiAtlas\frontend\dist\`。
+
+复核已保存的 D5 对比（只 GET 来源与记录，不调用模型，需同一份本地数据库）：
+
+```powershell
+Set-Location E:\VerifiAtlas\backend
+uv run --locked python scripts/evaluate_d5.py
+```
+
+新机器要重新执行五题对比，需先导入官方 KG2RAG、LightRAG 和 PaperQA2，再使用新的输出目录明确请求执行：`uv run --locked python scripts/evaluate_d5.py --execute --output ../artifacts/d5-new`。此命令会实际发送问题和公开论文片段到 DeepSeek；已有缓存不自动重跑、失败不自动重试。默认目录保留本次观察证据，请勿用新结果覆盖历史报告。
+
+没有 key 的界面验收可使用隔离工具（先构建前端）：`uv run --locked python scripts/serve_d5_no_key.py`，然后打开 `http://127.0.0.1:8001/`。它强制空 key、忽略 `.env`、仅监听本机，数据写入被 Git 忽略的 `backend/data/d5-no-key/`，不改变正常服务的 key 或语料；按 Ctrl+C 停止。不要将此验收工具作为正式服务入口。
 
 3D 使用 `3d-force-graph`、Three.js 和 `three-spritetext`，许可证及归属见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。主界面脚本约 112 kB；三维依赖为按需加载的大块，构建仍会报告 500 kB 提示，不表示构建失败。
 

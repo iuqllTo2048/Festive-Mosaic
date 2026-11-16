@@ -30,7 +30,7 @@ defineExpose({ showSources: () => { tab.value = 'sources' } })
       <template v-else-if="tab === 'requirements'">
         <p v-if="!requirements.length" class="panel-empty">{{ playback ? '尚未回放到需求规划事件。' : '这条基础问答记录未进行需求审计，可在回答与来源中查看结果。' }}</p>
         <ol class="requirements"><li v-for="(requirement,index) in requirements" :key="requirement.id" :class="{ active: selectedId === requirement.id }"><button class="requirement-select" @click="emit('select', requirement.id)"><span class="requirement-index">{{ String(index + 1).padStart(2,'0') }}</span><span><span class="status-label" :class="status(requirement.id)">{{ status(requirement.id) === 'supported' ? '✓ 有引用支持' : status(requirement.id) === 'insufficient' ? '△ 证据不足' : '○ 待核查' }}</span><strong>{{ requirement.text }}</strong></span></button><p class="muted requirement-explanation">{{ playback ? '状态来自当前回放事件；完整说明见执行结果。' : requirement.explanation }}</p><button v-for="citation in sourcesFor(requirement.id)" :key="citation.id" class="text-button source-shortcut" @click="emit('source', citation)">引用 [{{ citation.id }}] · 第 {{ citation.page }} 页 ↗</button></li></ol>
-        <p v-if="result.audit_version === null || result.audit_version === undefined" class="message warning">旧版审计记录未包含新增的术语与数值保护，请重新核查。</p>
+        <p v-if="result.mode === 'audited' && result.audit_version !== 'quoted_claims_v2'" class="message warning">旧版审计记录未按实际引句核对全部术语与数值，请重新核查。</p>
         <p class="audit-disclaimer">“有引用支持”是模型判断结合来源检查，不是科学事实认证。点击需求可聚焦对应的来源链。</p>
       </template>
       <template v-else-if="tab === 'answer'">

@@ -1,0 +1,1007 @@
+{
+  "executed_at": "2026-11-16T05:14:17.134326+00:00",
+  "request": {
+    "question": "LightRAG 的 dual-level retrieval 中，两个层级分别检索什么？",
+    "document_ids": [
+      "doc_bd72eebf611df1366b251c16"
+    ],
+    "mode": "audited",
+    "enable_repair": true,
+    "enable_graph_expansion": true
+  },
+  "result": {
+    "run_id": "6b694eab-6762-4b6e-af8e-53c13de8f3c4",
+    "question": "LightRAG 的 dual-level retrieval 中，两个层级分别检索什么？",
+    "answer": "low-level retrieval 和 high-level retrieval [1]\n\nspecific entities and their relationships [2]\n\nbroader topics and themes [3]",
+    "paragraphs": [
+      {
+        "text": "low-level retrieval 和 high-level retrieval",
+        "citation_ids": [
+          "1"
+        ]
+      },
+      {
+        "text": "specific entities and their relationships",
+        "citation_ids": [
+          "2"
+        ]
+      },
+      {
+        "text": "broader topics and themes",
+        "citation_ids": [
+          "3"
+        ]
+      }
+    ],
+    "citations": [
+      {
+        "id": "1",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "document_title": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "page": 2,
+        "quote": "LightRAG employs efficient dual-level retrieval strategies: low-level retrieval, which focuses on precise information about specific entities and their relationships, and high-level retrieval, which encompasses broader topics and themes.",
+        "pdf_url": "/api/documents/doc_bd72eebf611df1366b251c16/pdf#page=2",
+        "evidence_id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1"
+      },
+      {
+        "id": "2",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "document_title": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "page": 2,
+        "quote": "low-level retrieval, which focuses on precise information about specific entities and their relationships",
+        "pdf_url": "/api/documents/doc_bd72eebf611df1366b251c16/pdf#page=2",
+        "evidence_id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2"
+      },
+      {
+        "id": "3",
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "document_title": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "page": 2,
+        "quote": "high-level retrieval, which encompasses broader topics and themes",
+        "pdf_url": "/api/documents/doc_bd72eebf611df1366b251c16/pdf#page=2",
+        "evidence_id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3"
+      }
+    ],
+    "insufficient": [],
+    "status": "answered",
+    "model": "deepseek-flash",
+    "stats": {
+      "retrieved_chunks": 8,
+      "llm_requests": 2,
+      "duration_ms": 3437,
+      "total_requirements": 3,
+      "supported_requirements": 3,
+      "repair_rounds": 0,
+      "display_coverage_ratio": 1.0,
+      "graph_expanded_chunks": 2,
+      "stop_reason": "all_supported"
+    },
+    "mode": "audited",
+    "requirements": [
+      {
+        "id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+        "text": "LightRAG 论文中 dual-level retrieval 包含的两个层级分别是什么",
+        "search_query": "LightRAG dual-level retrieval 两个层级",
+        "status": "supported",
+        "evidence_ids": [
+          "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1"
+        ],
+        "explanation": "原文明确指出两个层级为 low-level 和 high-level retrieval。"
+      },
+      {
+        "id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+        "text": "LightRAG dual-level retrieval 中 low-level 层级检索的对象或实体类型",
+        "search_query": "LightRAG low-level retrieval entities",
+        "status": "supported",
+        "evidence_ids": [
+          "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2"
+        ],
+        "explanation": "原文说明 low-level retrieval 聚焦具体实体及其关系的精确信息。"
+      },
+      {
+        "id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3",
+        "text": "LightRAG dual-level retrieval 中 high-level 层级检索的对象或主题类型",
+        "search_query": "LightRAG high-level retrieval themes topics",
+        "status": "supported",
+        "evidence_ids": [
+          "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3"
+        ],
+        "explanation": "原文说明 high-level retrieval 涵盖更广泛的主题。"
+      }
+    ],
+    "audit_version": "literal_claims_v1",
+    "evidence": [
+      {
+        "id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+        "requirement_id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "quote": "LightRAG employs efficient dual-level retrieval strategies: low-level retrieval, which focuses on precise information about specific entities and their relationships, and high-level retrieval, which encompasses broader topics and themes.",
+        "validated": true,
+        "verifier_result": "supported",
+        "reason": "模型提出支持且原文引句匹配",
+        "round": 0,
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2
+      },
+      {
+        "id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+        "requirement_id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "quote": "low-level retrieval, which focuses on precise information about specific entities and their relationships",
+        "validated": true,
+        "verifier_result": "supported",
+        "reason": "模型提出支持且原文引句匹配",
+        "round": 0,
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2
+      },
+      {
+        "id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3",
+        "requirement_id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3",
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+        "quote": "high-level retrieval, which encompasses broader topics and themes",
+        "validated": true,
+        "verifier_result": "supported",
+        "reason": "模型提出支持且原文引句匹配",
+        "round": 0,
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 2
+      }
+    ],
+    "graph": {
+      "nodes": [
+        {
+          "id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+          "type": "requirement",
+          "label": "LightRAG 论文中 dual-level retrieval 包含的两个层级分别是什么",
+          "status": "supported",
+          "source_ref": null
+        },
+        {
+          "id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+          "type": "requirement",
+          "label": "LightRAG dual-level retrieval 中 low-level 层级检索的对象或实体类型",
+          "status": "supported",
+          "source_ref": null
+        },
+        {
+          "id": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3",
+          "type": "requirement",
+          "label": "LightRAG dual-level retrieval 中 high-level 层级检索的对象或主题类型",
+          "status": "supported",
+          "source_ref": null
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16",
+          "type": "paper",
+          "label": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": null,
+            "page": null,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 47",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+          "type": "chunk",
+          "label": "第 2 页 · 片段 9",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0013_c0002",
+          "type": "chunk",
+          "label": "第 13 页 · 片段 82",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0002",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0007_c0004",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 46",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0007_c0003",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 45",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0003",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0008_c0003",
+          "type": "chunk",
+          "label": "第 8 页 · 片段 52",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0008_c0003",
+            "page": 8,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+          "type": "chunk",
+          "label": "第 5 页 · 片段 32",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+          "type": "chunk",
+          "label": "第 6 页 · 片段 38",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "concept_8d2ee9de568eff3e",
+          "type": "concept",
+          "label": "LightRAG",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 3,
+            "char_end": 11,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "concept_f0f8d2e716fe66cc",
+          "type": "concept",
+          "label": "GraphRAG",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 461,
+            "char_end": 469,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "concept_efe77b201dc216c0",
+          "type": "concept",
+          "label": "EVALUATION",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 473,
+            "char_end": 483,
+            "term": "EVALUATION"
+          }
+        },
+        {
+          "id": "concept_053ea4804ef1bb33",
+          "type": "concept",
+          "label": "GPT",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 729,
+            "char_end": 732,
+            "term": "GPT"
+          }
+        },
+        {
+          "id": "concept_d5288a34c4e8444f",
+          "type": "concept",
+          "label": "ABLATION",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 410,
+            "char_end": 418,
+            "term": "ABLATION"
+          }
+        },
+        {
+          "id": "concept_48d492d08e9d314c",
+          "type": "concept",
+          "label": "STUDIES",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 419,
+            "char_end": 426,
+            "term": "STUDIES"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge_3fb77da4e9cba7b7441594b1",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_fe6fe282200e9866682d55b4",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_8d37cb9f308362cc00ab9bfe",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0013_c0002",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0002",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_3ef0dde42b38f8049a8c6fb1",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0007_c0004",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_97b37a02db25ec2104aa1140",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0007_c0003",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0003",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_7e2ea03c5e7648ec240b4c6c",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0008_c0003",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0008_c0003",
+            "page": 8,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_dfd1413317caf972ea5b9d5b",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_ba2f39cbafd493ac20bc6e16",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_61a248f1cf522839ebe58b67",
+          "source": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 3,
+            "char_end": 11,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_c735479c4d9c0c8c8d8eb516",
+          "source": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+          "target": "concept_f0f8d2e716fe66cc",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 461,
+            "char_end": 469,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "edge_729cc21e866c1923b79a89c9",
+          "source": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+          "target": "concept_efe77b201dc216c0",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 473,
+            "char_end": 483,
+            "term": "EVALUATION"
+          }
+        },
+        {
+          "id": "edge_24dda4fd0a68e2a9bf217f4f",
+          "source": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 579,
+            "char_end": 587,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_987671b1e2faf2009a33cd38",
+          "source": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+          "target": "concept_f0f8d2e716fe66cc",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 80,
+            "char_end": 88,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "edge_5f298ac3245ed2fff158f17b",
+          "source": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 699,
+            "char_end": 707,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_c828696ccc80976dc9724b6f",
+          "source": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+          "target": "concept_053ea4804ef1bb33",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 729,
+            "char_end": 732,
+            "term": "GPT"
+          }
+        },
+        {
+          "id": "edge_c12847688bf7a0f1c4d3db3e",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0003",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0003",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 134,
+            "char_end": 142,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_1300119f6c3607fac5101150",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0004",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 67,
+            "char_end": 75,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_ad360634ffdaae20223c85d0",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0004",
+          "target": "concept_f0f8d2e716fe66cc",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 95,
+            "char_end": 103,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "edge_df691b7a8494dd3f36ca9091",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 287,
+            "char_end": 295,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_4bf6bc5478a3148651316038",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+          "target": "concept_d5288a34c4e8444f",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 410,
+            "char_end": 418,
+            "term": "ABLATION"
+          }
+        },
+        {
+          "id": "edge_af81c2346ba6a09f1e68fdb9",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+          "target": "concept_48d492d08e9d314c",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0005",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 419,
+            "char_end": 426,
+            "term": "STUDIES"
+          }
+        },
+        {
+          "id": "edge_cea4f20c4bb2469fd607e0f4",
+          "source": "doc_bd72eebf611df1366b251c16_p0008_c0003",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0008_c0003",
+            "page": 8,
+            "evidence_id": null,
+            "char_start": 307,
+            "char_end": 315,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_641d1a4687b14bfc082cc9f2",
+          "source": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+          "target": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+          "type": "supports",
+          "provenance": {
+            "method": "quote_checked_model_support",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+            "page": 2,
+            "evidence_id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_8cb88ee2ba472db8f34bdea9",
+          "source": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+          "target": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+          "type": "supports",
+          "provenance": {
+            "method": "quote_checked_model_support",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+            "page": 2,
+            "evidence_id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_8445cf74b86ed1a0e88ec83f",
+          "source": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+          "target": "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3",
+          "type": "supports",
+          "provenance": {
+            "method": "quote_checked_model_support",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0002_c0002",
+            "page": 2,
+            "evidence_id": "ev_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3",
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        }
+      ],
+      "concept_expansion_enabled": true,
+      "note": "仅为原文术语共现扩展，非语义知识图谱。"
+    },
+    "trace": [
+      {
+        "step": 1,
+        "type": "run_start",
+        "timestamp": "2026-11-16T05:14:13.687841+00:00",
+        "description": "开始本轮本地证据审计。",
+        "node_ids": [],
+        "edge_ids": [],
+        "metadata": {
+          "document_ids": [
+            "doc_bd72eebf611df1366b251c16"
+          ],
+          "repair_enabled": true,
+          "graph_expansion_requested": true,
+          "top_k": 6,
+          "max_requests": 6,
+          "timeout_seconds": 100.0
+        }
+      },
+      {
+        "step": 2,
+        "type": "plan",
+        "timestamp": "2026-11-16T05:14:15.258580+00:00",
+        "description": "拆解为 3 个可核验需求。",
+        "node_ids": [
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "pruned_unrequested_definitions": 0,
+          "requirement_statuses": {
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1": "pending",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2": "pending",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3": "pending"
+          }
+        }
+      },
+      {
+        "step": 3,
+        "type": "concept_index",
+        "timestamp": "2026-11-16T05:14:15.263079+00:00",
+        "description": "已记录原文术语与字符位置。",
+        "node_ids": [],
+        "edge_ids": [],
+        "metadata": {
+          "enabled": true,
+          "mentions": 171
+        }
+      },
+      {
+        "step": 4,
+        "type": "retrieve",
+        "timestamp": "2026-11-16T05:14:15.266580+00:00",
+        "description": "初次 BM25 检索返回 6 个种子片段。",
+        "node_ids": [
+          "doc_bd72eebf611df1366b251c16_p0007_c0005",
+          "doc_bd72eebf611df1366b251c16_p0002_c0002",
+          "doc_bd72eebf611df1366b251c16_p0013_c0002",
+          "doc_bd72eebf611df1366b251c16_p0007_c0004",
+          "doc_bd72eebf611df1366b251c16_p0007_c0003",
+          "doc_bd72eebf611df1366b251c16_p0008_c0003"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "query": "LightRAG 的 dual-level retrieval 中，两个层级分别检索什么？",
+          "round": 0
+        }
+      },
+      {
+        "step": 5,
+        "type": "graph_expand",
+        "timestamp": "2026-11-16T05:14:15.267080+00:00",
+        "description": "通过共享原文术语扩展 2 个片段，最多2个。",
+        "node_ids": [
+          "doc_bd72eebf611df1366b251c16_p0007_c0005",
+          "doc_bd72eebf611df1366b251c16_p0002_c0002",
+          "doc_bd72eebf611df1366b251c16_p0013_c0002",
+          "doc_bd72eebf611df1366b251c16_p0007_c0004",
+          "doc_bd72eebf611df1366b251c16_p0007_c0003",
+          "doc_bd72eebf611df1366b251c16_p0008_c0003",
+          "doc_bd72eebf611df1366b251c16_p0005_c0003",
+          "doc_bd72eebf611df1366b251c16_p0006_c0003"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "added_chunk_ids": [
+            "doc_bd72eebf611df1366b251c16_p0005_c0003",
+            "doc_bd72eebf611df1366b251c16_p0006_c0003"
+          ],
+          "shared_terms": {
+            "doc_bd72eebf611df1366b251c16_p0005_c0003": "graphrag, lightrag",
+            "doc_bd72eebf611df1366b251c16_p0006_c0003": "graphrag, lightrag"
+          }
+        }
+      },
+      {
+        "step": 6,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:17.123325+00:00",
+        "description": "LightRAG 论文中 dual-level retrieval 包含的两个层级分别是什么：有引用支持。",
+        "node_ids": [
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "edge_ids": [
+          "edge_641d1a4687b14bfc082cc9f2"
+        ],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1": "supported",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2": "pending",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3": "pending"
+          }
+        }
+      },
+      {
+        "step": 7,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:17.123325+00:00",
+        "description": "LightRAG dual-level retrieval 中 low-level 层级检索的对象或实体类型：有引用支持。",
+        "node_ids": [
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "edge_ids": [
+          "edge_8cb88ee2ba472db8f34bdea9"
+        ],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1": "supported",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2": "supported",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3": "pending"
+          }
+        }
+      },
+      {
+        "step": 8,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:17.123325+00:00",
+        "description": "LightRAG dual-level retrieval 中 high-level 层级检索的对象或主题类型：有引用支持。",
+        "node_ids": [
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3",
+          "doc_bd72eebf611df1366b251c16_p0002_c0002"
+        ],
+        "edge_ids": [
+          "edge_8445cf74b86ed1a0e88ec83f"
+        ],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1": "supported",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2": "supported",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3": "supported"
+          }
+        }
+      },
+      {
+        "step": 9,
+        "type": "stop",
+        "timestamp": "2026-11-16T05:14:17.123826+00:00",
+        "description": "本轮已停止；不会继续补检。",
+        "node_ids": [
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1",
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2",
+          "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "reason": "all_supported",
+          "repair_rounds": 0,
+          "supported": 3,
+          "requirement_statuses": {
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_1": "supported",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_2": "supported",
+            "req_6b694eab-6762-4b6e-af8e-53c13de8f3c4_3": "supported"
+          }
+        }
+      }
+    ]
+  }
+}

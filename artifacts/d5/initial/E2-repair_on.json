@@ -1,0 +1,1336 @@
+{
+  "executed_at": "2026-11-16T05:14:11.488886+00:00",
+  "request": {
+    "question": "What is the difference between the distractor setting and the fullwiki setting in this paper?",
+    "document_ids": [
+      "doc_b0456bdb5080d60db357a5f5"
+    ],
+    "mode": "audited",
+    "enable_repair": true,
+    "enable_graph_expansion": true
+  },
+  "result": {
+    "run_id": "1cfa3059-96fb-440d-a9ca-62e088901113",
+    "question": "What is the difference between the distractor setting and the fullwiki setting in this paper?",
+    "answer": "十篇文档作为支持材料，含有用知识及无关内容 [1]\n\n需从从Wikipedia提取的66,581篇文档中识别有用知识。 [2]\n\ndistractor为十篇文档；fullwiki需从66,581篇维基文档中识别有用知识 [3]",
+    "paragraphs": [
+      {
+        "text": "十篇文档作为支持材料，含有用知识及无关内容",
+        "citation_ids": [
+          "1"
+        ]
+      },
+      {
+        "text": "需从从Wikipedia提取的66,581篇文档中识别有用知识。",
+        "citation_ids": [
+          "2"
+        ]
+      },
+      {
+        "text": "distractor为十篇文档；fullwiki需从66,581篇维基文档中识别有用知识",
+        "citation_ids": [
+          "3"
+        ]
+      }
+    ],
+    "citations": [
+      {
+        "id": "1",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "document_title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "page": 5,
+        "quote": "In the distractor setting, a total of ten documents are provided as supporting ma- terials, including all useful knowledge as well as some irrelevant content.",
+        "pdf_url": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=5",
+        "evidence_id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_5"
+      },
+      {
+        "id": "2",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "document_title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "page": 5,
+        "quote": "In the fullwiki setting, it is required to identify useful knowledge from the entire 66,581 documents extracted from Wikipedia.",
+        "pdf_url": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=5",
+        "evidence_id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_2"
+      },
+      {
+        "id": "3",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "document_title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "page": 5,
+        "quote": "In the distractor setting, a total of ten documents are provided as supporting ma- terials, including all useful knowledge as well as some irrelevant content. In the fullwiki setting, it is required to identify useful knowledge from the entire 66,581 documents extracted from Wikipedia.",
+        "pdf_url": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=5",
+        "evidence_id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_6"
+      }
+    ],
+    "insufficient": [
+      "需要核查论文中两种 setting 对应的量化指标或性能对比结果：模型提出支持，但回答中的术语或数值未在所引用片段中出现。"
+    ],
+    "status": "answered",
+    "model": "deepseek-flash",
+    "stats": {
+      "retrieved_chunks": 9,
+      "llm_requests": 3,
+      "duration_ms": 6187,
+      "total_requirements": 4,
+      "supported_requirements": 3,
+      "repair_rounds": 1,
+      "display_coverage_ratio": 0.75,
+      "graph_expanded_chunks": 3,
+      "stop_reason": "repair_exhausted"
+    },
+    "mode": "audited",
+    "requirements": [
+      {
+        "id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+        "text": "需要核查论文中 distractor setting 的定义与数据设置",
+        "search_query": "distractor setting definition dataset",
+        "status": "supported",
+        "evidence_ids": [
+          "ev_1cfa3059-96fb-440d-a9ca-62e088901113_5"
+        ],
+        "explanation": "片段直接给出distractor setting的数据设置：共十篇文档"
+      },
+      {
+        "id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+        "text": "需要核查论文中 fullwiki setting 的定义与数据设置",
+        "search_query": "fullwiki setting definition dataset",
+        "status": "supported",
+        "evidence_ids": [
+          "ev_1cfa3059-96fb-440d-a9ca-62e088901113_2"
+        ],
+        "explanation": "片段直接说明fullwiki setting需从整批文档中识别有用知识。"
+      },
+      {
+        "id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+        "text": "需要核查两种 setting 在证据来源或检索范围上的差异描述",
+        "search_query": "distractor fullwiki difference evidence scope",
+        "status": "supported",
+        "evidence_ids": [
+          "ev_1cfa3059-96fb-440d-a9ca-62e088901113_6"
+        ],
+        "explanation": "片段说明fullwiki需从66,581篇维基文档中找有用知识，与distractor十篇文档形成来源范围差异"
+      },
+      {
+        "id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_4",
+        "text": "需要核查论文中两种 setting 对应的量化指标或性能对比结果",
+        "search_query": "distractor fullwiki performance comparison metrics",
+        "status": "insufficient",
+        "evidence_ids": [],
+        "explanation": "模型提出支持，但回答中的术语或数值未在所引用片段中出现。"
+      }
+    ],
+    "audit_version": "literal_claims_v1",
+    "evidence": [
+      {
+        "id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+        "requirement_id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "quote": "In the distractor setting, a total of ten documents are provided as supporting materials, including all useful knowledge as well as some irrelevant content.",
+        "validated": false,
+        "verifier_result": "supported",
+        "reason": "该需求未通过完整校验：回答无效、缺少证据或包含无法核对的引句。",
+        "round": 0,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 5
+      },
+      {
+        "id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+        "requirement_id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "quote": "In the fullwiki setting, it is required to identify useful knowledge from the entire 66,581 documents extracted from Wikipedia.",
+        "validated": true,
+        "verifier_result": "supported",
+        "reason": "模型提出支持且原文引句匹配",
+        "round": 0,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 5
+      },
+      {
+        "id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+        "requirement_id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+        "quote": "In the fullwiki setting, a large pool of candidate documents (thousands of times more than in the distractor setting) is provided to LLMs, necessitating high-quality retrieval results and effective context organization.",
+        "validated": false,
+        "verifier_result": "supported",
+        "reason": "该需求未通过完整校验：回答无效、缺少证据或包含无法核对的引句。",
+        "round": 0,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 7
+      },
+      {
+        "id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_4",
+        "requirement_id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_4",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+        "quote": "on the Shuffle-HotpotQA dataset, where LLMs should rely more on RAG rather than prior knowledge, our proposed method achieves at least 2.5% and 6.4% improvements in the distractor and fullwiki settings, respectively.",
+        "validated": false,
+        "verifier_result": "insufficient",
+        "reason": "引文无法定位或模型未判为支持",
+        "round": 0,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 7
+      },
+      {
+        "id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_5",
+        "requirement_id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "quote": "In the distractor setting, a total of ten documents are provided as supporting ma- terials, including all useful knowledge as well as some irrelevant content.",
+        "validated": true,
+        "verifier_result": "supported",
+        "reason": "模型提出支持且原文引句匹配",
+        "round": 1,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 5
+      },
+      {
+        "id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_6",
+        "requirement_id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+        "quote": "In the distractor setting, a total of ten documents are provided as supporting ma- terials, including all useful knowledge as well as some irrelevant content. In the fullwiki setting, it is required to identify useful knowledge from the entire 66,581 documents extracted from Wikipedia.",
+        "validated": true,
+        "verifier_result": "supported",
+        "reason": "模型提出支持且原文引句匹配",
+        "round": 1,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 5
+      },
+      {
+        "id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_7",
+        "requirement_id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_4",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+        "quote": "our proposed method achieves at least 2.5% and 6.4% improvements in the distractor and fullwiki settings, respectively.",
+        "validated": false,
+        "verifier_result": "supported",
+        "reason": "该需求未通过完整校验：回答无效、缺少证据或包含无法核对的引句。",
+        "round": 1,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 7
+      }
+    ],
+    "graph": {
+      "nodes": [
+        {
+          "id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+          "type": "requirement",
+          "label": "需要核查论文中 distractor setting 的定义与数据设置",
+          "status": "supported",
+          "source_ref": null
+        },
+        {
+          "id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+          "type": "requirement",
+          "label": "需要核查论文中 fullwiki setting 的定义与数据设置",
+          "status": "supported",
+          "source_ref": null
+        },
+        {
+          "id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+          "type": "requirement",
+          "label": "需要核查两种 setting 在证据来源或检索范围上的差异描述",
+          "status": "supported",
+          "source_ref": null
+        },
+        {
+          "id": "req_1cfa3059-96fb-440d-a9ca-62e088901113_4",
+          "type": "requirement",
+          "label": "需要核查论文中两种 setting 对应的量化指标或性能对比结果",
+          "status": "insufficient",
+          "source_ref": null
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5",
+          "type": "paper",
+          "label": "Knowledge Graph-Guided Retrieval Augmented Generation",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": null,
+            "page": null,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 39",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 40",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "type": "chunk",
+          "label": "第 5 页 · 片段 29",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "type": "chunk",
+          "label": "第 2 页 · 片段 9",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 41",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+          "type": "chunk",
+          "label": "第 8 页 · 片段 45",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+            "page": 8,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 38",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 42",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "type": "chunk",
+          "label": "第 13 页 · 片段 75",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "concept_3ce1d565060eb5f6",
+          "type": "concept",
+          "label": "HotpotQA",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 400,
+            "char_end": 408,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "concept_ec159f0c3821de70",
+          "type": "concept",
+          "label": "KG2RAG",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 582,
+            "char_end": 588,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "concept_60f72876c0460105",
+          "type": "concept",
+          "label": "Shuffle-HotpotQA",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 650,
+            "char_end": 666,
+            "term": "Shuffle-HotpotQA"
+          }
+        },
+        {
+          "id": "concept_d60b25609f91cc15",
+          "type": "concept",
+          "label": "TriviaQA",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 26,
+            "char_end": 34,
+            "term": "TriviaQA"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge_bbc833a5c0696ff388b15eb0",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_da0878ceb4b942dd2b5af529",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_38c9450ba05c9b7b84e0fc97",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_5829c72e9197b83dad3a568b",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_457716c84a04fdb88c5062fc",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_8e581b39e28a6067461194e6",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+            "page": 8,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_e4ae862fed3a55ce5e2f98fd",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_6a4ae9dfe79892433db16b2a",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_9095ac4ae37c16df0ca19b94",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_f5bd1e41591a616a0e77e093",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 400,
+            "char_end": 408,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_cdcc58671cd0879ad8efb7e3",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 582,
+            "char_end": 588,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_fcf28a1de70526befcde6cdb",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 9,
+            "char_end": 17,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_06ffe9c046aca30e631b8018",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 81,
+            "char_end": 87,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_9a919653be7cde194fa79444",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 307,
+            "char_end": 315,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_624dec73e56b0e0c8a07207b",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+          "target": "concept_60f72876c0460105",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 650,
+            "char_end": 666,
+            "term": "Shuffle-HotpotQA"
+          }
+        },
+        {
+          "id": "edge_3360c12c61fb10121e7754a0",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 216,
+            "char_end": 224,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_55ac6c41e4534543a18309fe",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 314,
+            "char_end": 320,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_0223a59f4efceb071e62f593",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 7,
+            "char_end": 13,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_4e4ef49966ebe8abb5153fc7",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+          "target": "concept_60f72876c0460105",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 226,
+            "char_end": 242,
+            "term": "Shuffle-HotpotQA"
+          }
+        },
+        {
+          "id": "edge_33b7227b02dd0a792eccee2c",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 188,
+            "char_end": 196,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_bcf14720cd521d4a6fc6f4c8",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+          "target": "concept_60f72876c0460105",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 201,
+            "char_end": 217,
+            "term": "Shuffle-HotpotQA"
+          }
+        },
+        {
+          "id": "edge_07ffd9babf99fec0e90e8b34",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 487,
+            "char_end": 493,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_8e0d8bec02b2fdaff485781d",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 91,
+            "char_end": 99,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_88a2a80de0255497080d983d",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+          "target": "concept_60f72876c0460105",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 104,
+            "char_end": 120,
+            "term": "Shuffle-HotpotQA"
+          }
+        },
+        {
+          "id": "edge_ad284db93c9bbf146cf8a5a7",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 405,
+            "char_end": 411,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_fe2bfd4dab8d1296512e83bc",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+            "page": 8,
+            "evidence_id": null,
+            "char_start": 412,
+            "char_end": 420,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_0f2cb9f961e51b8e1a5acb2c",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+            "page": 8,
+            "evidence_id": null,
+            "char_start": 536,
+            "char_end": 542,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_b68bb38967ca79fd07e3b083",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "target": "concept_d60b25609f91cc15",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 26,
+            "char_end": 34,
+            "term": "TriviaQA"
+          }
+        },
+        {
+          "id": "edge_b936cfabdf7ca00bf87cbb31",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 152,
+            "char_end": 160,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_acb3e3a85c663ca9ec606a54",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 274,
+            "char_end": 280,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_cc478180de3c79682d8821c3",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "target": "req_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+          "type": "supports",
+          "provenance": {
+            "method": "quote_checked_model_support",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+            "page": 5,
+            "evidence_id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_ce842f65180dd5bf68cec7b8",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "target": "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+          "type": "supports",
+          "provenance": {
+            "method": "quote_checked_model_support",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+            "page": 5,
+            "evidence_id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_5",
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_9ce232d618fed09a667397fb",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "target": "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+          "type": "supports",
+          "provenance": {
+            "method": "quote_checked_model_support",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+            "page": 5,
+            "evidence_id": "ev_1cfa3059-96fb-440d-a9ca-62e088901113_6",
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        }
+      ],
+      "concept_expansion_enabled": true,
+      "note": "仅为原文术语共现扩展，非语义知识图谱。"
+    },
+    "trace": [
+      {
+        "step": 1,
+        "type": "run_start",
+        "timestamp": "2026-11-16T05:14:05.278658+00:00",
+        "description": "开始本轮本地证据审计。",
+        "node_ids": [],
+        "edge_ids": [],
+        "metadata": {
+          "document_ids": [
+            "doc_b0456bdb5080d60db357a5f5"
+          ],
+          "repair_enabled": true,
+          "graph_expansion_requested": true,
+          "top_k": 6,
+          "max_requests": 6,
+          "timeout_seconds": 100.0
+        }
+      },
+      {
+        "step": 2,
+        "type": "plan",
+        "timestamp": "2026-11-16T05:14:06.833673+00:00",
+        "description": "拆解为 4 个可核验需求。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_4"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "pruned_unrequested_definitions": 0,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "pending",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "pending",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "pending",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "pending"
+          }
+        }
+      },
+      {
+        "step": 3,
+        "type": "concept_index",
+        "timestamp": "2026-11-16T05:14:06.844173+00:00",
+        "description": "已记录原文术语与字符位置。",
+        "node_ids": [],
+        "edge_ids": [],
+        "metadata": {
+          "enabled": true,
+          "mentions": 156
+        }
+      },
+      {
+        "step": 4,
+        "type": "retrieve",
+        "timestamp": "2026-11-16T05:14:06.848009+00:00",
+        "description": "初次 BM25 检索返回 6 个种子片段。",
+        "node_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0008_c0001"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "query": "What is the difference between the distractor setting and the fullwiki setting in this paper?",
+          "round": 0
+        }
+      },
+      {
+        "step": 5,
+        "type": "graph_expand",
+        "timestamp": "2026-11-16T05:14:06.848009+00:00",
+        "description": "通过共享原文术语扩展 2 个片段，最多2个。",
+        "node_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0008_c0001",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0004"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "added_chunk_ids": [
+            "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+            "doc_b0456bdb5080d60db357a5f5_p0007_c0004"
+          ],
+          "shared_terms": {
+            "doc_b0456bdb5080d60db357a5f5_p0007_c0000": "hotpotqa, kg2rag, shuffle-hotpotqa",
+            "doc_b0456bdb5080d60db357a5f5_p0007_c0004": "hotpotqa, kg2rag, shuffle-hotpotqa"
+          }
+        }
+      },
+      {
+        "step": 6,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:09.406000+00:00",
+        "description": "需要核查论文中 distractor setting 的定义与数据设置：证据不足。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "insufficient",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "pending",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "pending",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "pending"
+          }
+        }
+      },
+      {
+        "step": 7,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:09.406000+00:00",
+        "description": "需要核查论文中 fullwiki setting 的定义与数据设置：有引用支持。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003"
+        ],
+        "edge_ids": [
+          "edge_cc478180de3c79682d8821c3"
+        ],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "insufficient",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "pending",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "pending"
+          }
+        }
+      },
+      {
+        "step": 8,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:09.406000+00:00",
+        "description": "需要核查两种 setting 在证据来源或检索范围上的差异描述：证据不足。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0001"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "insufficient",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "insufficient",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "pending"
+          }
+        }
+      },
+      {
+        "step": 9,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:09.406000+00:00",
+        "description": "需要核查论文中两种 setting 对应的量化指标或性能对比结果：证据不足。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_4",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0002"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "insufficient",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "insufficient",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 10,
+        "type": "repair_start",
+        "timestamp": "2026-11-16T05:14:09.406000+00:00",
+        "description": "针对 3 个缺口执行唯一一轮定向补检。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_4"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "queries": [
+            "distractor setting definition dataset",
+            "distractor fullwiki difference evidence scope",
+            "HotpotQA distractor fullwiki F1 comparison results table"
+          ],
+          "round": 1
+        }
+      },
+      {
+        "step": 11,
+        "type": "repair_retrieve",
+        "timestamp": "2026-11-16T05:14:09.417006+00:00",
+        "description": "补检返回 6 个去重种子片段。",
+        "node_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0001"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 1
+        }
+      },
+      {
+        "step": 12,
+        "type": "graph_expand",
+        "timestamp": "2026-11-16T05:14:09.417006+00:00",
+        "description": "通过共享原文术语扩展 2 个片段，最多2个。",
+        "node_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0001",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0004"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "added_chunk_ids": [
+            "doc_b0456bdb5080d60db357a5f5_p0007_c0003",
+            "doc_b0456bdb5080d60db357a5f5_p0007_c0004"
+          ],
+          "shared_terms": {
+            "doc_b0456bdb5080d60db357a5f5_p0007_c0003": "hotpotqa, kg2rag, shuffle-hotpotqa",
+            "doc_b0456bdb5080d60db357a5f5_p0007_c0004": "hotpotqa, kg2rag, shuffle-hotpotqa"
+          }
+        }
+      },
+      {
+        "step": 13,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:11.474891+00:00",
+        "description": "需要核查论文中 distractor setting 的定义与数据设置：有引用支持。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003"
+        ],
+        "edge_ids": [
+          "edge_ce842f65180dd5bf68cec7b8"
+        ],
+        "metadata": {
+          "round": 1,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "insufficient",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 14,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:11.474891+00:00",
+        "description": "需要核查两种 setting 在证据来源或检索范围上的差异描述：有引用支持。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+          "doc_b0456bdb5080d60db357a5f5_p0005_c0003"
+        ],
+        "edge_ids": [
+          "edge_9ce232d618fed09a667397fb"
+        ],
+        "metadata": {
+          "round": 1,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 15,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:14:11.475387+00:00",
+        "description": "需要核查论文中两种 setting 对应的量化指标或性能对比结果：证据不足。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_4",
+          "doc_b0456bdb5080d60db357a5f5_p0007_c0003"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 1,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 16,
+        "type": "stop",
+        "timestamp": "2026-11-16T05:14:11.475387+00:00",
+        "description": "本轮已停止；不会继续补检。",
+        "node_ids": [
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_1",
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_2",
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_3",
+          "req_1cfa3059-96fb-440d-a9ca-62e088901113_4"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "reason": "repair_exhausted",
+          "repair_rounds": 1,
+          "supported": 3,
+          "requirement_statuses": {
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_1": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_2": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_3": "supported",
+            "req_1cfa3059-96fb-440d-a9ca-62e088901113_4": "insufficient"
+          }
+        }
+      }
+    ]
+  }
+}

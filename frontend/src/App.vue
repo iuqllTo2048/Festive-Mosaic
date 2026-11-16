@@ -111,7 +111,7 @@ function motionChanged(event: MediaQueryListEvent) { reducedMotion.value = event
 function narrowChanged(event: MediaQueryListEvent) { if (event.matches) { viewMode.value = 'list'; libraryOpen.value = false } }
 function auditBreakpointChanged() { auditOpen.value = false }
 function visibilityChanged() { if (document.hidden) pause() }
-function openUpload() { uploadFile.value = null; uploadError.value = ''; progress.value = 0; dialog.value?.showModal(); void nextTick(()=> fileInput.value?.focus()) }
+function openUpload() { uploadFile.value = null; if (fileInput.value) fileInput.value.value = ''; uploadError.value = ''; progress.value = 0; dialog.value?.showModal(); void nextTick(()=> fileInput.value?.focus()) }
 function chooseFile(event: Event) { uploadFile.value = (event.target as HTMLInputElement).files?.[0] ?? null; uploadError.value = '' }
 async function upload() {
   const file = uploadFile.value; const maximum = health.value?.max_upload_mb ?? 20

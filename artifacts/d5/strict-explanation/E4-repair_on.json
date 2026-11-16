@@ -1,0 +1,1730 @@
+{
+  "executed_at": "2026-11-16T05:17:10.367962+00:00",
+  "request": {
+    "question": "是否能仅根据当前论文断言 LightRAG 在所有检索任务上都优于 KG2RAG？",
+    "document_ids": null,
+    "mode": "audited",
+    "enable_repair": true,
+    "enable_graph_expansion": true
+  },
+  "result": {
+    "run_id": "1f0bc118-3a2d-4ffd-ba29-e82276d873e2",
+    "question": "是否能仅根据当前论文断言 LightRAG 在所有检索任务上都优于 KG2RAG？",
+    "answer": "当前语料无法确定。",
+    "paragraphs": [],
+    "citations": [],
+    "insufficient": [
+      "核查论文中 LightRAG 与 KG2RAG 的实验对比结果与性能比较结论：片段仅给出MuSiQue上KG2RAG高于LightRAG的指标，以及成本/时间对比，未给出论文总括性的LightRAG与KG2RAG性能比较结论。",
+      "核查论文中 LightRAG 所覆盖的检索任务类型与评测数据集范围：片段列出LightRAG评测数据集（Agriculture、CS、Legal、Mix），但未明确说明其覆盖的检索任务类型。",
+      "核查论文中 KG2RAG 所覆盖的检索任务类型与评测数据集范围：片段仅提及KG2RAG在MuSiQue、TriviaQA上实验，未系统说明其覆盖的检索任务类型与全部评测数据集范围。",
+      "核查论文对 LightRAG 优于或不优于 KG2RAG 的适用范围与限制性说明：片段给出KG2RAG在令牌成本、LLM调用次数和耗时上更高效，但未说明LightRAG优于或不优于KG2RAG的适用范围与限制。"
+    ],
+    "status": "insufficient",
+    "model": "deepseek-flash",
+    "stats": {
+      "retrieved_chunks": 12,
+      "llm_requests": 3,
+      "duration_ms": 6828,
+      "total_requirements": 4,
+      "supported_requirements": 0,
+      "repair_rounds": 1,
+      "display_coverage_ratio": 0.0,
+      "graph_expanded_chunks": 4,
+      "stop_reason": "repair_exhausted"
+    },
+    "mode": "audited",
+    "requirements": [
+      {
+        "id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+        "text": "核查论文中 LightRAG 与 KG2RAG 的实验对比结果与性能比较结论",
+        "search_query": "LightRAG KG2RAG 实验对比 性能比较",
+        "status": "insufficient",
+        "evidence_ids": [],
+        "explanation": "片段仅给出MuSiQue上KG2RAG高于LightRAG的指标，以及成本/时间对比，未给出论文总括性的LightRAG与KG2RAG性能比较结论。"
+      },
+      {
+        "id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2",
+        "text": "核查论文中 LightRAG 所覆盖的检索任务类型与评测数据集范围",
+        "search_query": "LightRAG 检索任务 评测数据集 范围",
+        "status": "insufficient",
+        "evidence_ids": [],
+        "explanation": "片段列出LightRAG评测数据集（Agriculture、CS、Legal、Mix），但未明确说明其覆盖的检索任务类型。"
+      },
+      {
+        "id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3",
+        "text": "核查论文中 KG2RAG 所覆盖的检索任务类型与评测数据集范围",
+        "search_query": "KG2RAG 检索任务 评测数据集 范围",
+        "status": "insufficient",
+        "evidence_ids": [],
+        "explanation": "片段仅提及KG2RAG在MuSiQue、TriviaQA上实验，未系统说明其覆盖的检索任务类型与全部评测数据集范围。"
+      },
+      {
+        "id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4",
+        "text": "核查论文对 LightRAG 优于或不优于 KG2RAG 的适用范围与限制性说明",
+        "search_query": "LightRAG KG2RAG 适用性 局限性",
+        "status": "insufficient",
+        "evidence_ids": [],
+        "explanation": "片段给出KG2RAG在令牌成本、LLM调用次数和耗时上更高效，但未说明LightRAG优于或不优于KG2RAG的适用范围与限制。"
+      }
+    ],
+    "audit_version": "quoted_claims_v2",
+    "evidence": [
+      {
+        "id": "ev_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+        "requirement_id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+        "quote": "LightRAG 0.248 0.170 0.289",
+        "validated": false,
+        "verifier_result": "supported",
+        "reason": "该需求未通过完整校验：回答无效、缺少证据或包含无法核对的引句。",
+        "round": 0,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13
+      },
+      {
+        "id": "ev_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2",
+        "requirement_id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+        "quote": "KG2RAG 0.419 0.303 0.451",
+        "validated": false,
+        "verifier_result": "supported",
+        "reason": "该需求未通过完整校验：回答无效、缺少证据或包含无法核对的引句。",
+        "round": 0,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13
+      },
+      {
+        "id": "ev_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3",
+        "requirement_id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+        "quote": "LightRAG 0.118 0.157 0.237",
+        "validated": false,
+        "verifier_result": "supported",
+        "reason": "该需求未通过完整校验：回答无效、缺少证据或包含无法核对的引句。",
+        "round": 0,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13
+      },
+      {
+        "id": "ev_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4",
+        "requirement_id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+        "quote": "LightRAG 0.248 0.170 0.289 GraphRAG 0.231 0.156 0.273 KG2RAG 0.419 0.303 0.451",
+        "validated": false,
+        "verifier_result": "insufficient",
+        "reason": "引文无法定位或模型未判为支持",
+        "round": 1,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13
+      },
+      {
+        "id": "ev_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_5",
+        "requirement_id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2",
+        "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+        "quote": "we chose the Agriculture, CS, Legal, and Mix datasets.",
+        "validated": false,
+        "verifier_result": "insufficient",
+        "reason": "引文无法定位或模型未判为支持",
+        "round": 1,
+        "document_id": "doc_bd72eebf611df1366b251c16",
+        "page": 5
+      },
+      {
+        "id": "ev_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_6",
+        "requirement_id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+        "quote": "We conduct additional experiments on two different datasets to confirm the effectiveness and generality of KG2RAG in various scenarios.",
+        "validated": false,
+        "verifier_result": "insufficient",
+        "reason": "引文无法定位或模型未判为支持",
+        "round": 1,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13
+      },
+      {
+        "id": "ev_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_7",
+        "requirement_id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+        "quote": "demonstrate that KG2RAG is more efficient in terms of token cost, the number of LLM calls, and time cost.",
+        "validated": false,
+        "verifier_result": "insufficient",
+        "reason": "引文无法定位或模型未判为支持",
+        "round": 1,
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "page": 13
+      }
+    ],
+    "graph": {
+      "nodes": [
+        {
+          "id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+          "type": "requirement",
+          "label": "核查论文中 LightRAG 与 KG2RAG 的实验对比结果与性能比较结论",
+          "status": "insufficient",
+          "source_ref": null
+        },
+        {
+          "id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2",
+          "type": "requirement",
+          "label": "核查论文中 LightRAG 所覆盖的检索任务类型与评测数据集范围",
+          "status": "insufficient",
+          "source_ref": null
+        },
+        {
+          "id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3",
+          "type": "requirement",
+          "label": "核查论文中 KG2RAG 所覆盖的检索任务类型与评测数据集范围",
+          "status": "insufficient",
+          "source_ref": null
+        },
+        {
+          "id": "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4",
+          "type": "requirement",
+          "label": "核查论文对 LightRAG 优于或不优于 KG2RAG 的适用范围与限制性说明",
+          "status": "insufficient",
+          "source_ref": null
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5",
+          "type": "paper",
+          "label": "Knowledge Graph-Guided Retrieval Augmented Generation",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": null,
+            "page": null,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "type": "chunk",
+          "label": "第 13 页 · 片段 76",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "type": "chunk",
+          "label": "第 13 页 · 片段 77",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "type": "chunk",
+          "label": "第 13 页 · 片段 75",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "type": "chunk",
+          "label": "第 13 页 · 片段 74",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+          "type": "chunk",
+          "label": "第 6 页 · 片段 36",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+          "type": "chunk",
+          "label": "第 6 页 · 片段 37",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "type": "chunk",
+          "label": "第 2 页 · 片段 9",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+          "type": "chunk",
+          "label": "第 6 页 · 片段 34",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16",
+          "type": "paper",
+          "label": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": null,
+            "page": null,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+          "type": "chunk",
+          "label": "第 13 页 · 片段 80",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+          "type": "chunk",
+          "label": "第 7 页 · 片段 44",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+          "type": "chunk",
+          "label": "第 5 页 · 片段 33",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+          "type": "chunk",
+          "label": "第 6 页 · 片段 35",
+          "status": null,
+          "source_ref": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "concept_3ce1d565060eb5f6",
+          "type": "concept",
+          "label": "HotpotQA",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 400,
+            "char_end": 408,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "concept_ec159f0c3821de70",
+          "type": "concept",
+          "label": "KG2RAG",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 582,
+            "char_end": 588,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "concept_e2b79d62a3283412",
+          "type": "concept",
+          "label": "Shuffle-HotpotQA-Dist",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 187,
+            "char_end": 208,
+            "term": "Shuffle-HotpotQA-Dist"
+          }
+        },
+        {
+          "id": "concept_635d603dcb715a7c",
+          "type": "concept",
+          "label": "BM25",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 657,
+            "char_end": 661,
+            "term": "BM25"
+          }
+        },
+        {
+          "id": "concept_f0f8d2e716fe66cc",
+          "type": "concept",
+          "label": "GraphRAG",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 789,
+            "char_end": 797,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "concept_8d2ee9de568eff3e",
+          "type": "concept",
+          "label": "LightRAG",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 421,
+            "char_end": 429,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "concept_4fb53885862e0f97",
+          "type": "concept",
+          "label": "LLaMA3",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 65,
+            "char_end": 71,
+            "term": "LLaMA3"
+          }
+        },
+        {
+          "id": "concept_effe67016da08159",
+          "type": "concept",
+          "label": "MuSiQue",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 270,
+            "char_end": 277,
+            "term": "MuSiQue"
+          }
+        },
+        {
+          "id": "concept_d60b25609f91cc15",
+          "type": "concept",
+          "label": "TriviaQA",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 26,
+            "char_end": 34,
+            "term": "TriviaQA"
+          }
+        },
+        {
+          "id": "concept_8cd2f439fb2eb96c",
+          "type": "concept",
+          "label": "RQ2",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 53,
+            "char_end": 56,
+            "term": "RQ2"
+          }
+        },
+        {
+          "id": "concept_cf5184dac80235d4",
+          "type": "concept",
+          "label": "RQ3",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 159,
+            "char_end": 162,
+            "term": "RQ3"
+          }
+        },
+        {
+          "id": "concept_06d65378901e35b1",
+          "type": "concept",
+          "label": "Large-Scale",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 1,
+            "char_end": 12,
+            "term": "Large-Scale"
+          }
+        },
+        {
+          "id": "concept_f30c534da958a753",
+          "type": "concept",
+          "label": "APPENDIX",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 2,
+            "char_end": 10,
+            "term": "APPENDIX"
+          }
+        },
+        {
+          "id": "concept_748be63c87c9fad2",
+          "type": "concept",
+          "label": "EXPERIMENTAL",
+          "status": null,
+          "source_ref": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 574,
+            "char_end": 586,
+            "term": "EXPERIMENTAL"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge_9707ce5f7d54c8823b209ffd",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_da1dd3755a673f99af24a30d",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_9095ac4ae37c16df0ca19b94",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_12b3a5898099ab354b929c61",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_b0b38b111a6a87cc881d212d",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_5ab236fe55de16a3450e1301",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_5829c72e9197b83dad3a568b",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_6fff0d599af09bde66994103",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_810618922b3578494eb78b56",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_1dcab32903370504ab4149d4",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_88c28bf304ce952cba489cf2",
+          "source": "doc_bd72eebf611df1366b251c16",
+          "target": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_d070040a1a1ea84f22cdce02",
+          "source": "doc_b0456bdb5080d60db357a5f5",
+          "target": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+          "type": "contains",
+          "provenance": {
+            "method": "pdf_ingestion",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": null,
+            "char_end": null,
+            "term": null
+          }
+        },
+        {
+          "id": "edge_f5bd1e41591a616a0e77e093",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 400,
+            "char_end": 408,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_cdcc58671cd0879ad8efb7e3",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "page": 2,
+            "evidence_id": null,
+            "char_start": 582,
+            "char_end": 588,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_94a57f184afca6eeaeb317ed",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 103,
+            "char_end": 109,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_bcddca9f9ef2629754879382",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+          "target": "concept_e2b79d62a3283412",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 187,
+            "char_end": 208,
+            "term": "Shuffle-HotpotQA-Dist"
+          }
+        },
+        {
+          "id": "edge_59fbba8ff660f67b5f83df05",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0002",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 222,
+            "char_end": 230,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_aabab1e6f8d2d12e286ac292",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 114,
+            "char_end": 120,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_675d431dd92d99bb76d1a037",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+          "target": "concept_635d603dcb715a7c",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 657,
+            "char_end": 661,
+            "term": "BM25"
+          }
+        },
+        {
+          "id": "edge_0e9f0fc30c08bf6d9d24eed5",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+          "target": "concept_f0f8d2e716fe66cc",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0003",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 789,
+            "char_end": 797,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "edge_e9e40919cdfb5d987dffbb02",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+          "target": "concept_f0f8d2e716fe66cc",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 89,
+            "char_end": 97,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "edge_47ffcfdea3a3fd3aaf7fdfa2",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 421,
+            "char_end": 429,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_0e569ededb6965f16a72675a",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 725,
+            "char_end": 731,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_743727d3386217e23bf45d65",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 25,
+            "char_end": 31,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_2e55b2c251dd5b0595fef49f",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+          "target": "concept_4fb53885862e0f97",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+            "page": 6,
+            "evidence_id": null,
+            "char_start": 65,
+            "char_end": 71,
+            "term": "LLaMA3"
+          }
+        },
+        {
+          "id": "edge_3d5a4b09de6d1c69adfe916a",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 170,
+            "char_end": 176,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_f1b5802e1715d8f1c97fb6d3",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "target": "concept_effe67016da08159",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 270,
+            "char_end": 277,
+            "term": "MuSiQue"
+          }
+        },
+        {
+          "id": "edge_12bd172e9b37937c9424d752",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 542,
+            "char_end": 550,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_b68bb38967ca79fd07e3b083",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "target": "concept_d60b25609f91cc15",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 26,
+            "char_end": 34,
+            "term": "TriviaQA"
+          }
+        },
+        {
+          "id": "edge_b936cfabdf7ca00bf87cbb31",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "target": "concept_3ce1d565060eb5f6",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 152,
+            "char_end": 160,
+            "term": "HotpotQA"
+          }
+        },
+        {
+          "id": "edge_acb3e3a85c663ca9ec606a54",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 274,
+            "char_end": 280,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_710988a780f2e0781900038e",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 14,
+            "char_end": 22,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_4a6a73dfec30a5f8fe4f9765",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "target": "concept_f0f8d2e716fe66cc",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 46,
+            "char_end": 54,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "edge_40208094b2c5a08386e3168d",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 134,
+            "char_end": 140,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_64998f0a9c02edbd2eb35452",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "target": "concept_ec159f0c3821de70",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 18,
+            "char_end": 24,
+            "term": "KG2RAG"
+          }
+        },
+        {
+          "id": "edge_ce76c0378e48eb68bc04631b",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 201,
+            "char_end": 209,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_7e3e10a78c968eb6527ada7a",
+          "source": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "target": "concept_f0f8d2e716fe66cc",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_b0456bdb5080d60db357a5f5",
+            "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 223,
+            "char_end": 231,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "edge_a0ec9ac69a3d689cbae4fb95",
+          "source": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+          "target": "concept_8cd2f439fb2eb96c",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 53,
+            "char_end": 56,
+            "term": "RQ2"
+          }
+        },
+        {
+          "id": "edge_53bd06a57822bdd673d4b233",
+          "source": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 146,
+            "char_end": 154,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_c77ca57d93dcd06a71bb779e",
+          "source": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+          "target": "concept_cf5184dac80235d4",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0005_c0004",
+            "page": 5,
+            "evidence_id": null,
+            "char_start": 159,
+            "char_end": 162,
+            "term": "RQ3"
+          }
+        },
+        {
+          "id": "edge_2517469d8bc1f39df43f0cfd",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+          "target": "concept_06d65378901e35b1",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 1,
+            "char_end": 12,
+            "term": "Large-Scale"
+          }
+        },
+        {
+          "id": "edge_53c8796ad79a5aacfbe8a931",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 167,
+            "char_end": 175,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_593c1f7944de243689401e9e",
+          "source": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+          "target": "concept_f0f8d2e716fe66cc",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0007_c0002",
+            "page": 7,
+            "evidence_id": null,
+            "char_start": 180,
+            "char_end": 188,
+            "term": "GraphRAG"
+          }
+        },
+        {
+          "id": "edge_d9270f152e37df7b6a422f8f",
+          "source": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+          "target": "concept_f30c534da958a753",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 2,
+            "char_end": 10,
+            "term": "APPENDIX"
+          }
+        },
+        {
+          "id": "edge_e108d6150024d9f48c140869",
+          "source": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+          "target": "concept_8d2ee9de568eff3e",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 100,
+            "char_end": 108,
+            "term": "LightRAG"
+          }
+        },
+        {
+          "id": "edge_a49f4f025faaaf52675209ef",
+          "source": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+          "target": "concept_748be63c87c9fad2",
+          "type": "mentions",
+          "provenance": {
+            "method": "literal_terms_v1",
+            "document_id": "doc_bd72eebf611df1366b251c16",
+            "chunk_id": "doc_bd72eebf611df1366b251c16_p0013_c0000",
+            "page": 13,
+            "evidence_id": null,
+            "char_start": 574,
+            "char_end": 586,
+            "term": "EXPERIMENTAL"
+          }
+        }
+      ],
+      "concept_expansion_enabled": true,
+      "note": "仅为原文术语共现扩展，非语义知识图谱。"
+    },
+    "trace": [
+      {
+        "step": 1,
+        "type": "run_start",
+        "timestamp": "2026-11-16T05:17:03.540244+00:00",
+        "description": "开始本轮本地证据审计。",
+        "node_ids": [],
+        "edge_ids": [],
+        "metadata": {
+          "document_ids": [
+            "doc_7d45adf85d98a9a2f4e619f4",
+            "doc_bd72eebf611df1366b251c16",
+            "doc_b0456bdb5080d60db357a5f5"
+          ],
+          "repair_enabled": true,
+          "graph_expansion_requested": true,
+          "top_k": 6,
+          "max_requests": 6,
+          "timeout_seconds": 100.0
+        }
+      },
+      {
+        "step": 2,
+        "type": "plan",
+        "timestamp": "2026-11-16T05:17:04.885497+00:00",
+        "description": "拆解为 4 个可核验需求。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "pruned_unrequested_definitions": 0,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "pending",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "pending",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "pending",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "pending"
+          }
+        }
+      },
+      {
+        "step": 3,
+        "type": "concept_index",
+        "timestamp": "2026-11-16T05:17:04.891497+00:00",
+        "description": "已记录原文术语与字符位置。",
+        "node_ids": [],
+        "edge_ids": [],
+        "metadata": {
+          "enabled": true,
+          "mentions": 588
+        }
+      },
+      {
+        "step": 4,
+        "type": "retrieve",
+        "timestamp": "2026-11-16T05:17:04.908502+00:00",
+        "description": "初次 BM25 检索返回 6 个种子片段。",
+        "node_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+          "doc_b0456bdb5080d60db357a5f5_p0006_c0005"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "query": "是否能仅根据当前论文断言 LightRAG 在所有检索任务上都优于 KG2RAG？",
+          "round": 0
+        }
+      },
+      {
+        "step": 5,
+        "type": "graph_expand",
+        "timestamp": "2026-11-16T05:17:04.909003+00:00",
+        "description": "通过共享原文术语扩展 2 个片段，最多2个。",
+        "node_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0001",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+          "doc_b0456bdb5080d60db357a5f5_p0006_c0005",
+          "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0006_c0002"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "added_chunk_ids": [
+            "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+            "doc_b0456bdb5080d60db357a5f5_p0006_c0002"
+          ],
+          "shared_terms": {
+            "doc_b0456bdb5080d60db357a5f5_p0002_c0002": "hotpotqa, kg2rag",
+            "doc_b0456bdb5080d60db357a5f5_p0006_c0002": "hotpotqa, kg2rag"
+          }
+        }
+      },
+      {
+        "step": 6,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:17:07.176913+00:00",
+        "description": "核查论文中 LightRAG 与 KG2RAG 的实验对比结果与性能比较结论：证据不足。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0003"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "pending",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "pending",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "pending"
+          }
+        }
+      },
+      {
+        "step": 7,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:17:07.176913+00:00",
+        "description": "核查论文中 LightRAG 所覆盖的检索任务类型与评测数据集范围：证据不足。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "pending",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "pending"
+          }
+        }
+      },
+      {
+        "step": 8,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:17:07.176913+00:00",
+        "description": "核查论文中 KG2RAG 所覆盖的检索任务类型与评测数据集范围：证据不足。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "pending"
+          }
+        }
+      },
+      {
+        "step": 9,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:17:07.176913+00:00",
+        "description": "核查论文对 LightRAG 优于或不优于 KG2RAG 的适用范围与限制性说明：证据不足。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 0,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 10,
+        "type": "repair_start",
+        "timestamp": "2026-11-16T05:17:07.176913+00:00",
+        "description": "针对 4 个缺口执行唯一一轮定向补检。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "queries": [
+            "LightRAG KG2RAG 实验对比 性能比较",
+            "LightRAG evaluated retrieval tasks datasets coverage experimental setup",
+            "KG2RAG evaluated datasets retrieval tasks task types experimental scope",
+            "LightRAG versus KG2RAG limitations scope conditions where outperform"
+          ],
+          "round": 1
+        }
+      },
+      {
+        "step": 11,
+        "type": "repair_retrieve",
+        "timestamp": "2026-11-16T05:17:07.239478+00:00",
+        "description": "补检返回 6 个去重种子片段。",
+        "node_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "doc_bd72eebf611df1366b251c16_p0013_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "doc_bd72eebf611df1366b251c16_p0007_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "doc_bd72eebf611df1366b251c16_p0005_c0004"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 1
+        }
+      },
+      {
+        "step": 12,
+        "type": "graph_expand",
+        "timestamp": "2026-11-16T05:17:07.239478+00:00",
+        "description": "通过共享原文术语扩展 2 个片段，最多2个。",
+        "node_ids": [
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0002",
+          "doc_bd72eebf611df1366b251c16_p0013_c0000",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000",
+          "doc_bd72eebf611df1366b251c16_p0007_c0002",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0003",
+          "doc_bd72eebf611df1366b251c16_p0005_c0004",
+          "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+          "doc_b0456bdb5080d60db357a5f5_p0006_c0003"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "added_chunk_ids": [
+            "doc_b0456bdb5080d60db357a5f5_p0006_c0004",
+            "doc_b0456bdb5080d60db357a5f5_p0006_c0003"
+          ],
+          "shared_terms": {
+            "doc_b0456bdb5080d60db357a5f5_p0006_c0004": "graphrag, kg2rag, lightrag",
+            "doc_b0456bdb5080d60db357a5f5_p0006_c0003": "graphrag, kg2rag"
+          }
+        }
+      },
+      {
+        "step": 13,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:17:10.359471+00:00",
+        "description": "核查论文中 LightRAG 与 KG2RAG 的实验对比结果与性能比较结论：证据不足。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 1,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 14,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:17:10.359966+00:00",
+        "description": "核查论文中 LightRAG 所覆盖的检索任务类型与评测数据集范围：证据不足。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2",
+          "doc_bd72eebf611df1366b251c16_p0005_c0004"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 1,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 15,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:17:10.359966+00:00",
+        "description": "核查论文中 KG2RAG 所覆盖的检索任务类型与评测数据集范围：证据不足。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0000"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 1,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 16,
+        "type": "verify_requirement",
+        "timestamp": "2026-11-16T05:17:10.359966+00:00",
+        "description": "核查论文对 LightRAG 优于或不优于 KG2RAG 的适用范围与限制性说明：证据不足。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4",
+          "doc_b0456bdb5080d60db357a5f5_p0013_c0002"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "round": 1,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "insufficient"
+          }
+        }
+      },
+      {
+        "step": 17,
+        "type": "stop",
+        "timestamp": "2026-11-16T05:17:10.360470+00:00",
+        "description": "本轮已停止；不会继续补检。",
+        "node_ids": [
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3",
+          "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4"
+        ],
+        "edge_ids": [],
+        "metadata": {
+          "reason": "repair_exhausted",
+          "repair_rounds": 1,
+          "supported": 0,
+          "requirement_statuses": {
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_1": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_2": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_3": "insufficient",
+            "req_1f0bc118-3a2d-4ffd-ba29-e82276d873e2_4": "insufficient"
+          }
+        }
+      }
+    ]
+  }
+}

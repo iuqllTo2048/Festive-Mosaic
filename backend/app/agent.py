@@ -106,7 +106,10 @@ def run_audited_query(body: QueryRequest, store: Store, settings: Settings, llm:
                     accepted.append(link.id)
             valid_answer = bool(judgment.answer.strip()) and not re.search(r"\[\s*\d+\s*\]", judgment.answer)
             claim_matches = literal_claim_tokens_match(
-                judgment.answer + "\n" + judgment.explanation,
+                judgment.answer,
+                [link.quote for link in candidates if link.validated],
+            ) and literal_claim_tokens_match(
+                judgment.explanation,
                 [lookup[link.chunk_id].text for link in candidates if link.chunk_id in lookup],
             )
             valid_answer = valid_answer and claim_matches
@@ -114,7 +117,7 @@ def run_audited_query(body: QueryRequest, store: Store, settings: Settings, llm:
             requirement.status = "supported" if supported else "insufficient"
             requirement.evidence_ids = accepted if supported else []
             requirement.explanation = judgment.explanation if supported or judgment.status == "insufficient" else (
-                "模型提出支持，但回答中的术语或数值未在所引用片段中出现。" if not claim_matches else "模型提出支持，但引句或回答未通过后端校验。")
+                "模型提出支持，但回答中的术语或数值未在实际引句中出现。" if not claim_matches else "模型提出支持，但引句或回答未通过后端校验。")
             if supported:
                 answers[requirement.id] = judgment.answer.strip()
             else:
@@ -226,7 +229,7 @@ def run_audited_query(body: QueryRequest, store: Store, settings: Settings, llm:
         run_id=run_id, question=body.question, answer=answer or "当前语料无法确定。", paragraphs=paragraphs,
         citations=citations, insufficient=insufficient, status="answered" if paragraphs else "insufficient",
         model=settings.deepseek_model if budget.requests else None, mode="audited", requirements=requirements,
-        audit_version="literal_claims_v1",
+        audit_version="quoted_claims_v2",
         evidence=evidence, graph=graph, trace=trace,
         stats=QueryStats(retrieved_chunks=len(seen_chunks), llm_requests=budget.requests,
                          duration_ms=round((time.monotonic() - started) * 1000), total_requirements=len(requirements),

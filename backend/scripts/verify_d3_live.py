@@ -33,7 +33,7 @@ def main():
             raise SystemExit(f"Query failed: {response.json().get('error', {}).get('code', response.status_code)}")
         result = response.json()
         assert result["mode"] == "audited"
-        assert result["audit_version"] == "literal_claims_v1", "Run predates claim-token validation"
+        assert result["audit_version"] in {"literal_claims_v1", "quoted_claims_v2"}, "Run predates claim-token validation"
         requirements = {item["id"]: item for item in result["requirements"]}
         assert 1 <= len(requirements) <= 4
         supported = sum(item["status"] == "supported" for item in requirements.values())

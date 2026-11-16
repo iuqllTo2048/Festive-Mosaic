@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-16",
+  "browser": "ChatGPT in-app browser",
+  "run_id": "34a31bea-9831-4492-bf93-2e15913e0ebc",
+  "graph": { "nodes": 22, "edges": 42 },
+  "gap_focus": { "nodes": 1, "edges": 0 },
+  "source": { "paper": "KG2RAG", "page": 5, "chunk_display_order": 28 },
+  "replay_start": { "nodes": 0, "edges": 0 },
+  "viewports": [
+    { "width": 1440, "height": 900, "document_width": 1440, "canvas_count": 1 },
+    { "width": 1024, "height": 768, "document_width": 1024, "audit_drawer_focus": "收起" },
+    { "width": 390, "height": 844, "document_width": 390, "canvas_count": 0 }
+  ],
+  "manual_checks": {
+    "real_pdf_first_upload": "13 pages, 77 chunks, isolated library from 0 to 1",
+    "same_file_reselection_without_reload": "fixed and verified twice; duplicate, library stays 1",
+    "empty_file": "clear rejection before upload",
+    "invalid_pdf_content": "clear backend rejection",
+    "blank_pdf": "no extractable text, OCR unsupported; not a real scan sample",
+    "no_key": "actual keyless backend 503 displayed, no answer",
+    "camera_reset_and_resize": "fixed feedback from sprite bounds; repeated resets stable",
+    "console_final_workspace": "no warnings or errors"
+  },
+  "prefers_reduced_motion": true,
+  "native_pdf_visual_jump_verified": false,
+  "automatic_playback_verified": false,
+  "gpu_loss_simulated": false,
+  "keyless_test_service": "http://127.0.0.1:8001/; isolated data; stopped after UI acceptance",
+  "notes": "Manual observations and limitations are detailed in docs/D5_VERIFICATION.md."
+}

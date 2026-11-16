@@ -131,13 +131,22 @@ function updateData() {
 }
 function reset() {
   if (!graph || !host.value) return
-  const bounds = graph.getGraphBbox()
-  if (!bounds) return
+  // Scene bounds include label sprites whose scale changes during fitting, and
+  // matrixWorld can still reflect the previous frame. Fit stable node positions.
+  const nodes = graph.graphData().nodes
+  if (!nodes.length) return
+  const points = nodes.map((node) => ({ x: node.fx ?? node.x ?? 0, y: node.fy ?? node.y ?? 0, z: node.fz ?? node.z ?? 0 }))
+  const bounds = { x: [Math.min(...points.map(p=>p.x)), Math.max(...points.map(p=>p.x))],
+    y: [Math.min(...points.map(p=>p.y)), Math.max(...points.map(p=>p.y))],
+    z: [Math.min(...points.map(p=>p.z)), Math.max(...points.map(p=>p.z))] }
   const camera = graph.camera() as THREE.PerspectiveCamera
   const tangent = Math.tan(camera.fov * Math.PI / 360)
   const rect = host.value.getBoundingClientRect()
   const x = (bounds.x[0] + bounds.x[1]) / 2, y = (bounds.y[0] + bounds.y[1]) / 2, z = (bounds.z[0] + bounds.z[1]) / 2
-  const distance = Math.max((bounds.y[1]-bounds.y[0]+38)/(2*tangent), (bounds.x[1]-bounds.x[0]+85)/(2*tangent*(rect.width/rect.height))) + (bounds.z[1]-bounds.z[0])/2
+  const height = Math.max(rect.height - 80, rect.height * .6)
+  const width = Math.max(rect.width - 240, rect.width * .5)
+  const distance = Math.max(80, (bounds.y[1]!-bounds.y[0]!)/(2*tangent)*rect.height/height,
+    (bounds.x[1]!-bounds.x[0]!)/(2*tangent*(rect.width/rect.height))*rect.width/width) + (bounds.z[1]!-bounds.z[0]!)/2
   worldPerPixel = 2 * distance * tangent / rect.height
   graph.cameraPosition({x,y,z:z+distance},{x,y,z},props.reducedMotion?0:240)
   graph.nodeThreeObject((node)=>objectFor(node))

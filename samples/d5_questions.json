@@ -1,0 +1,27 @@
+[
+  {
+    "id": "E1", "paper": "kg2rag",
+    "question": "Which benchmark dataset and its variants were used to evaluate KG2RAG? Answer only from the paper and give source quotes.",
+    "expected": "应引用 HotpotQA 的实际来源；未召回的变体不可凭记忆补写。"
+  },
+  {
+    "id": "E2", "paper": "kg2rag",
+    "question": "What is the difference between the distractor setting and the fullwiki setting in this paper?",
+    "expected": "只回答原文明确描述的设置区别，来源不足时保留未知。"
+  },
+  {
+    "id": "E3", "paper": "lightrag",
+    "question": "LightRAG 的 dual-level retrieval 中，两个层级分别检索什么？",
+    "expected": "引用方法正文描述两个层级；不能以标题或外部常识补齐缺失细节。"
+  },
+  {
+    "id": "E4", "paper": null,
+    "question": "是否能仅根据当前论文断言 LightRAG 在所有检索任务上都优于 KG2RAG？",
+    "expected": "不得从不同论文的实验推出所有任务的普遍排名；无共同条件证据应无法确定。"
+  },
+  {
+    "id": "E7", "paper": "kg2rag",
+    "question": "Which evaluation dataset does KG2RAG use, and what measured energy consumption in joules per query does the paper report? Cite evidence for each; if a measurement is not supported by the excerpts, say it is unknown.",
+    "expected": "数据集可引用；焦耳/查询能耗不得用毫秒响应时间替代；一次补检后仍不足必须停止。"
+  }
+]

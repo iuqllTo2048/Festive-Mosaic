@@ -1,0 +1,177 @@
+{
+  "checked_at": "2026-11-16T05:16:41.886946+00:00",
+  "real_api": true,
+  "note": "Exploratory five-question sample; independent model plans may differ between paired runs. Not an accuracy benchmark or causal ablation.",
+  "cases": [
+    {
+      "id": "E1",
+      "paper": "kg2rag",
+      "question": "Which benchmark dataset and its variants were used to evaluate KG2RAG? Answer only from the paper and give source quotes.",
+      "expected": "应引用 HotpotQA 的实际来源；未召回的变体不可凭记忆补写。",
+      "runs": {
+        "repair_off": {
+          "run_id": "549c048d-3bc4-4ff2-a5f4-eb4089c466b9",
+          "supported": 2,
+          "requirements": 2,
+          "unresolved": 0,
+          "citations": 3,
+          "duration_ms": 3593,
+          "llm_requests": 2,
+          "repair_rounds": 0,
+          "stop_reason": "all_supported",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        },
+        "repair_on": {
+          "run_id": "7248aa0a-72ce-44ad-b190-a7e131627f7b",
+          "supported": 2,
+          "requirements": 2,
+          "unresolved": 0,
+          "citations": 3,
+          "duration_ms": 2922,
+          "llm_requests": 2,
+          "repair_rounds": 0,
+          "stop_reason": "all_supported",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        }
+      }
+    },
+    {
+      "id": "E2",
+      "paper": "kg2rag",
+      "question": "What is the difference between the distractor setting and the fullwiki setting in this paper?",
+      "expected": "只回答原文明确描述的设置区别，来源不足时保留未知。",
+      "runs": {
+        "repair_off": {
+          "run_id": "cccc62ac-8e29-464f-83b2-a128bb09344b",
+          "supported": 3,
+          "requirements": 3,
+          "unresolved": 0,
+          "citations": 3,
+          "duration_ms": 3406,
+          "llm_requests": 2,
+          "repair_rounds": 0,
+          "stop_reason": "all_supported",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        },
+        "repair_on": {
+          "run_id": "5eaf682a-de21-4c62-af80-7475890cfc58",
+          "supported": 3,
+          "requirements": 3,
+          "unresolved": 0,
+          "citations": 3,
+          "duration_ms": 3391,
+          "llm_requests": 2,
+          "repair_rounds": 0,
+          "stop_reason": "all_supported",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        }
+      }
+    },
+    {
+      "id": "E3",
+      "paper": "lightrag",
+      "question": "LightRAG 的 dual-level retrieval 中，两个层级分别检索什么？",
+      "expected": "引用方法正文描述两个层级；不能以标题或外部常识补齐缺失细节。",
+      "runs": {
+        "repair_off": {
+          "run_id": "e2a930b1-45a8-4341-8913-bf4d961f0280",
+          "supported": 2,
+          "requirements": 2,
+          "unresolved": 0,
+          "citations": 2,
+          "duration_ms": 1953,
+          "llm_requests": 2,
+          "repair_rounds": 0,
+          "stop_reason": "all_supported",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        },
+        "repair_on": {
+          "run_id": "92df165e-6091-432a-85e2-3bc4dd3aba4a",
+          "supported": 2,
+          "requirements": 2,
+          "unresolved": 0,
+          "citations": 2,
+          "duration_ms": 2156,
+          "llm_requests": 2,
+          "repair_rounds": 0,
+          "stop_reason": "all_supported",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        }
+      }
+    },
+    {
+      "id": "E4",
+      "paper": null,
+      "question": "是否能仅根据当前论文断言 LightRAG 在所有检索任务上都优于 KG2RAG？",
+      "expected": "不得从不同论文的实验推出所有任务的普遍排名；无共同条件证据应无法确定。",
+      "runs": {
+        "repair_off": {
+          "run_id": "8daf24ee-9ef5-4a06-9cae-1ad5ce509f3f",
+          "supported": 0,
+          "requirements": 2,
+          "unresolved": 2,
+          "citations": 0,
+          "duration_ms": 3719,
+          "llm_requests": 2,
+          "repair_rounds": 0,
+          "stop_reason": "repair_disabled",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        },
+        "repair_on": {
+          "run_id": "1f0bc118-3a2d-4ffd-ba29-e82276d873e2",
+          "supported": 0,
+          "requirements": 4,
+          "unresolved": 4,
+          "citations": 0,
+          "duration_ms": 6828,
+          "llm_requests": 3,
+          "repair_rounds": 1,
+          "stop_reason": "repair_exhausted",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        }
+      }
+    },
+    {
+      "id": "E7",
+      "paper": "kg2rag",
+      "question": "Which evaluation dataset does KG2RAG use, and what measured energy consumption in joules per query does the paper report? Cite evidence for each; if a measurement is not supported by the excerpts, say it is unknown.",
+      "expected": "数据集可引用；焦耳/查询能耗不得用毫秒响应时间替代；一次补检后仍不足必须停止。",
+      "runs": {
+        "repair_off": {
+          "run_id": "ebed550e-3f84-4422-a995-43cbf286ff9a",
+          "supported": 0,
+          "requirements": 2,
+          "unresolved": 2,
+          "citations": 0,
+          "duration_ms": 2797,
+          "llm_requests": 2,
+          "repair_rounds": 0,
+          "stop_reason": "repair_disabled",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        },
+        "repair_on": {
+          "run_id": "c732b3ef-c8ea-4104-b75b-3d17796f724c",
+          "supported": 0,
+          "requirements": 2,
+          "unresolved": 2,
+          "citations": 0,
+          "duration_ms": 4156,
+          "llm_requests": 3,
+          "repair_rounds": 1,
+          "stop_reason": "repair_exhausted",
+          "source_integrity": "passed",
+          "semantic_review": "requires recorded manual review"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "request": {
+    "question": "zzzxquantumunfindable",
+    "mode": "basic"
+  },
+  "result": {
+    "run_id": "2b48e0d1-2726-4c6c-a62c-68bfde0e125f",
+    "question": "zzzxquantumunfindable",
+    "answer": "当前语料无法确定。",
+    "paragraphs": [],
+    "citations": [],
+    "insufficient": [
+      "当前语料未检索到匹配片段，无法确定。BM25 依赖词面匹配，英文论文建议在问题中保留英文术语。",
+      "当前语料无法确定：没有生成带有效原文引用的回答。"
+    ],
+    "status": "insufficient",
+    "model": null,
+    "stats": {
+      "retrieved_chunks": 0,
+      "llm_requests": 0,
+      "duration_ms": 15,
+      "total_requirements": 0,
+      "supported_requirements": 0,
+      "repair_rounds": 0,
+      "display_coverage_ratio": 0.0,
+      "graph_expanded_chunks": 0,
+      "stop_reason": "basic_completed"
+    },
+    "mode": "basic",
+    "requirements": [],
+    "audit_version": null,
+    "evidence": [],
+    "graph": {
+      "nodes": [],
+      "edges": [],
+      "concept_expansion_enabled": false,
+      "note": "基础问答未构建图数据。"
+    },
+    "trace": []
+  }
+}

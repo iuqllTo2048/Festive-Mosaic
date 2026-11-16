@@ -77,6 +77,34 @@ def test_fabricated_quote_never_supports_requirement(client, monkeypatch, failur
     assert result["stats"]["repair_rounds"] == 1
 
 
+@pytest.mark.parametrize("answer,quote,supported", [
+    ("Betazebra", "Alpha measured value is 42.", False),
+    ("数值为99。", "Alpha measured value is 42.", False),
+    ("Betazebra测量值为99。", "Betazebra measured value is 99.", True),
+])
+def test_claim_must_appear_in_actual_quote_not_elsewhere_in_chunk(client, monkeypatch, answer, quote, supported):
+    upload(client, make_pdf(["Alpha measured value is 42. Betazebra measured value is 99."]))
+    install_agent(client, monkeypatch, lambda requirements, hits, call, budget:
+                  proposal(requirements, hits[0].chunk, quote=quote, answer=answer))
+    result = ask(client, enable_repair=False).json()
+    assert result["audit_version"] == "quoted_claims_v2"
+    assert (result["requirements"][0]["status"] == "supported") == supported
+    assert bool(result["citations"]) == supported
+    assert any(edge["type"] == "supports" for edge in result["graph"]["edges"]) == supported
+
+
+def test_explanation_may_name_paper_context_outside_quote(client, monkeypatch):
+    upload(client, make_pdf(["Alpha methods. Betazebra measured value is 99."]))
+    def judge(requirements, hits, call, budget):
+        result = proposal(requirements, hits[0].chunk, quote="Betazebra measured value is 99.", answer="Betazebra测量值为99。")
+        result.judgments[0].explanation = "Alpha原文报告Betazebra测量值。"
+        return result
+    install_agent(client, monkeypatch, judge)
+    result = ask(client, enable_repair=False).json()
+    assert result["requirements"][0]["status"] == "supported"
+    assert result["citations"][0]["quote"] == "Betazebra measured value is 99."
+
+
 @pytest.mark.parametrize("extra_definition", [False, True])
 def test_repair_at_most_once_and_recovers(client, monkeypatch, extra_definition):
     upload(client, make_pdf(["Alpha source is unrelated to the target.", "Betazebra measured value is forty two."]))
