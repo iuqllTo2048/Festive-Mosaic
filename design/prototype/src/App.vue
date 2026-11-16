@@ -1,6 +1,6 @@
 <script setup>
 import {ref,computed,defineAsyncComponent,onMounted,onBeforeUnmount} from 'vue'
-import HeroArt from './HeroArt.vue'
+import HomeExhibition from './HomeExhibition.vue'
 import {themes,claims,sources,questions,excerpts,themeById,claimById,compare,graphFor} from './content.mjs'
 const StrataScene=defineAsyncComponent(()=>import('./StrataScene.vue'))
 const routes=['home','explore','compare','archive']
@@ -43,20 +43,18 @@ onBeforeUnmount(()=>{clearTimeout(noticeTimer);window.removeEventListener('resiz
 
 <template>
   <a class="skip-link" href="#main">跳至主要内容</a>
-  <header class="masthead">
+  <header class="masthead" :class="{'is-exhibition':page==='home'}">
     <button class="brand" @click="go('home')" aria-label="同节异俗 首页"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span><b>同节异俗</b><small>FESTIVE MOSAIC</small></span></button>
-    <nav aria-label="主要导航"><button :class="{active:page==='home'||page==='explore'}" @click="go(page==='home'?'home':'explore')"><span>01</span> 文化探索</button><button :class="{active:page==='compare'}" @click="startCompare"><span>02</span> 异俗对照镜</button><button :class="{active:page==='archive'}" @click="go('archive')"><span>03</span> 观察档案 <i class="saved-count">{{saved.length}}</i></button></nav>
+    <nav aria-label="主要导航"><button :class="{active:page==='home'||page==='explore'}" @click="page==='home'?enter(questions[1]):go('explore')"><span>01</span> 文化探索</button><button :class="{active:page==='compare'}" @click="startCompare"><span>02</span> 异俗对照镜</button><button :class="{active:page==='archive'}" @click="go('archive')"><span>03</span> 观察档案 <i class="saved-count">{{saved.length}}</i></button></nav>
     <button class="edition" @click="about?.showModal()">端午 · 第一期 <span>↗</span></button>
   </header>
   <main id="main">
-    <template v-if="page==='home'">
-      <section class="exhibition-hero">
-        <div class="hero-copy"><p class="eyebrow"><span class="red-rule"></span> 地方节俗观察计划 / VOL. 01</p><h1>同一个端午，<br>不同的<span class="serif-red">来处。</span></h1><p class="hero-intro">从一艘舟、一场仪式开始，<br>走近地方文化的多种解释，再回到它的资料依据。</p><div class="hero-caption"><span>苏州</span><i></i><span>汨罗江畔</span><i></i><span>西塞</span><em>三份地方记录，一次开放的阅读。</em></div></div>
-        <div class="hero-plate"><HeroArt/><div class="plate-caption"><span>图版 01 / 文化层理</span><span>原创抽象图形 · 非实物复原</span></div></div>
-      </section>
-      <section class="question-section" aria-labelledby="question-title"><div class="section-intro"><p class="eyebrow">A QUESTION OPENS A CULTURE</p><h2 id="question-title">从一个问题开始</h2><p>先不急着给出答案。<br>看看不同地方留下了什么记录。</p></div><div class="question-list"><button v-for="(q,index) in questions" :key="q.id" @click="enter(q)"><span class="question-number">0{{index+1}}</span><span><strong>{{q.title}}</strong><small>{{q.intro}}</small></span><em>{{q.category}}</em><span class="row-arrow" aria-hidden="true">↗</span></button></div></section>
-      <div class="home-footnote"><span>内容摘编自官方文化资料 <button @click="about?.showModal()">查看资料与设计说明 ↗</button></span><span><i class="demo-dot"></i> DEMO · 静态设计原型 · 未调用 AI</span></div>
-    </template>
+    <HomeExhibition v-if="page==='home'"
+      @explore="enter(questions.find(q=>q.id===$event))"
+      @theme="enter(questions[1]);themeFilter=$event"
+      @compare="setDimension('practice');startCompare()"
+      @source="openClaim('sz-race')"
+      @about="about?.showModal()"/>
 
     <template v-else-if="page==='explore'||page==='compare'">
       <div class="workspace-title"><div><p class="eyebrow"><button @click="go('home')">端午地方记录</button> / {{page==='compare'?'异俗对照镜':'文化层理探索'}}</p><h1>{{page==='compare'?'让共同点与差异，同时被看见。':activeQuestion.title}}</h1></div><button v-if="page==='explore'" class="button primary" @click="startCompare">打开异俗对照镜 <span>↗</span></button><button v-else class="button" @click="go('explore')">回到层理探索 ↗</button></div>
@@ -86,5 +84,5 @@ onBeforeUnmount(()=>{clearTimeout(noticeTimer);window.removeEventListener('resiz
   <div v-if="notice" class="toast" role="status">{{notice}}</div>
 
   <dialog ref="drawer" class="claim-drawer" aria-labelledby="claim-title"><header><div><p class="eyebrow">CULTURAL CLAIM TRACE</p><span>文化说法剖面</span></div><button class="close-button" @click="drawer.close()" aria-label="关闭说法剖面">×</button></header><div class="drawer-content"><p class="claim-context">{{current.theme?themeById(current.theme).full:'跨地方候选关系'}} <span>静态摘编 · DEMO</span></p><h2 id="claim-title">{{current.title}}</h2><div v-if="comparisonPeers.length" class="peer-sources" aria-label="共同元素的双方出处"><p>共同记录的元素，分别阅读双方资料</p><button v-for="peer in comparisonPeers" :key="peer.id" :aria-pressed="selected===peer.id" @click="selected=peer.id">{{themeById(peer.theme).name}} · {{peer.source}} ↗</button></div><p class="status-badge" :class="current.status">{{current.status==='uncertain'?'○ 证据不足 · 候选联系':'◇ 来源已定位 · 待人工审读'}}</p><div class="trace-step"><b>01</b><div><h3>看到的地方实践</h3><strong>{{current.practice}}</strong><p>{{current.text}}</p><small>以上为编辑摘编，非模型回答。</small></div></div><div class="trace-step"><b>02</b><div><h3>资料中的解释</h3><strong>{{current.interpretation}}</strong><p>地方解释可以并存。关系是否充分，需要结合全文与地方语境审读。</p></div></div><div class="trace-step"><b>03</b><div><h3>回到资料原文</h3><template v-if="source"><p class="source-catalog">{{source.id}} · {{source.category}}</p><h4>{{source.title}}</h4><blockquote v-for="(quote,index) in excerpts[current.id]||[source.quote]" :key="quote"><small>定位摘录 {{index+1}}</small>“{{quote}}”</blockquote><p class="source-location">{{source.publisher}}<br>{{source.locator}} · 网页核对 {{source.checked}}</p><a class="source-link" :href="source.url" target="_blank" rel="noopener noreferrer">打开官方原文，核对完整语境 ↗</a><p class="source-warning">短摘录分别展示，不拼成连续引文。来源已定位不等于文化关系已认证。{{source.note}}</p></template><div v-else class="unknown-source"><h4>把空白留在档案里。</h4><p>当前没有充分材料支持这一候选联系。相关条目只能提供背景，不能证明同一传承。</p><button v-for="s in Object.values(sources).slice(0,3)" :key="s.id" @click="selected=claims.find(c=>c.source===s.id).id">继续阅读 {{s.title}} ↗</button></div></div></div></div><footer><button class="button primary" @click="toggleSave(current.id)">{{saved.includes(current.id)?'已存入 · 移出此条':'＋ 存入观察档案'}}</button><button class="text-link" @click="drawer.close();go('archive')">查看档案 {{saved.length}} ↗</button></footer></dialog>
-  <dialog ref="about" class="about-dialog" aria-labelledby="about-title"><div class="about-heading"><p class="eyebrow">ABOUT THIS EDITION</p><button class="close-button" @click="about.close()" aria-label="关闭说明">×</button></div><h2 id="about-title">一份开放的地方节俗阅读。</h2><p>《同节异俗》是独立高保真设计原型。内容来自官方网页摘编，三维位置按实践、解释与资料关系组织，不使用地图。没有连接检索、模型或事实认证服务。</p><div class="status-explanation"><p><b>◇ 来源已定位</b><span>本原型已核对网页文字的位置。</span></p><p><b>△ 模型认为支持</b><span>未来状态；本原型未执行模型判断。</span></p><p><b>□ 人工已核对</b><span>未来状态；当前独立人工核验为0。</span></p><p><b>○ 证据不足</b><span>候选联系不进入已记录关系。</span></p><p><b>≠ 解释差异</b><span>地方传统不同，不自动判断互相矛盾。</span></p></div><div class="about-sources"><a v-for="s in Object.values(sources)" :key="s.id" :href="s.url" target="_blank" rel="noopener noreferrer">{{s.id}} · {{s.title}} ↗</a></div><p class="muted">视觉图形为本原型原创示意，不复原具体文物或仪式实物。未使用网页摄影图片。正式参赛前仍需地方文化专家审读、素材权属与竞赛要求核查。</p></dialog>
+  <dialog ref="about" class="about-dialog" aria-labelledby="about-title"><div class="about-heading"><p class="eyebrow">ABOUT THIS EDITION</p><button class="close-button" @click="about.close()" aria-label="关闭说明">×</button></div><h2 id="about-title">一份开放的地方节俗阅读。</h2><p>《同节异俗》是独立高保真设计原型。内容来自官方网页摘编，三维位置按实践、解释与资料关系组织，不使用地图。没有连接检索、模型或事实认证服务。</p><div class="status-explanation"><p><b>◇ 来源已定位</b><span>本原型已核对网页文字的位置。</span></p><p><b>△ 模型认为支持</b><span>未来状态；本原型未执行模型判断。</span></p><p><b>□ 人工已核对</b><span>未来状态；当前独立人工核验为0。</span></p><p><b>○ 证据不足</b><span>候选联系不进入已记录关系。</span></p><p><b>≠ 解释差异</b><span>地方传统不同，不自动判断互相矛盾。</span></p></div><div class="about-sources"><a v-for="s in Object.values(sources)" :key="s.id" :href="s.url" target="_blank" rel="noopener noreferrer">{{s.id}} · {{s.title}} ↗</a></div><p class="muted">本期视觉使用龙舟竞渡与文化拼贴两张艺术作品。地方内容可沿资料编号阅读，已保存的观察保留在当前浏览器。</p></dialog>
 </template>

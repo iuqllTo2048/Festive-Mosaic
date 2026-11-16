@@ -2,6 +2,8 @@
 
 静态 DEMO，Vue3 + Three.js，复用原仓库前端工具链。没有后端连接、DeepSeek调用、真实RAG运行或新增大型依赖。请从HTTP服务打开，不直接双击index.html。
 
+2026-11-17首页已完成版画视觉重构，使用本地龙舟与文化拼贴素材。截图、新旧对照和当前验收见 [首页视觉重构报告](../HOME_VISUAL_REVIEW.md)。
+
 ## 启动
 
 已有 `frontend/node_modules` 时，在仓库根目录执行：
@@ -28,6 +30,7 @@ npm.cmd run dev
 
 ```powershell
 npm.cmd test
+npm.cmd run typecheck
 npm.cmd run build
 ```
 
