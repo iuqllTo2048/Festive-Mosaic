@@ -1,0 +1,29 @@
+[
+  {
+    "id": "kg2rag",
+    "title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+    "authors": ["Xiangrong Zhu", "Yuexiang Xie", "Yi Liu", "Yaliang Li", "Wei Hu"],
+    "year": 2025,
+    "source_url": "https://aclanthology.org/2025.naacl-long.449/",
+    "pdf_url": "https://aclanthology.org/2025.naacl-long.449.pdf",
+    "import_note": "NAACL 2025 官方来源。导入仅保存在本机，不随仓库分发 PDF；失败时请从官方页面下载后上传。"
+  },
+  {
+    "id": "lightrag",
+    "title": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+    "authors": ["Zirui Guo", "Lianghao Xia", "Yanhua Yu", "Tu Ao", "Chao Huang"],
+    "year": 2024,
+    "source_url": "https://arxiv.org/abs/2410.05779v3",
+    "pdf_url": "https://arxiv.org/pdf/2410.05779v3",
+    "import_note": "2024 年首发，固定使用 2025 年修订的 arXiv v3。导入仅保存在本机；也可从官方页面下载后上传。"
+  },
+  {
+    "id": "paperqa2",
+    "title": "Language agents achieve superhuman synthesis of scientific knowledge",
+    "authors": ["Michael D. Skarlinski", "Sam Cox", "Jon M. Laurent", "James D. Braza", "Michaela Hinks", "Michael J. Hammerling", "Manvitha Ponnapati", "Samuel G. Rodriques", "Andrew D. White"],
+    "year": 2024,
+    "source_url": "https://arxiv.org/abs/2409.13740v2",
+    "pdf_url": "https://arxiv.org/pdf/2409.13740v2",
+    "import_note": "PaperQA2 论文，固定使用 arXiv v2。导入仅保存在本机；也可从官方页面下载后上传。"
+  }
+]

@@ -1,4 +1,6 @@
-# EvidenceVerse / Codex Master Prompt & Five-Session Build Playbook
+# VerifiAtlas——面向科研知识探索的智能交互可视化系统
+
+Codex Master Prompt & Five-Session Build Playbook
 
 > 版本：v1.0 ｜ 2026-11-16 ｜ Windows 11 / PowerShell / 新建项目 / Codex 主要执行
 >
@@ -12,7 +14,7 @@
 
 ### 1.1 唯一产品故事
 
-**EvidenceVerse——面向科研知识探索的智能交互可视化系统。** 用户添加几篇真实论文或上传 PDF，输入研究问题；系统从文献检索证据，把相关片段连接成可解释的图，发现未得到可靠来源支持的子问题时进行最多一次定向补检，最终输出带页码和可追踪原文的回答，同时在 3D 证据空间展示过程。
+**VerifiAtlas——面向科研知识探索的智能交互可视化系统。** 用户添加几篇真实论文或上传 PDF，输入研究问题；系统从文献检索证据，把相关片段连接成可解释的图，发现未得到可靠来源支持的子问题时进行最多一次定向补检，最终输出带页码和可追踪原文的回答，同时在 3D 证据空间展示过程。
 
 这是一款数字媒体交互设计作品，**设计核心是“证据缺口可视化 + 证据链追踪”**，而不是把各种大模型框架堆进仓库。
 
@@ -156,7 +158,7 @@ POST /api/query                          # 问题 -> Answer + Requirements + Gra
 ### 4.1 目录结构（建议；轻量即可）
 
 ```text
-evidenceverse/
+VerifiAtlas/
 ├─ 01_DESIGN_LANGUAGE.md
 ├─ 02_BUILD_PLAYBOOK.md
 ├─ .gitignore
@@ -209,11 +211,11 @@ evidenceverse/
 
 ### 5.2 阶段进度记录
 
-本次仅建立规划与 Git 基线，提交名为 `docs: define staged development and commit rules`。功能阶段均未开始。
+规划与 Git 基线已提交，提交名为 `docs: define staged development and commit rules`。用户已认可 D1 当前成果，按约定统一提交一次；D2 尚未开始。
 
 | 阶段 | 状态 | 实际验证与限制 |
 | --- | --- | --- |
-| D1 | 未开始 | 尚未创建代码或执行功能验收 |
+| D1 | 已交付，用户认可当前成果 | 已实现 PDF 数据闭环；27 项后端测试、前端类型检查与构建通过；3 篇真实论文的 54 页、321 个片段已核对；包含品牌更名与明暗切换；系统 PDF 阅读器中的视觉定位未复核，详见验证记录 |
 | D2 | 未开始 | 依赖 D1 验收及本机 DeepSeek 配置 |
 | D3 | 未开始 | 依赖 D2 验收 |
 | D4 | 未开始 | 依赖 D3 验收 |
@@ -259,7 +261,7 @@ evidenceverse/
 
 ## 7. Codex Master Prompt（首轮粘贴用；先不要让它全部实现）
 
-> 你是 EvidenceVerse 项目的资深全栈工程师兼审慎的交互设计工程师，工作于 Windows 11 / PowerShell 的新仓库。
+> 你是 VerifiAtlas 项目的资深全栈工程师兼审慎的交互设计工程师，工作于 Windows 11 / PowerShell 的新仓库。
 >
 > **首先完整阅读仓库根目录 `01_DESIGN_LANGUAGE.md` 和 `02_BUILD_PLAYBOOK.md`。二者是长期有效的项目约束，不要用通用 AI 网站模板替换它们。**
 >

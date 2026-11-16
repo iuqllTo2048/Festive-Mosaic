@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-11-15T16:40:15.197300+00:00",
+  "health": {
+    "status": "ok",
+    "stage": "D1",
+    "max_upload_mb": 20,
+    "max_pdf_pages": 200
+  },
+  "seed_results": [
+    {
+      "paper_id": "kg2rag",
+      "status": "duplicate",
+      "error": null
+    },
+    {
+      "paper_id": "lightrag",
+      "status": "imported",
+      "error": null
+    },
+    {
+      "paper_id": "paperqa2",
+      "status": "imported",
+      "error": null
+    }
+  ],
+  "documents": [
+    {
+      "title": "Language agents achieve superhuman synthesis of scientific knowledge",
+      "document_id": "doc_7d45adf85d98a9a2f4e619f4",
+      "page_count": 25,
+      "verified_chunks": 150,
+      "sha256": "7d45adf85d98a9a2f4e619f4f6c0e380c8ad842d678d50497ab5a20b6ae79f9c",
+      "source_url": "https://arxiv.org/abs/2409.13740v2",
+      "source_pdf_url": "https://arxiv.org/pdf/2409.13740v2",
+      "retrieved_at": "2026-11-15T16:40:27.894662+00:00",
+      "warnings": [],
+      "duplicate_upload": "passed",
+      "pdf_hash": "passed",
+      "page_and_text_mapping": "passed"
+    },
+    {
+      "title": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+      "document_id": "doc_bd72eebf611df1366b251c16",
+      "page_count": 16,
+      "verified_chunks": 94,
+      "sha256": "bd72eebf611df1366b251c16ce4eac7aac699e519783c586feb2c5c43899347a",
+      "source_url": "https://arxiv.org/abs/2410.05779v3",
+      "source_pdf_url": "https://arxiv.org/pdf/2410.05779v3",
+      "retrieved_at": "2026-11-15T16:40:23.356756+00:00",
+      "warnings": [],
+      "duplicate_upload": "passed",
+      "pdf_hash": "passed",
+      "page_and_text_mapping": "passed"
+    },
+    {
+      "title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+      "document_id": "doc_b0456bdb5080d60db357a5f5",
+      "page_count": 13,
+      "verified_chunks": 77,
+      "sha256": "b0456bdb5080d60db357a5f5aedbd7fe2518dd9ae861fce31babe089c0d9ddc2",
+      "source_url": "https://aclanthology.org/2025.naacl-long.449/",
+      "source_pdf_url": "https://aclanthology.org/2025.naacl-long.449.pdf",
+      "retrieved_at": "2026-11-15T16:38:37.531438+00:00",
+      "warnings": [],
+      "duplicate_upload": "passed",
+      "pdf_hash": "passed",
+      "page_and_text_mapping": "passed"
+    }
+  ]
+}

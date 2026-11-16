@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d131b" />
+    <meta name="description" content="VerifiAtlas——面向科研知识探索的智能交互可视化系统。导入论文并逐页核对文本来源。" />
+    <title>VerifiAtlas——面向科研知识探索的智能交互可视化系统</title>
+    <script>
+      // Apply the preferred theme before paint, including on slow connections.
+      (() => {
+        let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        try {
+          const saved = localStorage.getItem('verifiatlas-theme');
+          if (saved === 'dark' || saved === 'light') theme = saved;
+        } catch { /* Storage may be unavailable; keep the system preference. */ }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
