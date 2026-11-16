@@ -211,7 +211,7 @@ onMounted(() => refresh())
       <ul class="seed-list"><li v-for="paper in papers" :key="paper.id"><div><span class="paper-key">{{ paper.id === 'kg2rag' ? 'KG²RAG' : paper.id === 'lightrag' ? 'LightRAG' : 'PaperQA2' }} / {{ paper.year }}</span><h3>{{ paper.title }}</h3><p class="muted">{{ paper.authors[0] }} 等 · {{ paper.import_note }}</p></div><div class="seed-actions"><a :href="paper.source_url" target="_blank" rel="noopener noreferrer">官方页面 ↗</a><button :disabled="!!seeding || uploading || !health" @click="seed(paper.id)">{{ seeding === paper.id ? '正在下载并解析…' : '导入论文' }}</button></div></li></ul>
       <div v-for="result in seedResults" :key="result.paper_id" class="message" :class="result.status === 'failed' ? 'error' : 'success'" :role="result.status === 'failed' ? 'alert' : 'status'">{{ result.status === 'failed' ? result.error?.message : result.status === 'duplicate' ? '该论文已存在，已定位到已有文档。' : `已导入 ${result.document?.title}，共 ${result.document?.page_count} 页。` }} <a v-if="result.status === 'failed'" :href="result.manual_url" target="_blank" rel="noopener noreferrer">打开官方页面下载后上传 ↗</a></div>
     </section>
-    <footer>VerifiAtlas · D2 真实检索与问答 <span>当前阶段尚未提供证据审计、补检或图谱。</span></footer>
+    <footer>VerifiAtlas · D3 证据审计与来源关系 <span>3D 交互图谱将在 D4 开发。</span></footer>
   </main>
 
   <dialog ref="dialog" aria-labelledby="upload-heading" @cancel="uploading && $event.preventDefault()">

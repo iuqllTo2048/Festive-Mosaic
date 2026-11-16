@@ -1063,6 +1063,17 @@
           "pdf_url": {
             "type": "string",
             "title": "Pdf Url"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
           }
         },
         "type": "object",
@@ -1210,6 +1221,198 @@
         ],
         "title": "ErrorResponse"
       },
+      "EvidenceLink": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "requirement_id": {
+            "type": "string",
+            "title": "Requirement Id"
+          },
+          "chunk_id": {
+            "type": "string",
+            "title": "Chunk Id"
+          },
+          "quote": {
+            "type": "string",
+            "title": "Quote"
+          },
+          "validated": {
+            "type": "boolean",
+            "title": "Validated"
+          },
+          "verifier_result": {
+            "type": "string",
+            "title": "Verifier Result"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          },
+          "round": {
+            "type": "integer",
+            "title": "Round"
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Id"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "requirement_id",
+          "chunk_id",
+          "quote",
+          "validated",
+          "verifier_result",
+          "reason",
+          "round"
+        ],
+        "title": "EvidenceLink"
+      },
+      "GraphData": {
+        "properties": {
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/GraphNode"
+            },
+            "type": "array",
+            "title": "Nodes"
+          },
+          "edges": {
+            "items": {
+              "$ref": "#/components/schemas/GraphEdge"
+            },
+            "type": "array",
+            "title": "Edges"
+          },
+          "concept_expansion_enabled": {
+            "type": "boolean",
+            "title": "Concept Expansion Enabled",
+            "default": false
+          },
+          "note": {
+            "type": "string",
+            "title": "Note",
+            "default": "基础问答未构建图数据。"
+          }
+        },
+        "type": "object",
+        "title": "GraphData"
+      },
+      "GraphEdge": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "target": {
+            "type": "string",
+            "title": "Target"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "contains",
+              "mentions",
+              "supports"
+            ],
+            "title": "Type"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "target",
+          "type",
+          "provenance"
+        ],
+        "title": "GraphEdge"
+      },
+      "GraphNode": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "paper",
+              "chunk",
+              "concept",
+              "requirement"
+            ],
+            "title": "Type"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "supported",
+                  "insufficient"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "source_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Provenance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "label"
+        ],
+        "title": "GraphNode"
+      },
       "Health": {
         "properties": {
           "status": {
@@ -1220,9 +1423,9 @@
           },
           "stage": {
             "type": "string",
-            "const": "D2",
+            "const": "D3",
             "title": "Stage",
-            "default": "D2"
+            "default": "D3"
           },
           "max_upload_mb": {
             "type": "integer",
@@ -1267,6 +1470,96 @@
         ],
         "title": "IngestResult"
       },
+      "Provenance": {
+        "properties": {
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "document_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Id"
+          },
+          "chunk_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chunk Id"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          },
+          "evidence_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence Id"
+          },
+          "char_start": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Char Start"
+          },
+          "char_end": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Char End"
+          },
+          "term": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Term"
+          }
+        },
+        "type": "object",
+        "required": [
+          "method"
+        ],
+        "title": "Provenance"
+      },
       "QueryRequest": {
         "properties": {
           "question": {
@@ -1297,6 +1590,25 @@
             "minimum": 1.0,
             "title": "Top K",
             "default": 6
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "basic",
+              "audited"
+            ],
+            "title": "Mode",
+            "default": "basic"
+          },
+          "enable_repair": {
+            "type": "boolean",
+            "title": "Enable Repair",
+            "default": true
+          },
+          "enable_graph_expansion": {
+            "type": "boolean",
+            "title": "Enable Graph Expansion",
+            "default": true
           }
         },
         "type": "object",
@@ -1361,6 +1673,50 @@
           },
           "stats": {
             "$ref": "#/components/schemas/QueryStats"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "basic",
+              "audited"
+            ],
+            "title": "Mode",
+            "default": "basic"
+          },
+          "requirements": {
+            "items": {
+              "$ref": "#/components/schemas/Requirement"
+            },
+            "type": "array",
+            "title": "Requirements"
+          },
+          "audit_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audit Version"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceLink"
+            },
+            "type": "array",
+            "title": "Evidence"
+          },
+          "graph": {
+            "$ref": "#/components/schemas/GraphData"
+          },
+          "trace": {
+            "items": {
+              "$ref": "#/components/schemas/TraceEvent"
+            },
+            "type": "array",
+            "title": "Trace"
           }
         },
         "type": "object",
@@ -1390,6 +1746,36 @@
           "duration_ms": {
             "type": "integer",
             "title": "Duration Ms"
+          },
+          "total_requirements": {
+            "type": "integer",
+            "title": "Total Requirements",
+            "default": 0
+          },
+          "supported_requirements": {
+            "type": "integer",
+            "title": "Supported Requirements",
+            "default": 0
+          },
+          "repair_rounds": {
+            "type": "integer",
+            "title": "Repair Rounds",
+            "default": 0
+          },
+          "display_coverage_ratio": {
+            "type": "number",
+            "title": "Display Coverage Ratio",
+            "default": 0
+          },
+          "graph_expanded_chunks": {
+            "type": "integer",
+            "title": "Graph Expanded Chunks",
+            "default": 0
+          },
+          "stop_reason": {
+            "type": "string",
+            "title": "Stop Reason",
+            "default": "basic_completed"
           }
         },
         "type": "object",
@@ -1399,6 +1785,51 @@
           "duration_ms"
         ],
         "title": "QueryStats"
+      },
+      "Requirement": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "search_query": {
+            "type": "string",
+            "title": "Search Query"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "supported",
+              "insufficient"
+            ],
+            "title": "Status",
+            "default": "pending"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "explanation": {
+            "type": "string",
+            "title": "Explanation",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "text",
+          "search_query"
+        ],
+        "title": "Requirement"
       },
       "SeedPaper": {
         "properties": {
@@ -1511,6 +1942,80 @@
           "manual_url"
         ],
         "title": "SeedResult"
+      },
+      "TraceEvent": {
+        "properties": {
+          "step": {
+            "type": "integer",
+            "title": "Step"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "node_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Node Ids"
+          },
+          "edge_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Edge Ids"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "step",
+          "type",
+          "timestamp",
+          "description"
+        ],
+        "title": "TraceEvent"
       }
     }
   }

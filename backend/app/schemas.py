@@ -14,7 +14,7 @@ class ErrorResponse(BaseModel):
 
 class Health(BaseModel):
     status: Literal["ok"] = "ok"
-    stage: Literal["D2"] = "D2"
+    stage: Literal["D3"] = "D3"
     max_upload_mb: int
     max_pdf_pages: int
     llm_configured: bool
@@ -87,6 +87,9 @@ class QueryRequest(BaseModel):
     question: str = Field(min_length=1, max_length=2000)
     document_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
     top_k: int = Field(default=6, ge=1, le=8)
+    mode: Literal["basic", "audited"] = "basic"
+    enable_repair: bool = True
+    enable_graph_expansion: bool = True
 
 
 class Citation(BaseModel):
@@ -97,6 +100,7 @@ class Citation(BaseModel):
     page: int
     quote: str
     pdf_url: str
+    evidence_id: str | None = None
 
 
 class AnswerParagraph(BaseModel):
@@ -104,10 +108,82 @@ class AnswerParagraph(BaseModel):
     citation_ids: list[str]
 
 
+class Requirement(BaseModel):
+    id: str
+    text: str
+    search_query: str
+    status: Literal["pending", "supported", "insufficient"] = "pending"
+    evidence_ids: list[str] = Field(default_factory=list)
+    explanation: str = ""
+
+
+class EvidenceLink(BaseModel):
+    id: str
+    requirement_id: str
+    chunk_id: str
+    quote: str
+    validated: bool
+    verifier_result: str
+    reason: str
+    round: int
+    document_id: str | None = None
+    page: int | None = None
+
+
+class Provenance(BaseModel):
+    method: str
+    document_id: str | None = None
+    chunk_id: str | None = None
+    page: int | None = None
+    evidence_id: str | None = None
+    char_start: int | None = None
+    char_end: int | None = None
+    term: str | None = None
+
+
+class GraphNode(BaseModel):
+    id: str
+    type: Literal["paper", "chunk", "concept", "requirement"]
+    label: str
+    status: Literal["pending", "supported", "insufficient"] | None = None
+    source_ref: Provenance | None = None
+
+
+class GraphEdge(BaseModel):
+    id: str
+    source: str
+    target: str
+    type: Literal["contains", "mentions", "supports"]
+    provenance: Provenance
+
+
+class GraphData(BaseModel):
+    nodes: list[GraphNode] = Field(default_factory=list)
+    edges: list[GraphEdge] = Field(default_factory=list)
+    concept_expansion_enabled: bool = False
+    note: str = "基础问答未构建图数据。"
+
+
+class TraceEvent(BaseModel):
+    step: int
+    type: str
+    timestamp: str
+    description: str
+    node_ids: list[str] = Field(default_factory=list)
+    edge_ids: list[str] = Field(default_factory=list)
+    metadata: dict[str, str | int | float | bool | list[str] | dict[str, str]] = Field(default_factory=dict)
+
+
 class QueryStats(BaseModel):
     retrieved_chunks: int
     llm_requests: int
     duration_ms: int
+    total_requirements: int = 0
+    supported_requirements: int = 0
+    repair_rounds: int = 0
+    display_coverage_ratio: float = 0
+    graph_expanded_chunks: int = 0
+    stop_reason: str = "basic_completed"
 
 
 class QueryResult(BaseModel):
@@ -120,6 +196,12 @@ class QueryResult(BaseModel):
     status: Literal["answered", "insufficient"]
     model: str | None
     stats: QueryStats
+    mode: Literal["basic", "audited"] = "basic"
+    requirements: list[Requirement] = Field(default_factory=list)
+    audit_version: str | None = None
+    evidence: list[EvidenceLink] = Field(default_factory=list)
+    graph: GraphData = Field(default_factory=GraphData)
+    trace: list[TraceEvent] = Field(default_factory=list)
 
 
 class ProposedCitation(BaseModel):
@@ -138,3 +220,29 @@ class ProposedAnswer(BaseModel):
     model_config = ConfigDict(extra="forbid")
     paragraphs: list[ProposedParagraph] = Field(max_length=6)
     insufficient: list[str] = Field(max_length=8)
+
+
+class PlannedRequirement(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+    text: str = Field(min_length=1, max_length=300)
+    search_query: str = Field(min_length=1, max_length=600)
+
+
+class RequirementPlan(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    requirements: list[PlannedRequirement] = Field(min_length=1, max_length=4)
+
+
+class RequirementJudgment(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+    requirement_id: str = Field(min_length=1, max_length=100)
+    status: Literal["supported", "insufficient"]
+    explanation: str = Field(min_length=1, max_length=500)
+    answer: str = Field(default="", max_length=1000)
+    evidence: list[ProposedCitation] = Field(default_factory=list, max_length=3)
+    repair_query: str | None = Field(default=None, max_length=600)
+
+
+class AuditProposal(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    judgments: list[RequirementJudgment] = Field(min_length=1, max_length=4)

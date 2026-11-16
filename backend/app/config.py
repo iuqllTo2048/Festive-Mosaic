@@ -20,6 +20,8 @@ class Settings(BaseSettings):
     deepseek_model: str = "deepseek-flash"
     llm_timeout_seconds: float = Field(default=40, ge=1, le=50)
     llm_max_tokens: int = Field(default=1800, ge=256, le=4096)
+    agent_max_requests: int = Field(default=6, ge=1, le=6)
+    agent_timeout_seconds: float = Field(default=100, ge=5, le=110)
 
     @property
     def resolved_data_dir(self) -> Path:

@@ -45,6 +45,11 @@ class Store:
                 CREATE TABLE IF NOT EXISTS query_runs (
                     id TEXT PRIMARY KEY, result_json TEXT NOT NULL
                 );
+                CREATE TABLE IF NOT EXISTS concept_mentions (
+                    chunk_id TEXT NOT NULL REFERENCES chunks(id), normalized_name TEXT NOT NULL,
+                    name TEXT NOT NULL, char_start INTEGER NOT NULL, char_end INTEGER NOT NULL,
+                    extractor TEXT NOT NULL, PRIMARY KEY(chunk_id, normalized_name)
+                );
             """)
 
     @staticmethod
@@ -140,3 +145,10 @@ class Store:
         with self.connect() as db:
             row = db.execute("SELECT result_json FROM query_runs WHERE id = ?", (run_id,)).fetchone()
         return QueryResult.model_validate_json(row[0]) if row else None
+
+    def save_concept_mentions(self, mentions) -> None:
+        with self.connect() as db:
+            db.executemany("INSERT OR IGNORE INTO concept_mentions VALUES (?, ?, ?, ?, ?, ?)", [
+                (mention.chunk_id, mention.normalized_name, mention.name, mention.char_start,
+                 mention.char_end, "literal_terms_v1") for mention in mentions
+            ])

@@ -241,6 +241,8 @@ export interface components {
             quote: string;
             /** Pdf Url */
             pdf_url: string;
+            /** Evidence Id */
+            evidence_id?: string | null;
         };
         /** Document */
         Document: {
@@ -282,6 +284,76 @@ export interface components {
         ErrorResponse: {
             error: components["schemas"]["ApiError"];
         };
+        /** EvidenceLink */
+        EvidenceLink: {
+            /** Id */
+            id: string;
+            /** Requirement Id */
+            requirement_id: string;
+            /** Chunk Id */
+            chunk_id: string;
+            /** Quote */
+            quote: string;
+            /** Validated */
+            validated: boolean;
+            /** Verifier Result */
+            verifier_result: string;
+            /** Reason */
+            reason: string;
+            /** Round */
+            round: number;
+            /** Document Id */
+            document_id?: string | null;
+            /** Page */
+            page?: number | null;
+        };
+        /** GraphData */
+        GraphData: {
+            /** Nodes */
+            nodes?: components["schemas"]["GraphNode"][];
+            /** Edges */
+            edges?: components["schemas"]["GraphEdge"][];
+            /**
+             * Concept Expansion Enabled
+             * @default false
+             */
+            concept_expansion_enabled: boolean;
+            /**
+             * Note
+             * @default 基础问答未构建图数据。
+             */
+            note: string;
+        };
+        /** GraphEdge */
+        GraphEdge: {
+            /** Id */
+            id: string;
+            /** Source */
+            source: string;
+            /** Target */
+            target: string;
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "contains" | "mentions" | "supports";
+            provenance: components["schemas"]["Provenance"];
+        };
+        /** GraphNode */
+        GraphNode: {
+            /** Id */
+            id: string;
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "paper" | "chunk" | "concept" | "requirement";
+            /** Label */
+            label: string;
+            /** Status */
+            status?: ("pending" | "supported" | "insufficient") | null;
+            source_ref?: components["schemas"]["Provenance"] | null;
+        };
         /** Health */
         Health: {
             /**
@@ -292,10 +364,10 @@ export interface components {
             status: "ok";
             /**
              * Stage
-             * @default D2
+             * @default D3
              * @constant
              */
-            stage: "D2";
+            stage: "D3";
             /** Max Upload Mb */
             max_upload_mb: number;
             /** Max Pdf Pages */
@@ -311,6 +383,25 @@ export interface components {
             /** Duplicate */
             duplicate: boolean;
         };
+        /** Provenance */
+        Provenance: {
+            /** Method */
+            method: string;
+            /** Document Id */
+            document_id?: string | null;
+            /** Chunk Id */
+            chunk_id?: string | null;
+            /** Page */
+            page?: number | null;
+            /** Evidence Id */
+            evidence_id?: string | null;
+            /** Char Start */
+            char_start?: number | null;
+            /** Char End */
+            char_end?: number | null;
+            /** Term */
+            term?: string | null;
+        };
         /** QueryRequest */
         QueryRequest: {
             /** Question */
@@ -322,6 +413,22 @@ export interface components {
              * @default 6
              */
             top_k: number;
+            /**
+             * Mode
+             * @default basic
+             * @enum {string}
+             */
+            mode: "basic" | "audited";
+            /**
+             * Enable Repair
+             * @default true
+             */
+            enable_repair: boolean;
+            /**
+             * Enable Graph Expansion
+             * @default true
+             */
+            enable_graph_expansion: boolean;
         };
         /** QueryResult */
         QueryResult: {
@@ -345,6 +452,21 @@ export interface components {
             /** Model */
             model: string | null;
             stats: components["schemas"]["QueryStats"];
+            /**
+             * Mode
+             * @default basic
+             * @enum {string}
+             */
+            mode: "basic" | "audited";
+            /** Requirements */
+            requirements?: components["schemas"]["Requirement"][];
+            /** Audit Version */
+            audit_version?: string | null;
+            /** Evidence */
+            evidence?: components["schemas"]["EvidenceLink"][];
+            graph?: components["schemas"]["GraphData"];
+            /** Trace */
+            trace?: components["schemas"]["TraceEvent"][];
         };
         /** QueryStats */
         QueryStats: {
@@ -354,6 +476,58 @@ export interface components {
             llm_requests: number;
             /** Duration Ms */
             duration_ms: number;
+            /**
+             * Total Requirements
+             * @default 0
+             */
+            total_requirements: number;
+            /**
+             * Supported Requirements
+             * @default 0
+             */
+            supported_requirements: number;
+            /**
+             * Repair Rounds
+             * @default 0
+             */
+            repair_rounds: number;
+            /**
+             * Display Coverage Ratio
+             * @default 0
+             */
+            display_coverage_ratio: number;
+            /**
+             * Graph Expanded Chunks
+             * @default 0
+             */
+            graph_expanded_chunks: number;
+            /**
+             * Stop Reason
+             * @default basic_completed
+             */
+            stop_reason: string;
+        };
+        /** Requirement */
+        Requirement: {
+            /** Id */
+            id: string;
+            /** Text */
+            text: string;
+            /** Search Query */
+            search_query: string;
+            /**
+             * Status
+             * @default pending
+             * @enum {string}
+             */
+            status: "pending" | "supported" | "insufficient";
+            /** Evidence Ids */
+            evidence_ids?: string[];
+            /**
+             * Explanation
+             * @default
+             */
+            explanation: string;
         };
         /** SeedPaper */
         SeedPaper: {
@@ -390,6 +564,27 @@ export interface components {
             error?: components["schemas"]["ApiError"] | null;
             /** Manual Url */
             manual_url: string;
+        };
+        /** TraceEvent */
+        TraceEvent: {
+            /** Step */
+            step: number;
+            /** Type */
+            type: string;
+            /** Timestamp */
+            timestamp: string;
+            /** Description */
+            description: string;
+            /** Node Ids */
+            node_ids?: string[];
+            /** Edge Ids */
+            edge_ids?: string[];
+            /** Metadata */
+            metadata?: {
+                [key: string]: string | number | boolean | string[] | {
+                    [key: string]: string;
+                };
+            };
         };
     };
     responses: never;

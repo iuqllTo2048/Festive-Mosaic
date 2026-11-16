@@ -26,6 +26,9 @@ def run_query(body: QueryRequest, store: Store, settings: Settings, llm: DeepSee
         raise IngestError("document_not_found", "选定的文档不存在，请刷新语料列表。", 404)
     if not documents:
         raise IngestError("empty_library", "请先上传或导入至少一篇文本型 PDF。", 400)
+    if body.mode == "audited":
+        from .agent import run_audited_query
+        return run_audited_query(body.model_copy(update={"question": question}), store, settings, llm)
     hits = retrieve(question, store.retrieval_chunks(body.document_ids), body.top_k)
     paragraphs: list[AnswerParagraph] = []
     citations: list[Citation] = []

@@ -59,6 +59,8 @@ button.primary:hover:not(:disabled) { background: var(--accent-hover); }
 .query-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 12px 0; }
 .query-controls label { color: var(--muted); font-size: 12px; }
 .query-controls input { accent-color: var(--accent); }
+.query-options { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 0 0 16px; color: var(--muted); font-size: 12px; }
+.query-options input { accent-color: var(--accent); }
 .query-answer { padding-top: 20px; border-top: 1px solid var(--line); margin-top: 20px; }
 .answer-paragraph { margin: 16px 0; line-height: 1.85; white-space: pre-wrap; overflow-wrap: anywhere; }
 .submitted-question { margin-top: 12px; overflow-wrap: anywhere; }

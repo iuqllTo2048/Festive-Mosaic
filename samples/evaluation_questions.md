@@ -12,3 +12,11 @@
 | E6 | 仅 PaperQA2：What limitations or error sources does this paper explicitly report? | 必须引用限制或误差讨论，不能根据标题推断能力；来源不足时说明不足。 | 待执行，不能记作通过。 |
 
 E1 真实结果见 `artifacts/d2/live-check.json`。E1 的引用文字核对仅证明来源位置存在，不等于科学结论正确。D2 没有 Requirement 或一次补检机制，不报告补检覆盖率。
+
+## D3 缺口与补检案例
+
+- 范围：仅官方 KG²RAG，`mode="audited"`，允许一次补检与术语共现扩展。
+- 问题：Which evaluation dataset does KG2RAG use, and what measured energy consumption in joules per query does the paper report? Cite evidence for each; if a measurement is not supported by the excerpts, say it is unknown.
+- 期望：数据集能定位来源；缺少每查询能耗时不能用时延数据冒充能耗；补检最多一次，之后保留缺口并停止。
+- 最终实测：拆出 2 项需求，1 项有引用支持，能耗需求在一轮补检后仍不足；4 次模型请求（含格式重试）。25 节点 / 47 边的出处、引句与页码、计数和 trace 引用通过脚本核对。报告 `artifacts/d3/live-check.json`；初次存在未被引用片段支持的变体名，已记录并修正保护逻辑，不将初次观察当作验收通过。
+- 此案例不代表其他问题已完成评估，也不证明模型支持判断始终正确。

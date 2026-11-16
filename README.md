@@ -1,6 +1,6 @@
 # VerifiAtlas——面向科研知识探索的智能交互可视化系统
 
-科研证据工作台。当前完成至 **D2：真实检索与可核对问答**：导入真实 PDF，通过 BM25 检索并调用 DeepSeek，逐条核对引用文字与来源页码。后续开发严格按 [阶段计划](02_BUILD_PLAYBOOK.md#5-五个开发阶段每次只执行一个阶段完成后提交一次) 推进，每阶段完成后只提交一次。
+科研证据工作台。当前完成至 **D3：证据审计与图数据**：真实 PDF 检索、带引文问答、1–4 项证据需求审计、最多一轮定向补检，以及有出处的图关系和实际执行轨迹。后续开发严格按 [阶段计划](02_BUILD_PLAYBOOK.md#5-五个开发阶段每次只执行一个阶段完成后提交一次) 推进，每阶段完成后只提交一次。
 
 界面品牌简称 VerifiAtlas；GitHub 仓库名保留 verifyAtlas。
 
@@ -16,8 +16,11 @@
 - DeepSeek 结构化回答，每段必须有本轮检索片段中的有效原文引句；引用的文档、页码、片段 ID 和 PDF 地址由后端确定。不能核对的段落被移除，无证据时明确报告不足。
 - 点击回答中的引用定位到完整原文片段；问答及引用映射保存到本机 SQLite，提供稳定的 run ID。
 - 问答成功后 URL 带有 `?run=<ID>`，刷新可恢复该记录，不重复请求 LLM；记录仅在这台机器的本地服务中有效。
+- 审计模式拆解 1–4 个证据需求；只有模型提出直接支持、回答有效且引句能在本轮片段中定位时，才计为“有引用支持”。回答中的拉丁术语和数字还需出现在所引用片段中；裁剪未要求的释义任务。失败候选保留为审计记录，不产生支持边。
+- 对不足需求最多执行一轮定向补检，之后明确停止；请求次数和模型调用共享时间预算，失败时保留已经核对的证据。
+- 论文 / 片段 / 术语 / 需求的真实来源关系与 trace 保存在本机。术语由原文规则提取并记录字符位置，每个片段最多 3 个术语，每次检索最多扩展 2 个片段；共现只表示检索关联，不是语义事实。
 
-**尚未实现**：Requirement 证据审计、定向补检、概念扩展、3D 图谱。引文存在性检查不代表结论在语义上正确，也不证明科学事实；请核对上下文。BM25 没有语义向量或自动跨语言翻译，英文论文建议保留英文术语。
+**尚未实现**：D4 的 3D 交互工作台、来源链高亮与动画回放。D3 只展示审计清单和完成后的实际轨迹。模型支持判断加上引文存在性检查，仍不证明科学事实；请核对上下文。没有向量模型和完整语义知识图谱；审计模式可用规划/补检的英文关键词辅助检索，基本 BM25 模式仍依赖词面匹配。
 
 ## 环境与首次安装（Windows PowerShell）
 
@@ -60,6 +63,7 @@ npm.cmd run dev
 3. 再次上传同一 PDF，应提示文档已存在，文档数量保持不变。
 4. 上传空文件、改名为 `.pdf` 的其他格式、损坏文件或没有可提取文本的文件，确认提示清楚且没有假成功记录。
 5. 选择 KG²RAG 并勾选“仅检索当前选中的论文”，输入 `Which benchmark dataset and its variants were used to evaluate KG2RAG? Answer only from the paper and give source quotes.`。回答应能找到 HotpotQA 的来源；点击引用，核对片段和实际页码。某一名称若未检索到，不应补写成已知事实。
+6. 勾选“拆解证据需求并审计”和“允许一次定向补检”，对 KG²RAG 问：`Which evaluation dataset does KG2RAG use, and what measured energy consumption in joules per query does the paper report? Cite evidence for each; if a measurement is not supported by the excerpts, say it is unknown.`。数据集可引用，不能用响应时延冒充能耗；观察能耗缺口补检一次后停止，并展开实际轨迹。
 
 上传只发送给本机后端。浏览器 PDF 阅读器通常支持 `#page=N`；若阅读器未自动定位，请手动输入该页码。文字提取可能受到字体编码、分栏和数学公式影响，原 PDF 始终是核对依据。
 
@@ -74,7 +78,7 @@ Copy-Item .env.example .env
 
 D2 的问答需要 `DEEPSEEK_API_KEY`。已有同名环境变量时直接读取，无需复制密钥到文件；环境变量优先于 `.env`。若尚未配置，可自行在本机 `backend/.env` 中填写，勿将真实密钥发到聊天、提交 Git 或放入前端。配置改变后重启后端；健康检查的 `llm_configured` 只说明是否配置，不证明密钥、额度或网络可用。
 
-点击“检索并回答”会把问题与检索到的片段发送到配置的 DeepSeek 服务，消耗账户 API 调用额度；原始 PDF 不会整份上传。无匹配片段时不请求 LLM。后端不记录密钥或上游错误原文；结构化输出失败最多重新请求一次，网络、鉴权和服务错误不会自动重试。问答记录可能包含你的问题及语料引用，均保存在被 Git 忽略的本地数据目录。
+点击“检索并回答”会把问题与每轮至多 8 个片段发送到配置的 DeepSeek 服务，消耗账户 API 调用额度；原始 PDF 不会整份上传。基础模式空检索不请求 LLM；审计模式即使缺少匹配片段，也可能先调用模型规划需求，并针对缺口补检。后端不记录密钥或上游错误原文；每个结构化步骤失败最多重新请求一次，所有重试都计入整轮请求预算。网络、鉴权和服务错误不自动重试。问答、审计、图和轨迹都保存到被 Git 忽略的本地数据目录。
 
 | 设置 | 默认值 | 说明 |
 | --- | --- | --- |
@@ -87,6 +91,8 @@ D2 的问答需要 `DEEPSEEK_API_KEY`。已有同名环境变量时直接读取�
 | `DEEPSEEK_MODEL` | `deepseek-flash` | 可按账户可用模型覆盖 |
 | `LLM_TIMEOUT_SECONDS` | `40` | 每次模型请求超时，上限 50 秒 |
 | `LLM_MAX_TOKENS` | `1800` | 单次输出 token 上限 |
+| `AGENT_MAX_REQUESTS` | `6` | 一轮审计最多模型请求数（含格式重试），可设置 1–6 |
+| `AGENT_TIMEOUT_SECONDS` | `100` | 模型调用共享截止预算，每次请求还受单次超时约束 |
 
 SQLite 在 `E:\VerifiAtlas\backend\data\evidence.sqlite3`，原 PDF 在 `E:\VerifiAtlas\backend\data\pdfs\`。文件名由服务端 SHA256 生成，上传文件名不能决定磁盘路径。导入失败会撤回数据库事务并清理对应临时文件。启动失败时检查数据目录是否可写以及 8000/5173 端口是否被占用。
 
@@ -105,11 +111,15 @@ Pydantic / FastAPI OpenAPI 是协议源。前端 `src/api/schema.ts` 由导出�
 | `GET /api/documents/{id}/pdf` | 从数据库已登记文档安全读取原 PDF |
 | `GET /api/papers` | 仅返回官方来源元数据，不代表已导入 |
 | `POST /api/documents/seed` | JSON `{"paper_ids":["kg2rag"]}`，可选 `kg2rag` / `lightrag` / `paperqa2` |
-| `POST /api/query` | JSON `{"question":"...","document_ids":null,"top_k":6}`；返回回答、引用、限制与统计 |
+| `POST /api/query` | JSON `{"question":"...","document_ids":null,"top_k":6,"mode":"audited","enable_repair":true,"enable_graph_expansion":true}`；返回回答、引用、需求、审计、graph、trace 和统计 |
 | `GET /api/chunks/{chunk_id}` | 查询引用的完整原文片段，用于精确定位 |
 | `GET /api/runs/{run_id}` | 读取已保存的问答及 citation → document/chunk/page/quote 映射 |
 
 单个上传错误以非 2xx 状态和 `{"error":{"code":"...","message":"..."}}` 返回。种子导入支持逐项成功或失败，因此 HTTP 200 仍需检查每项 `status` 和 `error`；失败项不生成文档。
+
+`/api/query` 的 API 默认 `mode="basic"`，保持 D2 调用兼容；当前网页默认勾选审计模式。可设置 `enable_repair=false` 比较关闭补检的行为，或 `enable_graph_expansion=false` 只保留来源图。审计阶段上游出错时可能返回 HTTP 200 的部分结果，需查看 `insufficient`、`stats.stop_reason` 与 `trace`；部分已有支持证据不会因后续错误丢失。旧 D2 记录读取时保持基础模式，新增字段按空值/默认值补全，不伪造历史审计。
+
+图边只有 `contains`（上传来源）、`mentions`（原文术语位置）和 `supports`（模型提出支持且引句匹配）。所有边附 provenance，可回到文档、页码、片段和审计 ID。覆盖计数只按最终 Requirement 状态计算，不代表事实正确率。图最多取本轮两次检索的片段，没有随机节点。关闭或失败的概念扩展会明确标注降级。
 
 修改协议后：
 
@@ -152,7 +162,16 @@ uv run --locked python scripts/verify_d2_live.py
 
 结果保存到 `E:\VerifiAtlas\artifacts\d2\live-check.json`。已有浏览器问答 run ID 时，可加 `--run-id <ID>` 复核记录，不再次调用 LLM。
 
-实际验证记录见 [D1 验证记录](docs/D1_VERIFICATION.md)、[D2 验证记录](docs/D2_VERIFICATION.md)。自动测试里的合成 PDF 及 LLM Stub 仅用于测试；不使用真实密钥，不调用付费接口。至少 5 个标注问题见 [evaluation_questions.md](samples/evaluation_questions.md)，尚未执行的问题有明确标记。
+真实 D3 审计与补检检查（需后端运行、已导入官方 KG²RAG，会实际调用 DeepSeek）：
+
+```powershell
+Set-Location E:\VerifiAtlas\backend
+uv run --locked python scripts/verify_d3_live.py
+```
+
+报告为 `E:\VerifiAtlas\artifacts\d3\live-check.json`，检查一次真实补检、未解决需求、图边出处、引文、覆盖计数、trace 引用与持久化。加 `--run-id <ID>` 可复核已有记录，不再次调用模型。
+
+实际验证记录见 [D1](docs/D1_VERIFICATION.md)、[D2](docs/D2_VERIFICATION.md)、[D3](docs/D3_VERIFICATION.md)。自动测试里的合成 PDF、LLM Stub 和 HTTP Mock 仅用于测试；不使用真实密钥，不调用付费接口。至少 5 个标注问题见 [evaluation_questions.md](samples/evaluation_questions.md)，尚未执行的问题有明确标记。
 
 ## 论文与技术来源
 
