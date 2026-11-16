@@ -12,6 +12,9 @@ from .ingest import ingest_pdf
 from .schemas import ChunkPage, Document, ErrorResponse, Health, IngestResult, SeedPaper, SeedRequest, SeedResult
 from .seed import import_paper, load_papers
 from .store import Store
+from .llm import DeepSeekClient
+from .query import run_query
+from .schemas import QueryRequest, QueryResult, Chunk
 
 logger = logging.getLogger("verifiatlas")
 
@@ -30,6 +33,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                              413: {"model": ErrorResponse}, 415: {"model": ErrorResponse},
                              422: {"model": ErrorResponse}, 500: {"model": ErrorResponse}})
     app.state.store = store
+    app.state.llm = DeepSeekClient(settings)
 
     @app.exception_handler(IngestError)
     async def ingest_error(request: Request, exc: IngestError):
@@ -59,7 +63,27 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def health():
         with store.connect() as db:
             db.execute("SELECT 1").fetchone()
-        return Health(max_upload_mb=settings.max_upload_mb, max_pdf_pages=settings.max_pdf_pages)
+        return Health(max_upload_mb=settings.max_upload_mb, max_pdf_pages=settings.max_pdf_pages,
+                      llm_configured=bool(settings.deepseek_api_key.get_secret_value().strip()),
+                      llm_model=settings.deepseek_model)
+
+    @app.post("/api/query", response_model=QueryResult)
+    def query(body: QueryRequest):
+        return run_query(body, store, settings, app.state.llm)
+
+    @app.get("/api/runs/{run_id}", response_model=QueryResult)
+    def saved_run(run_id: str):
+        result = store.get_run(run_id)
+        if result is None:
+            raise IngestError("run_not_found", "问答记录不存在。", 404)
+        return result
+
+    @app.get("/api/chunks/{chunk_id}", response_model=Chunk)
+    def source_chunk(chunk_id: str):
+        chunk = store.get_chunk(chunk_id)
+        if chunk is None:
+            raise IngestError("chunk_not_found", "来源片段不存在。", 404)
+        return chunk
 
     @app.get("/api/documents", response_model=list[Document])
     def documents():

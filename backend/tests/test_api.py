@@ -7,7 +7,8 @@ from conftest import upload
 
 def test_health_and_empty_library(client):
     assert client.get("/api/health").json() == {
-        "status": "ok", "stage": "D1", "max_upload_mb": 1, "max_pdf_pages": 5,
+        "status": "ok", "stage": "D2", "max_upload_mb": 1, "max_pdf_pages": 5,
+        "llm_configured": True, "llm_model": "test-model",
     }
     assert client.get("/api/documents").json() == []
 

@@ -3,7 +3,7 @@ import sqlite3
 from contextlib import contextmanager
 from pathlib import Path
 
-from .schemas import Chunk, ChunkPage, Document
+from .schemas import Chunk, ChunkPage, Document, QueryResult
 
 
 class Store:
@@ -42,6 +42,9 @@ class Store:
                 );
                 CREATE INDEX IF NOT EXISTS chunks_document_page
                     ON chunks(document_id, page_number, chunk_order);
+                CREATE TABLE IF NOT EXISTS query_runs (
+                    id TEXT PRIMARY KEY, result_json TEXT NOT NULL
+                );
             """)
 
     @staticmethod
@@ -111,3 +114,29 @@ class Store:
     def pdf_path(self, document: Document) -> Path:
         # Only server-generated hashes are used as filenames, never request paths.
         return self.pdf_dir / f"{document.sha256}.pdf"
+
+    def retrieval_chunks(self, document_ids: list[str] | None) -> list[Chunk]:
+        sql = "SELECT id, document_id, page_number, text, chunk_order AS 'order', char_start, char_end FROM chunks"
+        args = document_ids or []
+        if document_ids:
+            sql += " WHERE document_id IN (" + ",".join("?" for _ in document_ids) + ")"
+        with self.connect() as db:
+            rows = db.execute(sql + " ORDER BY document_id, chunk_order", args).fetchall()
+        return [Chunk(**dict(row)) for row in rows]
+
+    def get_chunk(self, chunk_id: str) -> Chunk | None:
+        with self.connect() as db:
+            row = db.execute(
+                "SELECT id, document_id, page_number, text, chunk_order AS 'order', char_start, char_end "
+                "FROM chunks WHERE id = ?", (chunk_id,),
+            ).fetchone()
+        return Chunk(**dict(row)) if row else None
+
+    def save_run(self, result: QueryResult) -> None:
+        with self.connect() as db:
+            db.execute("INSERT INTO query_runs VALUES (?, ?)", (result.run_id, result.model_dump_json()))
+
+    def get_run(self, run_id: str) -> QueryResult | None:
+        with self.connect() as db:
+            row = db.execute("SELECT result_json FROM query_runs WHERE id = ?", (run_id,)).fetchone()
+        return QueryResult.model_validate_json(row[0]) if row else None

@@ -1,0 +1,59 @@
+{
+  "checked_at": "2026-11-16T03:19:27.368663+00:00",
+  "real_api": true,
+  "verification": {
+    "expected_hotpotqa_answer": "passed",
+    "quote_in_chunk": "passed",
+    "page_mapping": "passed",
+    "persisted_run": "passed"
+  },
+  "result": {
+    "run_id": "dd848940-8bba-4f3b-9208-98738ea36bf9",
+    "question": "Which benchmark dataset and its variants were used to evaluate KG2RAG? Answer only from the paper and give source quotes.",
+    "answer": "KG2RAG 在广泛使用的 HotpotQA 数据集及其新构建的变体上进行了实验评估。 [1]\n\n其中一个变体为 Shuffle-HotpotQA，在 distractor 设置下报告了结果。 [2]",
+    "paragraphs": [
+      {
+        "text": "KG2RAG 在广泛使用的 HotpotQA 数据集及其新构建的变体上进行了实验评估。",
+        "citation_ids": [
+          "1"
+        ]
+      },
+      {
+        "text": "其中一个变体为 Shuffle-HotpotQA，在 distractor 设置下报告了结果。",
+        "citation_ids": [
+          "2"
+        ]
+      }
+    ],
+    "citations": [
+      {
+        "id": "1",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "document_title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0002_c0002",
+        "page": 2,
+        "quote": "We conduct a series of experiments on the widely-used HotpotQA (Yang et al., 2018) dataset and its newly constructed variants",
+        "pdf_url": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=2"
+      },
+      {
+        "id": "2",
+        "document_id": "doc_b0456bdb5080d60db357a5f5",
+        "document_title": "Knowledge Graph-Guided Retrieval Augmented Generation",
+        "chunk_id": "doc_b0456bdb5080d60db357a5f5_p0007_c0004",
+        "page": 7,
+        "quote": "experimental results on the HotpotQA and Shuffle-HotpotQA datasets in the distractor setting are shown in Ta- bles 3 and 4",
+        "pdf_url": "/api/documents/doc_b0456bdb5080d60db357a5f5/pdf#page=7"
+      }
+    ],
+    "insufficient": [
+      "片段未说明 HotpotQA 变体的完整清单或各变体的具体名称；除 Shuffle-HotpotQA 外，其余变体名称缺少证据。"
+    ],
+    "status": "answered",
+    "model": "deepseek-flash",
+    "stats": {
+      "retrieved_chunks": 6,
+      "llm_requests": 1,
+      "duration_ms": 2453
+    }
+  }
+}

@@ -83,6 +83,272 @@
         }
       }
     },
+    "/api/query": {
+      "post": {
+        "summary": "Query",
+        "operationId": "query_api_query_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/runs/{run_id}": {
+      "get": {
+        "summary": "Saved Run",
+        "operationId": "saved_run_api_runs__run_id__get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/chunks/{chunk_id}": {
+      "get": {
+        "summary": "Source Chunk",
+        "operationId": "source_chunk_api_chunks__chunk_id__get",
+        "parameters": [
+          {
+            "name": "chunk_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Chunk Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chunk"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/documents": {
       "get": {
         "summary": "Documents",
@@ -641,6 +907,27 @@
   },
   "components": {
     "schemas": {
+      "AnswerParagraph": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "citation_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Citation Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "citation_ids"
+        ],
+        "title": "AnswerParagraph"
+      },
       "ApiError": {
         "properties": {
           "code": {
@@ -746,6 +1033,49 @@
           "limit"
         ],
         "title": "ChunkPage"
+      },
+      "Citation": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "document_id": {
+            "type": "string",
+            "title": "Document Id"
+          },
+          "document_title": {
+            "type": "string",
+            "title": "Document Title"
+          },
+          "chunk_id": {
+            "type": "string",
+            "title": "Chunk Id"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "quote": {
+            "type": "string",
+            "title": "Quote"
+          },
+          "pdf_url": {
+            "type": "string",
+            "title": "Pdf Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "document_id",
+          "document_title",
+          "chunk_id",
+          "page",
+          "quote",
+          "pdf_url"
+        ],
+        "title": "Citation"
       },
       "Document": {
         "properties": {
@@ -890,9 +1220,9 @@
           },
           "stage": {
             "type": "string",
-            "const": "D1",
+            "const": "D2",
             "title": "Stage",
-            "default": "D1"
+            "default": "D2"
           },
           "max_upload_mb": {
             "type": "integer",
@@ -901,12 +1231,22 @@
           "max_pdf_pages": {
             "type": "integer",
             "title": "Max Pdf Pages"
+          },
+          "llm_configured": {
+            "type": "boolean",
+            "title": "Llm Configured"
+          },
+          "llm_model": {
+            "type": "string",
+            "title": "Llm Model"
           }
         },
         "type": "object",
         "required": [
           "max_upload_mb",
-          "max_pdf_pages"
+          "max_pdf_pages",
+          "llm_configured",
+          "llm_model"
         ],
         "title": "Health"
       },
@@ -926,6 +1266,139 @@
           "duplicate"
         ],
         "title": "IngestResult"
+      },
+      "QueryRequest": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "document_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "maxItems": 20,
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Document Ids"
+          },
+          "top_k": {
+            "type": "integer",
+            "maximum": 8.0,
+            "minimum": 1.0,
+            "title": "Top K",
+            "default": 6
+          }
+        },
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "title": "QueryRequest"
+      },
+      "QueryResult": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "title": "Run Id"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "answer": {
+            "type": "string",
+            "title": "Answer"
+          },
+          "paragraphs": {
+            "items": {
+              "$ref": "#/components/schemas/AnswerParagraph"
+            },
+            "type": "array",
+            "title": "Paragraphs"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/Citation"
+            },
+            "type": "array",
+            "title": "Citations"
+          },
+          "insufficient": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Insufficient"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "answered",
+              "insufficient"
+            ],
+            "title": "Status"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/QueryStats"
+          }
+        },
+        "type": "object",
+        "required": [
+          "run_id",
+          "question",
+          "answer",
+          "paragraphs",
+          "citations",
+          "insufficient",
+          "status",
+          "model",
+          "stats"
+        ],
+        "title": "QueryResult"
+      },
+      "QueryStats": {
+        "properties": {
+          "retrieved_chunks": {
+            "type": "integer",
+            "title": "Retrieved Chunks"
+          },
+          "llm_requests": {
+            "type": "integer",
+            "title": "Llm Requests"
+          },
+          "duration_ms": {
+            "type": "integer",
+            "title": "Duration Ms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "retrieved_chunks",
+          "llm_requests",
+          "duration_ms"
+        ],
+        "title": "QueryStats"
       },
       "SeedPaper": {
         "properties": {

@@ -1,6 +1,6 @@
 # VerifiAtlas——面向科研知识探索的智能交互可视化系统
 
-科研证据工作台。当前只实现 **D1：工程与 PDF 数据闭环**：导入真实 PDF，按实际页码检查文本片段并打开原文件。后续开发严格按 [阶段计划](02_BUILD_PLAYBOOK.md#5-五个开发阶段每次只执行一个阶段完成后提交一次) 推进，每阶段完成后只提交一次。
+科研证据工作台。当前完成至 **D2：真实检索与可核对问答**：导入真实 PDF，通过 BM25 检索并调用 DeepSeek，逐条核对引用文字与来源页码。后续开发严格按 [阶段计划](02_BUILD_PLAYBOOK.md#5-五个开发阶段每次只执行一个阶段完成后提交一次) 推进，每阶段完成后只提交一次。
 
 界面品牌简称 VerifiAtlas；GitHub 仓库名保留 verifyAtlas。
 
@@ -12,8 +12,12 @@
 - 顶栏可切换浅色/深色主题，首次打开跟随系统；手动选择保存在当前浏览器，刷新后保留。禁用本地存储时仍可切换，但无法跨刷新保存。
 - 3 篇官方论文来源清单，可分别一键导入；下载失败会报告原因并提供官方页面及手动上传入口。
 - 空文件、错误格式、损坏 PDF、加密文件、过大文件和无可提取文本文件有明确错误。混合文档中没有文本的页面保留实际页码并显示警告；页面解析异常时整份导入失败。
+- 基于已导入片段的 BM25Plus 词面检索；可以检索全部语料或当前论文，每次最多 8 个片段。
+- DeepSeek 结构化回答，每段必须有本轮检索片段中的有效原文引句；引用的文档、页码、片段 ID 和 PDF 地址由后端确定。不能核对的段落被移除，无证据时明确报告不足。
+- 点击回答中的引用定位到完整原文片段；问答及引用映射保存到本机 SQLite，提供稳定的 run ID。
+- 问答成功后 URL 带有 `?run=<ID>`，刷新可恢复该记录，不重复请求 LLM；记录仅在这台机器的本地服务中有效。
 
-**尚未实现**：BM25、DeepSeek、AI 问答、证据审计、补检、概念扩展、3D 图谱。D1 不需要 API Key。
+**尚未实现**：Requirement 证据审计、定向补检、概念扩展、3D 图谱。引文存在性检查不代表结论在语义上正确，也不证明科学事实；请核对上下文。BM25 没有语义向量或自动跨语言翻译，英文论文建议保留英文术语。
 
 ## 环境与首次安装（Windows PowerShell）
 
@@ -55,6 +59,7 @@ npm.cmd run dev
 2. 左侧选择文档，右侧切换“实际页码”，检查该页原文片段，再点“打开 PDF · 第 N 页”与实际 PDF 页面核对。这里的页码是 PDF 页面序号，不是论文印刷页码。
 3. 再次上传同一 PDF，应提示文档已存在，文档数量保持不变。
 4. 上传空文件、改名为 `.pdf` 的其他格式、损坏文件或没有可提取文本的文件，确认提示清楚且没有假成功记录。
+5. 选择 KG²RAG 并勾选“仅检索当前选中的论文”，输入 `Which benchmark dataset and its variants were used to evaluate KG2RAG? Answer only from the paper and give source quotes.`。回答应能找到 HotpotQA 的来源；点击引用，核对片段和实际页码。某一名称若未检索到，不应补写成已知事实。
 
 上传只发送给本机后端。浏览器 PDF 阅读器通常支持 `#page=N`；若阅读器未自动定位，请手动输入该页码。文字提取可能受到字体编码、分栏和数学公式影响，原 PDF 始终是核对依据。
 
@@ -67,12 +72,21 @@ Set-Location E:\VerifiAtlas\backend
 Copy-Item .env.example .env
 ```
 
+D2 的问答需要 `DEEPSEEK_API_KEY`。已有同名环境变量时直接读取，无需复制密钥到文件；环境变量优先于 `.env`。若尚未配置，可自行在本机 `backend/.env` 中填写，勿将真实密钥发到聊天、提交 Git 或放入前端。配置改变后重启后端；健康检查的 `llm_configured` 只说明是否配置，不证明密钥、额度或网络可用。
+
+点击“检索并回答”会把问题与检索到的片段发送到配置的 DeepSeek 服务，消耗账户 API 调用额度；原始 PDF 不会整份上传。无匹配片段时不请求 LLM。后端不记录密钥或上游错误原文；结构化输出失败最多重新请求一次，网络、鉴权和服务错误不会自动重试。问答记录可能包含你的问题及语料引用，均保存在被 Git 忽略的本地数据目录。
+
 | 设置 | 默认值 | 说明 |
 | --- | --- | --- |
 | `DATA_DIR` | `./data` | 相对路径固定相对于 `backend/`，不受启动目录影响 |
 | `MAX_UPLOAD_MB` | `20` | PDF 文件大小上限 |
 | `MAX_PDF_PAGES` | `200` | 实际页数上限 |
 | `SEED_TIMEOUT_SECONDS` | `30` | 官方来源连接与读取超时 |
+| `DEEPSEEK_API_KEY` | 空 | 后端私密配置；已有环境变量可直接使用 |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | OpenAI 兼容接口地址 |
+| `DEEPSEEK_MODEL` | `deepseek-flash` | 可按账户可用模型覆盖 |
+| `LLM_TIMEOUT_SECONDS` | `40` | 每次模型请求超时，上限 50 秒 |
+| `LLM_MAX_TOKENS` | `1800` | 单次输出 token 上限 |
 
 SQLite 在 `E:\VerifiAtlas\backend\data\evidence.sqlite3`，原 PDF 在 `E:\VerifiAtlas\backend\data\pdfs\`。文件名由服务端 SHA256 生成，上传文件名不能决定磁盘路径。导入失败会撤回数据库事务并清理对应临时文件。启动失败时检查数据目录是否可写以及 8000/5173 端口是否被占用。
 
@@ -91,6 +105,9 @@ Pydantic / FastAPI OpenAPI 是协议源。前端 `src/api/schema.ts` 由导出�
 | `GET /api/documents/{id}/pdf` | 从数据库已登记文档安全读取原 PDF |
 | `GET /api/papers` | 仅返回官方来源元数据，不代表已导入 |
 | `POST /api/documents/seed` | JSON `{"paper_ids":["kg2rag"]}`，可选 `kg2rag` / `lightrag` / `paperqa2` |
+| `POST /api/query` | JSON `{"question":"...","document_ids":null,"top_k":6}`；返回回答、引用、限制与统计 |
+| `GET /api/chunks/{chunk_id}` | 查询引用的完整原文片段，用于精确定位 |
+| `GET /api/runs/{run_id}` | 读取已保存的问答及 citation → document/chunk/page/quote 映射 |
 
 单个上传错误以非 2xx 状态和 `{"error":{"code":"...","message":"..."}}` 返回。种子导入支持逐项成功或失败，因此 HTTP 200 仍需检查每项 `status` 和 `error`；失败项不生成文档。
 
@@ -126,7 +143,16 @@ uv run --locked python scripts/verify_d1_live.py --import-seeds
 
 脚本检查原 PDF SHA256、实际页数、每个片段的页码/字符范围和真实 PDF 重传去重；不调用 LLM，不把论文原文写入验证报告。结果默认保存到 `E:\VerifiAtlas\artifacts\d1\live-check.json`。不加 `--import-seeds` 可仅核对当前已导入文档。
 
-实际验证记录见 [D1 验证记录](docs/D1_VERIFICATION.md)。自动测试里的合成 PDF 仅用于测试，不是预置论文。
+真实问答 smoke test（后端运行、已导入官方 KG²RAG，默认会实际请求 DeepSeek）：
+
+```powershell
+Set-Location E:\VerifiAtlas\backend
+uv run --locked python scripts/verify_d2_live.py
+```
+
+结果保存到 `E:\VerifiAtlas\artifacts\d2\live-check.json`。已有浏览器问答 run ID 时，可加 `--run-id <ID>` 复核记录，不再次调用 LLM。
+
+实际验证记录见 [D1 验证记录](docs/D1_VERIFICATION.md)、[D2 验证记录](docs/D2_VERIFICATION.md)。自动测试里的合成 PDF 及 LLM Stub 仅用于测试；不使用真实密钥，不调用付费接口。至少 5 个标注问题见 [evaluation_questions.md](samples/evaluation_questions.md)，尚未执行的问题有明确标记。
 
 ## 论文与技术来源
 

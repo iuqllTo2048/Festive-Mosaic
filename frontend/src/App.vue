@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { request, uploadPdf, type ChunkPage, type Document, type Health, type SeedPaper, type SeedResult } from './api/client'
+import { request, uploadPdf, type ChunkPage, type Document, type Health, type SeedPaper, type SeedResult, type Chunk, type Citation } from './api/client'
 import { useTheme } from './theme'
+import QueryPanel from './components/QueryPanel.vue'
 
 const { theme, toggleTheme } = useTheme()
 
@@ -13,6 +14,7 @@ const selected = computed(() => documents.value.find((document) => document.id =
 const page = ref(1)
 const offset = ref(0)
 const chunks = ref<ChunkPage | null>(null)
+const focusedChunk = ref<Chunk | null>(null)
 const loading = ref(true)
 const chunksLoading = ref(false)
 const error = ref('')
@@ -71,7 +73,8 @@ async function loadChunks() {
   }
 }
 
-watch(selectedId, () => { page.value = 1; offset.value = 0 })
+watch(selectedId, () => { page.value = 1; offset.value = 0; focusedChunk.value = null })
+watch(page, () => { if (focusedChunk.value?.page_number !== page.value) focusedChunk.value = null })
 watch([selectedId, page, offset], loadChunks)
 
 function openUpload() {
@@ -129,6 +132,20 @@ function movePage(event: Event) {
   offset.value = 0
 }
 
+async function openCitation(citation: Citation) {
+  try {
+    const chunk = await request<Chunk>(`/api/chunks/${encodeURIComponent(citation.chunk_id)}`)
+    selectedId.value = chunk.document_id
+    await nextTick()
+    page.value = chunk.page_number
+    offset.value = 0
+    await nextTick()
+    focusedChunk.value = chunk
+    await nextTick()
+    document.getElementById('focused-source')?.scrollIntoView({ block: 'start', behavior: 'instant' })
+  } catch (cause) { error.value = cause instanceof Error ? cause.message : '来源定位失败。' }
+}
+
 onMounted(() => refresh())
 </script>
 
@@ -148,6 +165,8 @@ onMounted(() => refresh())
 
     <p v-if="error" class="message error" role="alert">{{ error }} <button class="text-button" @click="refresh()">重新连接</button></p>
     <p v-if="notice" class="message success" role="status">{{ notice }}</p>
+
+    <QueryPanel :document-count="documents.length" :selected-id="selectedId" :configured="health?.llm_configured ?? false" :model="health?.llm_model ?? ''" @source="openCitation" />
 
     <div class="document-layout">
       <aside class="library" aria-label="项目语料">
@@ -173,6 +192,7 @@ onMounted(() => refresh())
           </div>
           <div v-if="selected.warnings.length" class="message warning"><strong>△ 解析提醒</strong><ul><li v-for="warning in selected.warnings" :key="warning">{{ warning }}</li></ul></div>
           <div class="page-toolbar"><label for="page-number">实际页码 <select id="page-number" :value="page" @change="movePage"><option v-for="number in selected.page_count" :key="number" :value="number">第 {{ number }} 页</option></select></label><a class="button-link" :href="`${selected.pdf_url}#page=${page}`" target="_blank" rel="noopener noreferrer">打开 PDF · 第 {{ page }} 页 ↗</a></div>
+          <article v-if="focusedChunk" id="focused-source" class="focused-source"><div class="section-heading"><h3>引用定位 · 第 {{ focusedChunk.page_number }} 页</h3><button class="text-button" @click="focusedChunk = null">清除定位</button></div><p class="source-text">{{ focusedChunk.text }}</p><code>{{ focusedChunk.id }}</code></article>
           <p v-if="chunksLoading" class="empty-small" role="status">正在读取原文片段…</p>
           <p v-else-if="chunkError" class="message error" role="alert">{{ chunkError }} <button class="text-button" @click="loadChunks">重试</button></p>
           <template v-else-if="chunks">
@@ -191,7 +211,7 @@ onMounted(() => refresh())
       <ul class="seed-list"><li v-for="paper in papers" :key="paper.id"><div><span class="paper-key">{{ paper.id === 'kg2rag' ? 'KG²RAG' : paper.id === 'lightrag' ? 'LightRAG' : 'PaperQA2' }} / {{ paper.year }}</span><h3>{{ paper.title }}</h3><p class="muted">{{ paper.authors[0] }} 等 · {{ paper.import_note }}</p></div><div class="seed-actions"><a :href="paper.source_url" target="_blank" rel="noopener noreferrer">官方页面 ↗</a><button :disabled="!!seeding || uploading || !health" @click="seed(paper.id)">{{ seeding === paper.id ? '正在下载并解析…' : '导入论文' }}</button></div></li></ul>
       <div v-for="result in seedResults" :key="result.paper_id" class="message" :class="result.status === 'failed' ? 'error' : 'success'" :role="result.status === 'failed' ? 'alert' : 'status'">{{ result.status === 'failed' ? result.error?.message : result.status === 'duplicate' ? '该论文已存在，已定位到已有文档。' : `已导入 ${result.document?.title}，共 ${result.document?.page_count} 页。` }} <a v-if="result.status === 'failed'" :href="result.manual_url" target="_blank" rel="noopener noreferrer">打开官方页面下载后上传 ↗</a></div>
     </section>
-    <footer>VerifiAtlas · D1 语料与原文检查 <span>当前阶段尚未提供检索、AI 问答或证据图谱。</span></footer>
+    <footer>VerifiAtlas · D2 真实检索与问答 <span>当前阶段尚未提供证据审计、补检或图谱。</span></footer>
   </main>
 
   <dialog ref="dialog" aria-labelledby="upload-heading" @cancel="uploading && $event.preventDefault()">

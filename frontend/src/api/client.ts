@@ -5,6 +5,9 @@ export type ChunkPage = components['schemas']['ChunkPage']
 export type SeedPaper = components['schemas']['SeedPaper']
 export type SeedResult = components['schemas']['SeedResult']
 export type Health = components['schemas']['Health']
+export type Chunk = components['schemas']['Chunk']
+export type Citation = components['schemas']['Citation']
+export type QueryResult = components['schemas']['QueryResult']
 
 function messageFrom(body: unknown, fallback: string): string {
   if (typeof body === 'object' && body !== null && 'error' in body) {

@@ -1,6 +1,6 @@
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class ApiError(BaseModel):
@@ -14,9 +14,11 @@ class ErrorResponse(BaseModel):
 
 class Health(BaseModel):
     status: Literal["ok"] = "ok"
-    stage: Literal["D1"] = "D1"
+    stage: Literal["D2"] = "D2"
     max_upload_mb: int
     max_pdf_pages: int
+    llm_configured: bool
+    llm_model: str
 
 
 class Document(BaseModel):
@@ -79,3 +81,60 @@ class SeedResult(BaseModel):
     document: Document | None = None
     error: ApiError | None = None
     manual_url: str
+
+
+class QueryRequest(BaseModel):
+    question: str = Field(min_length=1, max_length=2000)
+    document_ids: list[str] | None = Field(default=None, min_length=1, max_length=20)
+    top_k: int = Field(default=6, ge=1, le=8)
+
+
+class Citation(BaseModel):
+    id: str
+    document_id: str
+    document_title: str
+    chunk_id: str
+    page: int
+    quote: str
+    pdf_url: str
+
+
+class AnswerParagraph(BaseModel):
+    text: str
+    citation_ids: list[str]
+
+
+class QueryStats(BaseModel):
+    retrieved_chunks: int
+    llm_requests: int
+    duration_ms: int
+
+
+class QueryResult(BaseModel):
+    run_id: str
+    question: str
+    answer: str
+    paragraphs: list[AnswerParagraph]
+    citations: list[Citation]
+    insufficient: list[str]
+    status: Literal["answered", "insufficient"]
+    model: str | None
+    stats: QueryStats
+
+
+class ProposedCitation(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    chunk_id: str = Field(min_length=1, max_length=160)
+    quote: str = Field(min_length=12, max_length=300)
+
+
+class ProposedParagraph(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    text: str = Field(min_length=1, max_length=1200)
+    citations: list[ProposedCitation] = Field(min_length=1, max_length=4)
+
+
+class ProposedAnswer(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    paragraphs: list[ProposedParagraph] = Field(max_length=6)
+    insufficient: list[str] = Field(max_length=8)

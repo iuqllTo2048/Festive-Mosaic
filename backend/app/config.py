@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from pydantic import Field
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
@@ -15,6 +15,11 @@ class Settings(BaseSettings):
     max_upload_mb: int = Field(default=20, ge=1, le=100)
     max_pdf_pages: int = Field(default=200, ge=1, le=1000)
     seed_timeout_seconds: float = Field(default=30, ge=1, le=120)
+    deepseek_api_key: SecretStr = SecretStr("")
+    deepseek_base_url: str = "https://api.deepseek.com"
+    deepseek_model: str = "deepseek-flash"
+    llm_timeout_seconds: float = Field(default=40, ge=1, le=50)
+    llm_max_tokens: int = Field(default=1800, ge=256, le=4096)
 
     @property
     def resolved_data_dir(self) -> Path:

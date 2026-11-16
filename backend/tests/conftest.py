@@ -37,7 +37,8 @@ def make_pdf(page_texts: list[str | None], *, encrypted: bool = False) -> bytes:
 
 @pytest.fixture
 def settings(tmp_path):
-    return Settings(_env_file=None, data_dir=tmp_path / "data", max_upload_mb=1, max_pdf_pages=5)
+    return Settings(_env_file=None, data_dir=tmp_path / "data", max_upload_mb=1, max_pdf_pages=5,
+                    deepseek_api_key="test-only-not-a-real-key", deepseek_model="test-model")
 
 
 @pytest.fixture

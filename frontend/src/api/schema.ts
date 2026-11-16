@@ -21,6 +21,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/query": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Query */
+        post: operations["query_api_query_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/runs/{run_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Saved Run */
+        get: operations["saved_run_api_runs__run_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/chunks/{chunk_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Source Chunk */
+        get: operations["source_chunk_api_chunks__chunk_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/documents": {
         parameters: {
             query?: never;
@@ -127,6 +178,13 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AnswerParagraph */
+        AnswerParagraph: {
+            /** Text */
+            text: string;
+            /** Citation Ids */
+            citation_ids: string[];
+        };
         /** ApiError */
         ApiError: {
             /** Code */
@@ -166,6 +224,23 @@ export interface components {
             offset: number;
             /** Limit */
             limit: number;
+        };
+        /** Citation */
+        Citation: {
+            /** Id */
+            id: string;
+            /** Document Id */
+            document_id: string;
+            /** Document Title */
+            document_title: string;
+            /** Chunk Id */
+            chunk_id: string;
+            /** Page */
+            page: number;
+            /** Quote */
+            quote: string;
+            /** Pdf Url */
+            pdf_url: string;
         };
         /** Document */
         Document: {
@@ -217,20 +292,68 @@ export interface components {
             status: "ok";
             /**
              * Stage
-             * @default D1
+             * @default D2
              * @constant
              */
-            stage: "D1";
+            stage: "D2";
             /** Max Upload Mb */
             max_upload_mb: number;
             /** Max Pdf Pages */
             max_pdf_pages: number;
+            /** Llm Configured */
+            llm_configured: boolean;
+            /** Llm Model */
+            llm_model: string;
         };
         /** IngestResult */
         IngestResult: {
             document: components["schemas"]["Document"];
             /** Duplicate */
             duplicate: boolean;
+        };
+        /** QueryRequest */
+        QueryRequest: {
+            /** Question */
+            question: string;
+            /** Document Ids */
+            document_ids?: string[] | null;
+            /**
+             * Top K
+             * @default 6
+             */
+            top_k: number;
+        };
+        /** QueryResult */
+        QueryResult: {
+            /** Run Id */
+            run_id: string;
+            /** Question */
+            question: string;
+            /** Answer */
+            answer: string;
+            /** Paragraphs */
+            paragraphs: components["schemas"]["AnswerParagraph"][];
+            /** Citations */
+            citations: components["schemas"]["Citation"][];
+            /** Insufficient */
+            insufficient: string[];
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "answered" | "insufficient";
+            /** Model */
+            model: string | null;
+            stats: components["schemas"]["QueryStats"];
+        };
+        /** QueryStats */
+        QueryStats: {
+            /** Retrieved Chunks */
+            retrieved_chunks: number;
+            /** Llm Requests */
+            llm_requests: number;
+            /** Duration Ms */
+            duration_ms: number;
         };
         /** SeedPaper */
         SeedPaper: {
@@ -293,6 +416,236 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Request Entity Too Large */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unsupported Media Type */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    query_api_query_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["QueryRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QueryResult"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Request Entity Too Large */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unsupported Media Type */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    saved_run_api_runs__run_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QueryResult"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Request Entity Too Large */
+            413: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unsupported Media Type */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unprocessable Entity */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    source_chunk_api_chunks__chunk_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                chunk_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Chunk"];
                 };
             };
             /** @description Bad Request */
