@@ -1,3 +1,17 @@
+# Festive Mosaic · 同节异俗
+
+**《同节异俗——基于多源文化证据的传统节俗交互探索系统》**的独立设计阶段成果。由 VerifiAtlas D6 基线派生，新的文化原型位于 `design/prototype/`；下方保留原项目说明与验证记录。
+
+- [设计审查与本轮交付](design/REVIEW_FOR_CHAT.md)
+- [原型启动方法](design/prototype/README.md)：在 `design/prototype` 执行 `npm.cmd run dev`，打开 <http://127.0.0.1:5175/>。新克隆先在 `frontend` 执行 `npm.cmd ci`，复用现有依赖。
+- [产品概念](design/01_PRODUCT_CONCEPT.md) · [交互与视觉](design/02_INTERACTION_AND_VISUAL.md) · [内容与迁移](design/03_CONTENT_AND_MIGRATION.md) · [研究来源](design/00_RESEARCH.md)
+
+![同节异俗首页](design/screenshots/01-home-1440.jpg)
+
+这是明确标记 DEMO 的静态高保真原型，没有调用 DeepSeek 或接入真实文化检索。原生产前后端与 D6 结果保持不变，尚未开始正式文化系统迁移。成果推送到 [Festive-Mosaic](https://github.com/iuqllTo2048/Festive-Mosaic)。
+
+---
+
 # VerifiAtlas——面向科研知识探索的智能交互可视化系统
 
 科研证据工作台。**D1–D5 的 MVP 已完成**：真实 PDF 检索、带引文问答、需求审计与一次补检，配合三维来源图、原文抽屉和执行记录回放。五题真实对照、已知限制和复核命令见 [D5 验收记录](docs/D5_VERIFICATION.md)，演示步骤见 [演示指南](docs/DEMO.md)。每阶段只提交一次，并按用户授权推送到远程仓库。
