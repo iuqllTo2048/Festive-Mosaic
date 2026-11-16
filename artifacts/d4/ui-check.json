@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-16",
+  "stage": "D4",
+  "browser": "ChatGPT in-app browser",
+  "run_id": "0f41fa68-de2f-4c67-9a80-d13521a6665b",
+  "new_llm_requests": 0,
+  "graph": { "nodes": 25, "edges": 47 },
+  "supported_focus": { "nodes": 5, "edges": 4 },
+  "gap_focus": { "nodes": 1, "edges": 0 },
+  "source": { "paper": "KG2RAG", "pdf_page": 5, "chunk_order_display": 28 },
+  "replay_start": { "nodes": 0, "edges": 0 },
+  "replay_plan": { "nodes": 2, "edges": 0, "pending_requirements": 2 },
+  "viewports": [
+    { "width": 1440, "height": 900, "document_width": 1440, "canvas_count": 1 },
+    { "width": 1024, "height": 768, "document_width": 1024, "audit_drawer_focus": true },
+    { "width": 390, "height": 844, "document_width": 390, "canvas_count": 0 },
+    { "width": 320, "height": 720, "document_width": 320 }
+  ],
+  "prefers_reduced_motion": true,
+  "manual_replay_verified": true,
+  "native_pdf_visual_jump_verified": false,
+  "automatic_playback_verified": false,
+  "gpu_loss_simulated": false,
+  "notes": "Manual browser observations; see docs/D4_VERIFICATION.md for scope and limitations."
+}
