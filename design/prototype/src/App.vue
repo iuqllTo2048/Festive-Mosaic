@@ -1,6 +1,7 @@
 <script setup>
 import {ref,computed,defineAsyncComponent,onMounted,onBeforeUnmount,nextTick} from 'vue'
 import RebuildEntry from './RebuildEntry.vue'
+import P01Home from './P01Home.vue'
 import AgentPanel from './AgentPanel.vue'
 import {runCulturalGuide} from './cultural-guide.ts'
 import {festivalById,statusLabels} from './festivals.ts'
@@ -39,7 +40,7 @@ function go(next,id='duanwu'){
   if(location.hash!==hash)history.pushState(null,'',hash)
   syncRoute()
 }
-function openFestival(id){const next=parseRoute(routeHash('festival',id));go(next.page==='festival'?'festival':'unavailable',id)}
+function openFestival(id){go('festival',id)}
 function enter(question){guideTask.value=null;focusedNode.value='';questionId.value=question.id;dimension.value=question.id;selected.value='';themeFilter.value='all';layer.value='';go('explore')}
 function setDimension(value){dimension.value=value;selected.value='';focusedNode.value='';layer.value=''}
 function openClaim(id){focusedNode.value=id;selected.value=id;if(!drawer.value.open)drawer.value.showModal()}
@@ -65,13 +66,14 @@ onBeforeUnmount(()=>{clearTimeout(noticeTimer);window.removeEventListener('resiz
 
 <template>
   <a class="skip-link" href="#main" @click.prevent="skipToMain">跳至主要内容</a>
-  <header class="masthead platform-masthead" :class="{'is-exhibition':page==='festival'}">
+  <header v-if="page!=='portal'" class="masthead platform-masthead" :class="{'is-exhibition':page==='festival'}">
     <button class="brand" @click="go('portal')" aria-label="同节异俗 平台首页"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span><b>同节异俗</b><small>FESTIVE MOSAIC</small></span></button>
     <nav aria-label="主要导航"><button :class="{active:page==='portal'}" @click="go('portal')">节日目录</button><button :class="{active:page==='festival'||page==='explore'||page==='compare'}" @click="go('festival')">端午篇</button><button :class="{active:page==='archive'}" @click="go('archive')">观察档案 <i class="saved-count">{{saved.length}}</i></button></nav>
     <button class="edition" @click="about?.showModal()">关于文化馆 <span>↗</span></button>
   </header>
   <main id="main" tabindex="-1">
-    <RebuildEntry v-if="page==='portal'||page==='festival'" :mode="page"
+    <P01Home v-if="page==='portal'" @festival="openFestival" @home="go('portal')" @archive="go('archive')" @about="about?.showModal()"/>
+    <RebuildEntry v-else-if="page==='festival'" mode="festival"
       @festival="openFestival('duanwu')" @explore="enter(questions.find(q=>q.id===$event))"
       @theme="enter(questions[1]);themeFilter=$event" @guide="openGuide"
       @compare="setDimension('practice');startCompare()" @archive="go('archive')"/>
@@ -104,7 +106,7 @@ onBeforeUnmount(()=>{clearTimeout(noticeTimer);window.removeEventListener('resiz
       <div class="archive-layout"><aside class="archive-meta"><span class="mini-index">这一次，我在观察</span><h2>{{archiveQuestion||'尚未保存探索主题'}}</h2><p>{{archiveObjects.length?archiveObjects.map(t=>t.name).join(' / '):'选择两个地方，保存一条你想继续理解的文化关系。'}}</p><dl><dt>资料范围</dt><dd>官方网页静态摘编</dd><dt>核验状态</dt><dd>来源可定位 / 待人工审读</dd><dt>保存位置</dt><dd>{{storageAvailable?'当前浏览器本地':'仅当前会话 · 本地存储不可用'}}</dd></dl></aside><section class="archive-main"><div class="archive-section-title"><h2>已保存的文化关系</h2><span>{{saved.length}} 条</span></div><div v-if="!saved.length" class="archive-empty"><span>＋</span><h3>从一条关系开始，形成自己的观察。</h3><p>回到探索或对照界面，查看说法剖面，再将值得保留的关系存入这里。</p><button class="button primary" @click="startCompare">去看两种地方实践 ↗</button></div><article v-for="c in savedClaims" :key="c.id" class="saved-relation"><span class="eyebrow">{{c.theme?themeById(c.theme).name:'待核查问题'}} / {{c.source||'未定位依据'}}</span><button @click="openClaim(c.id)"><h3>{{c.title}}</h3><span>↗</span></button><p>{{c.text}}</p><small>{{c.status==='uncertain'?'证据不足 · 不生成事实结论':'来源已定位 · 文化解释待独立人工审读'}}</small></article><section class="observed-summary"><h3>共同点与差异</h3><p>{{commonSaved.length?'你保存的关系中，至少两地共享同一记录元素。点击各条来源继续核对解释。':'当前保存内容尚不足以整理跨地方共同点。保留各自记录，继续寻找另一份资料。'}}</p><p>不同地方的解释并存，不自动标记为冲突。</p></section><label class="fieldnote" for="fieldnote">仍想继续核查的问题 <textarea id="fieldnote" v-model="notes" maxlength="500" rows="4" placeholder="例如：竞渡和送神舟的联系，还需要哪些地方文献？" @input="persist"></textarea><small>{{notes.length}} / 500 · 由你记录，不由模型代写</small></label><p class="archive-limit">这是一份浏览器内的设计原型草稿。尚未提供账号、云同步或正式导出。</p></section></div>
     </template>
   </main>
-  <footer class="site-footer"><span>同节异俗 <i>FESTIVE MOSAIC</i></span><span>以地方实践为入口，以资料依据为归处。</span><button @click="about?.showModal()">DEMO / 内容与使用说明 ↗</button></footer>
+  <footer v-if="page!=='portal'" class="site-footer"><span>同节异俗 <i>FESTIVE MOSAIC</i></span><span>以地方实践为入口，以资料依据为归处。</span><button @click="about?.showModal()">DEMO / 内容与使用说明 ↗</button></footer>
   <div v-if="notice" class="toast" role="status">{{notice}}</div>
 
   <dialog ref="drawer" class="claim-drawer" aria-labelledby="claim-title"><header><div><p class="eyebrow">CULTURAL CLAIM TRACE</p><span>文化说法剖面</span></div><button class="close-button" @click="drawer.close()" aria-label="关闭说法剖面">×</button></header><div class="drawer-content"><p class="claim-context">{{current.theme?themeById(current.theme).full:'跨地方候选关系'}} <span>静态摘编 · DEMO</span></p><h2 id="claim-title">{{current.title}}</h2><div v-if="comparisonPeers.length" class="peer-sources" aria-label="共同元素的双方出处"><p>共同记录的元素，分别阅读双方资料</p><button v-for="peer in comparisonPeers" :key="peer.id" :aria-pressed="selected===peer.id" @click="selected=peer.id">{{themeById(peer.theme).name}} · {{peer.source}} ↗</button></div><p class="status-badge" :class="current.status">{{current.status==='uncertain'?'○ 证据不足 · 候选联系':'◇ 来源已定位 · 待人工审读'}}</p><div class="trace-step"><b>01</b><div><h3>看到的地方实践</h3><strong>{{current.practice}}</strong><p>{{current.text}}</p><small>以上为编辑摘编，非模型回答。</small></div></div><div class="trace-step"><b>02</b><div><h3>资料中的解释</h3><strong>{{current.interpretation}}</strong><p>地方解释可以并存。关系是否充分，需要结合全文与地方语境审读。</p></div></div><div class="trace-step"><b>03</b><div><h3>回到资料原文</h3><template v-if="source"><p class="source-catalog">{{source.id}} · {{source.category}}</p><h4>{{source.title}}</h4><blockquote v-for="(quote,index) in excerpts[current.id]||[source.quote]" :key="quote"><small>定位摘录 {{index+1}}</small>“{{quote}}”</blockquote><p class="source-location">{{source.publisher}}<br>{{source.locator}} · 网页核对 {{source.checked}}</p><a class="source-link" :href="source.url" target="_blank" rel="noopener noreferrer">打开官方原文，核对完整语境 ↗</a><p class="source-warning">短摘录分别展示，不拼成连续引文。来源已定位不等于文化关系已认证。{{source.note}}</p></template><div v-else class="unknown-source"><h4>把空白留在档案里。</h4><p>当前没有充分材料支持这一候选联系。相关条目只能提供背景，不能证明同一传承。</p><button v-for="s in Object.values(sources).slice(0,3)" :key="s.id" @click="selected=claims.find(c=>c.source===s.id).id">继续阅读 {{s.title}} ↗</button></div></div></div></div><footer><button class="button primary" @click="toggleSave(current.id)">{{saved.includes(current.id)?'已存入 · 移出此条':'＋ 存入观察档案'}}</button><button class="text-link" @click="drawer.close();go('archive')">查看档案 {{saved.length}} ↗</button></footer></dialog>

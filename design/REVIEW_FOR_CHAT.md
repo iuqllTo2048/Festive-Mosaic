@@ -1,5 +1,7 @@
 # 同节异俗｜下一轮重构交接
 
+2026-11-18：用户随后提供P01定稿素材与提示词，已实现五节画卷首页。当前成果请先读[P01首页验收](../docs/P01_HOMEPAGE_REVIEW.md)，下文为清理阶段背景，不代表首页仍是空白入口。P02尚未实施。
+
 用户对当前展示效果不满意，2026-11-17选择清理旧展示，原素材本地归档。当前只保留简洁的功能入口，等待重新设计前端展示页面。
 
 先读[前端重构基线](../docs/FRONTEND_REBUILD_BASELINE.md)，再读[产品框架](01_PRODUCT_CONCEPT.md)、[展示层待定事项](02_INTERACTION_AND_VISUAL.md)和[内容与迁移](03_CONTENT_AND_MIGRATION.md)。

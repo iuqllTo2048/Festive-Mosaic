@@ -1,6 +1,10 @@
 # Festive Mosaic · 同节异俗
 
-当前处于前端展示重构准备。旧首页、美术与截图已撤下，原素材本地归档；保留多节日架构、文化资料、导览演示、图谱、地方对照、来源与观察档案。平台和端午页面暂用简洁的功能入口，新视觉方案尚未确定。
+P01五节画卷首页已按photoResource素材与提示词实现：原图导航、节日目录、花饰提示、固定分区及两秒展开/回卷。端午链接保留的交互原型，其余节日显示尚未开放。本轮只做首页。
+
+- [最新：首页动效、截图、测试与限制](docs/P01_HOMEPAGE_REVIEW.md)
+
+![五节画卷首页](design/screenshots/p01/default-1440.jpg)
 
 - [清理范围、归档恢复与重构基线](docs/FRONTEND_REBUILD_BASELINE.md)
 - [下一轮重构交接](design/REVIEW_FOR_CHAT.md)

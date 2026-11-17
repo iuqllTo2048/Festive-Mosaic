@@ -30,6 +30,10 @@
   "include": [
     "src/RebuildEntry.vue",
     "src/AgentPanel.vue",
+    "src/P01Home.vue",
+    "src/TopNavBar.vue",
+    "src/FestivalPanorama.vue",
+    "qa/*.ts",
     "src/*.ts"
   ]
 }

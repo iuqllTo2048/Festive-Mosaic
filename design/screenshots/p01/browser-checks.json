@@ -1,0 +1,451 @@
+{
+  "date": "2026-11-18",
+  "baseline": "f639a7ebeb83813bb4652458f7ef33d0ce0ee8c9",
+  "product": "http://127.0.0.1:5175/",
+  "normal_motion_qa": "http://127.0.0.1:5175/p01-motion-check.html",
+  "normal_motion_note": "Separate development-only entry overrides reduced-motion for testing. Production retains system preference.",
+  "checks": [
+    {
+      "check": "spring-25.jpg",
+      "before": {
+        "active": "spring",
+        "desired": "spring",
+        "phase": "expanding",
+        "progress": 0.254,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932321097
+      },
+      "after": {
+        "active": "spring",
+        "desired": "spring",
+        "phase": "expanding",
+        "progress": 0.2832,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932321154
+      },
+      "entry": "normal-motion-qa",
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "check": "spring-50.jpg",
+      "before": {
+        "active": "spring",
+        "desired": "spring",
+        "phase": "expanding",
+        "progress": 0.502,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932321591
+      },
+      "after": {
+        "active": "spring",
+        "desired": "spring",
+        "phase": "expanding",
+        "progress": 0.5332,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932321654
+      },
+      "entry": "normal-motion-qa",
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "check": "spring-100.jpg",
+      "before": {
+        "active": "spring",
+        "desired": "spring",
+        "phase": "expanded",
+        "progress": 1,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932322618
+      },
+      "after": {
+        "active": "spring",
+        "desired": "spring",
+        "phase": "expanded",
+        "progress": 1,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932322677
+      },
+      "entry": "normal-motion-qa",
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "check": "spring-collapse",
+      "before": {
+        "active": "spring",
+        "desired": "mid-autumn",
+        "phase": "collapsing",
+        "progress": 0.5438,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932339822
+      },
+      "after": {
+        "active": "spring",
+        "desired": "mid-autumn",
+        "phase": "collapsing",
+        "progress": 0.5126,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932339882
+      }
+    },
+    {
+      "check": "spring-to-mid-autumn",
+      "before": {
+        "active": "mid-autumn",
+        "desired": "mid-autumn",
+        "phase": "expanding",
+        "progress": 0.1603,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932341236
+      },
+      "after": {
+        "active": "mid-autumn",
+        "desired": "mid-autumn",
+        "phase": "expanding",
+        "progress": 0.1874,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932341292
+      }
+    },
+    {
+      "check": "spring-to-mid-state-order",
+      "trace": [
+        {
+          "active": "spring",
+          "desired": "mid-autumn",
+          "phase": "collapsing",
+          "progress": 0.9605,
+          "ready": "5",
+          "reduced": "false",
+          "observed_at": 1794932338989
+        },
+        {
+          "active": "mid-autumn",
+          "desired": "mid-autumn",
+          "phase": "expanding",
+          "progress": 0.0041,
+          "ready": "5",
+          "reduced": "false",
+          "observed_at": 1794932340925
+        },
+        {
+          "active": "mid-autumn",
+          "desired": "mid-autumn",
+          "phase": "expanded",
+          "progress": 1,
+          "ready": "5",
+          "reduced": "false",
+          "observed_at": 1794932342934
+        }
+      ],
+      "finished": true
+    },
+    {
+      "check": "normal-motion-transition-events",
+      "trace": [
+        {
+          "phase": "expanding",
+          "active": "spring",
+          "desired": "spring",
+          "progress": 0,
+          "at": 278.1999999997206
+        },
+        {
+          "phase": "expanded",
+          "active": "spring",
+          "desired": "spring",
+          "progress": 1,
+          "at": 2281
+        },
+        {
+          "phase": "collapsing",
+          "active": "spring",
+          "desired": null,
+          "progress": 1,
+          "at": 2353.1999999997206
+        },
+        {
+          "phase": "idle",
+          "active": null,
+          "desired": "mid-autumn",
+          "progress": 0,
+          "at": 4355.899999999907
+        },
+        {
+          "phase": "expanding",
+          "active": "mid-autumn",
+          "desired": "mid-autumn",
+          "progress": 0,
+          "at": 4360.199999999721
+        },
+        {
+          "phase": "expanded",
+          "active": "mid-autumn",
+          "desired": "mid-autumn",
+          "progress": 1,
+          "at": 6360.199999999721
+        }
+      ]
+    },
+    {
+      "check": "actual-pointer-center-hint",
+      "expanded": "true"
+    },
+    {
+      "check": "actual-pointer-menu",
+      "expanded": "true"
+    },
+    {
+      "check": "all-five-painting-menu-route-equivalence",
+      "rows": [
+        {
+          "key": "spring",
+          "festival_id": "chunjie",
+          "menuUrl": "http://127.0.0.1:5175/#/festivals/chunjie/unavailable",
+          "artUrl": "http://127.0.0.1:5175/#/festivals/chunjie/unavailable",
+          "same": true,
+          "menuStatus": false,
+          "artStatus": false
+        },
+        {
+          "key": "qingming",
+          "festival_id": "qingming",
+          "menuUrl": "http://127.0.0.1:5175/#/festivals/qingming/unavailable",
+          "artUrl": "http://127.0.0.1:5175/#/festivals/qingming/unavailable",
+          "same": true,
+          "menuStatus": false,
+          "artStatus": false
+        },
+        {
+          "key": "duanwu",
+          "festival_id": "duanwu",
+          "menuUrl": "http://127.0.0.1:5175/#/festivals/duanwu",
+          "artUrl": "http://127.0.0.1:5175/#/festivals/duanwu",
+          "same": true,
+          "menuStatus": false,
+          "artStatus": false
+        },
+        {
+          "key": "qixi",
+          "festival_id": "qixi",
+          "menuUrl": "http://127.0.0.1:5175/#/festivals/qixi/unavailable",
+          "artUrl": "http://127.0.0.1:5175/#/festivals/qixi/unavailable",
+          "same": true,
+          "menuStatus": false,
+          "artStatus": false
+        },
+        {
+          "key": "mid-autumn",
+          "festival_id": "zhongqiu",
+          "menuUrl": "http://127.0.0.1:5175/#/festivals/zhongqiu/unavailable",
+          "artUrl": "http://127.0.0.1:5175/#/festivals/zhongqiu/unavailable",
+          "same": true,
+          "menuStatus": false,
+          "artStatus": false
+        }
+      ],
+      "note": "Initial shared navigation helper lost festival names. Fixed and superseded by final-five-routes."
+    },
+    {
+      "check": "final-five-routes",
+      "rows": [
+        {
+          "key": "spring",
+          "menu": "http://127.0.0.1:5175/#/festivals/chunjie",
+          "painting": "http://127.0.0.1:5175/#/festivals/chunjie",
+          "same": true,
+          "correct": true,
+          "stateCorrect": true
+        },
+        {
+          "key": "qingming",
+          "menu": "http://127.0.0.1:5175/#/festivals/qingming",
+          "painting": "http://127.0.0.1:5175/#/festivals/qingming",
+          "same": true,
+          "correct": true,
+          "stateCorrect": true
+        },
+        {
+          "key": "duanwu",
+          "menu": "http://127.0.0.1:5175/#/festivals/duanwu",
+          "painting": "http://127.0.0.1:5175/#/festivals/duanwu",
+          "same": true,
+          "correct": true,
+          "stateCorrect": true
+        },
+        {
+          "key": "qixi",
+          "menu": "http://127.0.0.1:5175/#/festivals/qixi",
+          "painting": "http://127.0.0.1:5175/#/festivals/qixi",
+          "same": true,
+          "correct": true,
+          "stateCorrect": true
+        },
+        {
+          "key": "mid-autumn",
+          "menu": "http://127.0.0.1:5175/#/festivals/zhongqiu",
+          "painting": "http://127.0.0.1:5175/#/festivals/zhongqiu",
+          "same": true,
+          "correct": true,
+          "stateCorrect": true
+        }
+      ]
+    },
+    {
+      "check": "viewport-1024",
+      "overflow": false,
+      "viewport": [
+        1440,
+        900
+      ],
+      "note": "Early attempt targeted a different selected tab; use final-viewport-1024."
+    },
+    {
+      "check": "normal-motion-duanwu-full",
+      "state": {
+        "active": "duanwu",
+        "desired": "duanwu",
+        "phase": "expanded",
+        "progress": 1,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932597121
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "check": "normal-motion-qingming-full",
+      "state": {
+        "active": "qingming",
+        "desired": "qingming",
+        "phase": "expanded",
+        "progress": 1,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932640593
+      }
+    },
+    {
+      "check": "normal-motion-qixi-full",
+      "state": {
+        "active": "qixi",
+        "desired": "qixi",
+        "phase": "expanded",
+        "progress": 1,
+        "ready": "5",
+        "reduced": "false",
+        "observed_at": 1794932645851
+      }
+    },
+    {
+      "check": "final-viewport-1024",
+      "fit": "xMidYMin meet",
+      "overflow": false,
+      "viewport": [
+        1024,
+        768
+      ]
+    },
+    {
+      "check": "final-viewport-390",
+      "fit": "xMidYMin slice",
+      "overflow": false,
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "check": "mobile-menu-route",
+      "url": "http://127.0.0.1:5175/#/festivals/duanwu"
+    },
+    {
+      "check": "preserved-guide-and-source",
+      "evidence": 5,
+      "trace": "执行记录 本地 0.3 ms · 模型调用 0",
+      "sourceLink": "https://szfy.wglj.suzhou.com.cn/fy-project/16"
+    },
+    {
+      "check": "keyboard-menu",
+      "focusFirst": "春节专题（尚未开放）",
+      "focusEnd": "中秋专题（尚未开放）",
+      "focusAfter": "节日目录",
+      "closed": "false"
+    },
+    {
+      "check": "final-viewport-1440",
+      "overflow": false,
+      "scrollHeight": 900,
+      "viewport": [
+        1440,
+        900
+      ],
+      "state": {
+        "active": "",
+        "desired": "",
+        "phase": "idle",
+        "progress": 0,
+        "ready": "5",
+        "reduced": "true",
+        "observed_at": 1794932867038
+      }
+    },
+    {
+      "check": "mobile-text-equivalent-route",
+      "url": "http://127.0.0.1:5175/#/festivals/zhongqiu",
+      "snapshot": "- link \"跳至主要内容\":\n  - /url: \"#main\"\n- banner:\n  - button \"同节异俗 平台首页\":\n    - generic: 同节异俗\n    - generic: FESTIVE MOSAIC\n  - navigation \"主要导航\":\n    - button \"节日目录\"\n    - button \"端午篇\"\n    - button \"观察档案 0\"\n- main:\n  - paragraph: 策展中\n  - heading \"中秋篇尚未开放\" [level=1]\n  - paragraph: 拟研究不同地方的祭月、灯俗与相聚方式，尚未开发专题内容。\n  - button \"回到节日目录\"\n- contentinfo:\n  - text: 同节异俗\n  - generic: FESTIVE MOSAIC\n  - button \"DEMO / 内容与使用说明 ↗\""
+    }
+  ],
+  "final_console": [],
+  "completion_capture_verification": [
+    {
+      "key": "mid-autumn",
+      "state": {
+        "active": "mid-autumn",
+        "phase": "expanded",
+        "progress": "1.0000"
+      },
+      "stableCapture": true
+    },
+    {
+      "key": "qingming",
+      "state": {
+        "active": "qingming",
+        "phase": "expanded",
+        "progress": "1.0000"
+      },
+      "stableCapture": true
+    },
+    {
+      "key": "qixi",
+      "state": {
+        "active": "qixi",
+        "phase": "expanded",
+        "progress": "1.0000"
+      },
+      "stableCapture": true
+    }
+  ],
+  "capture_note": "Some first screenshots returned a previous compositor frame. Completion images were recaptured after a preliminary capture and a 1200 ms paint wait. No image editing or synthesis."
+}

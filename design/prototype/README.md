@@ -1,6 +1,8 @@
 # 同节异俗｜可复用交互原型
 
-当前处于前端展示重构准备。旧美术与首页展示已撤下，平台与端午入口使用简洁的 RebuildEntry.vue。它只方便继续验证保留的功能，不是新设计方案。
+平台首页现为P01五节画卷，原生Vue交互叠加用户提供的9张PNG。详情、截图和限制见[P01验收](../../docs/P01_HOMEPAGE_REVIEW.md)。端午仍用RebuildEntry.vue保留功能入口，没有新开发P02。
+
+常规动画开发验收地址为 /p01-motion-check.html，仅由Vite开发服务提供，不进入生产构建。它明确标记测试模式；正式首页遵循系统减少动态效果偏好。
 
 Vue3 + TypeScript + Three.js，复用原项目前端依赖与锁文件。没有文化 Agent 后端、DeepSeek调用、在线RAG或语义核验；导览仍为本地演示。
 
@@ -21,7 +23,9 @@ npm.cmd run build
 
 | 文件 | 职责 |
 | --- | --- |
-| src/RebuildEntry.vue、rebuild.css | 临时平台/专题入口，未来可整体替换 |
+| src/P01Home.vue、TopNavBar.vue、FestivalPanorama.vue | 五节画卷、原图导航与分区交互 |
+| src/p01-animation.ts、p01-scenes.ts、p01.css | 两秒状态机、固定热区、素材映射与响应式 |
+| src/RebuildEntry.vue、rebuild.css | 保留的端午临时入口，没有重做专题页 |
 | src/App.vue | 路由、共享任务、筛选、对照、来源抽屉与档案状态 |
 | src/AgentPanel.vue、cultural-guide.ts | 可输入问题的本地导览演示，不请求模型 |
 | src/StrataScene.vue | 实际Three.js节点/关系、聚焦、来源联动和回退事件 |
@@ -34,7 +38,7 @@ npm.cmd run build
 
 ## 现有功能入口
 
-- /#/：临时平台入口。
+- /#/：P01五节画卷首页。
 - /#/festivals/duanwu：端午资料与问题入口。
 - /#/festivals/duanwu/explore：本地导览、图谱与同源列表。
 - /#/festivals/duanwu/compare：两地习俗对照与资料回读。

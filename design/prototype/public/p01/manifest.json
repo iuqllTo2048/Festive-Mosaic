@@ -1,0 +1,47 @@
+[
+  {
+    "path": "art/01_home_default_panorama.png",
+    "bytes": 3252006,
+    "sha256": "B1D116530FD28B064D79F8D8DE43F508FB541DDAD299C1D6D1DA3CB5925F6F0B"
+  },
+  {
+    "path": "art/02_hover_spring_festival_fullscreen.png",
+    "bytes": 3772747,
+    "sha256": "607C24B9917FB753058D81C58A2D3B0FC460349F3F7FA833512CC47079521612"
+  },
+  {
+    "path": "art/03_hover_qingming_fullscreen.png",
+    "bytes": 3862185,
+    "sha256": "BB600ADBC5EDBD846A7B3E4CC7FA803903D097FE91F5D035E82E441EEAB0265C"
+  },
+  {
+    "path": "art/04_hover_duanwu_fullscreen.png",
+    "bytes": 3561678,
+    "sha256": "91B1BA10B92176578263296E744EC5A1B88FABF5E3CB10259864B6577A10EF6F"
+  },
+  {
+    "path": "art/05_hover_qixi_fullscreen.png",
+    "bytes": 3238140,
+    "sha256": "BC0D757F6020652F24636F42B9F6061D864137F95C2174F28271ABC1618EF958"
+  },
+  {
+    "path": "art/06_hover_mid_autumn_fullscreen.png",
+    "bytes": 3546746,
+    "sha256": "3564CAF270BFE67D6741707D7AB7998EE468E7A023DD34CFEF204DE92DC56751"
+  },
+  {
+    "path": "ui_assets/07_center_flower_click_hint.png",
+    "bytes": 1048539,
+    "sha256": "8F81F15AEB105AEC4E866524F7C3B7533276238E032C5A2C66F0D6B51B4A2707"
+  },
+  {
+    "path": "ui_assets/08_navigation_bar.png",
+    "bytes": 446698,
+    "sha256": "B1C1763AD65A6CFBC607E02424DB4CAD3DCDC34D9C093E5FF60D22F83F7450DD"
+  },
+  {
+    "path": "ui_assets/09_festival_dropdown.png",
+    "bytes": 325686,
+    "sha256": "BFB7822EEBD0CDF050312CCFDEFF38BF16AFCEBDDDADFA1821187D13F920B1F5"
+  }
+]
