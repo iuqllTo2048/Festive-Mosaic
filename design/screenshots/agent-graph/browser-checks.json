@@ -1,0 +1,265 @@
+{
+  "date": "2026-11-17",
+  "baseline": "0fc124783ef934c56bbb8f07d0bd545de4c0079b",
+  "mode": "demo; no model or online retrieval calls",
+  "method": "Real in-app browser actions and read-only DOM observations; includes early layout observations and subsequent refinements; no independent human review",
+  "observations": [
+    {
+      "check": "portal_1440",
+      "result": {
+        "images": [
+          {
+            "height": 941,
+            "loaded": true,
+            "path": "/images/art/portal_festival_hero.webp",
+            "width": 1672
+          },
+          {
+            "height": 1086,
+            "loaded": true,
+            "path": "/images/art/feature_ai_guide.webp",
+            "width": 1448
+          },
+          {
+            "height": 1086,
+            "loaded": true,
+            "path": "/images/art/feature_comparison.webp",
+            "width": 1448
+          },
+          {
+            "height": 1086,
+            "loaded": true,
+            "path": "/images/art/feature_source_trace.webp",
+            "width": 1448
+          },
+          {
+            "height": 1086,
+            "loaded": true,
+            "path": "/images/art/feature_source_trace.webp",
+            "width": 1448
+          }
+        ],
+        "overflow": false,
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "check": "duanwu_1440",
+      "result": {
+        "assets": [
+          {
+            "loaded": true,
+            "path": "/images/art/duanwu_dragon_boat.webp"
+          },
+          {
+            "loaded": true,
+            "path": "/images/art/duanwu_collage.webp"
+          },
+          {
+            "loaded": true,
+            "path": "/images/art/feature_source_trace.webp"
+          }
+        ],
+        "overflow": false,
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "check": "sample_task",
+      "result": {
+        "canvas": 1,
+        "graph": "12 个关系节点 · 13 条资料/解释连线按内容关系布局 · 非地图 · 非事实认证",
+        "overflow": false,
+        "panel": {
+          "bottom": 1203.9583435058594,
+          "height": 930,
+          "left": 1031.666748046875,
+          "right": 1396.666748046875,
+          "top": 273.9583435058594,
+          "width": 365,
+          "x": 1031.666748046875,
+          "y": 273.9583435058594
+        },
+        "scrollY": 0,
+        "stage": {
+          "bottom": 1026.8021240234375,
+          "height": 480,
+          "left": 178,
+          "right": 1031.6666870117188,
+          "top": 546.8021240234375,
+          "width": 853.6666870117188,
+          "x": 178,
+          "y": 546.8021240234375
+        },
+        "task": "演示任务 / 端午苏州和汨罗的端午习俗有什么不同？返回导览与回答 ↗",
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "check": "answer_to_graph_memory",
+      "result": {
+        "dimension": [
+          "纪念传统"
+        ],
+        "focus": "已聚焦：地方纪念查看关联资料 ↗取消聚焦",
+        "task": "演示任务 / 端午苏州和汨罗的端午习俗有什么不同？返回导览与回答 ↗"
+      }
+    },
+    {
+      "check": "answer_to_source",
+      "source": "https://szfy.wglj.suzhou.com.cn/fy-project/16",
+      "text": "CULTURAL CLAIM TRACE\n\n文化说法剖面\n×\n\n苏州端午习俗\n静态摘编 · DEMO\n\n一种地方纪念传统，不必覆盖所有地方。\n\n◇ 来源已定位 · 待人工审读\n\n01\n看到的地方实践\n地方纪念\n\n苏州条目记载纪念伍子胥的活动。这与其他地方记录的纪念传统可以并存；本原型不判断谁才是端午唯一的起源人物。\n\n以上为编辑摘编，非模型回答。\n02\n资料中的解释\n伍子胥\n\n地方解释可以并存。关系是否充分，需要结合全文与地方语境审读。\n\n03\n回到资料原文\n\nS01 · 地方官方非遗项目条目\n\n端午节（苏州端午习俗）\n定位摘录 1\n“纪念伍子胥”\n\n苏州市非物质文化遗产保护管理办公室\n正文第二段 · 四类习俗 · 网页核对 2026-11-16\n\n打开官方原文，核对完整语境 ↗\n\n短摘录分别展示，不拼成连续引文。来源已定位不等于文化关系已认证。网页已核对；文化关系尚未经独立人工审读。公开可读不代表图像可自由使用。\n\n＋ 存入观察档案\n查看档案 1 ↗"
+    },
+    {
+      "check": "actual_threejs_node_click",
+      "source": "https://szfy.wglj.suzhou.com.cn/fy-project/16",
+      "title": "claim-title"
+    },
+    {
+      "check": "actual_threejs_edge_click",
+      "source": "https://www.ihchina.cn/project_details/14916.html",
+      "text": "CULTURAL CLAIM TRACE\n\n文化说法剖面\n×\n\n汨罗江畔端午习俗\n静态摘编 · DEMO\n\n同样有龙舟，资料中的活动组合却不同。\n\n◇ 来源已定位 · 待人工审读\n\n01\n看到的地方实践\n赛龙舟\n\n汨罗项目条目同时记载赛龙舟及雕龙头、龙舟下水、祭龙等活动。共享竞渡元素，不表示仪式过程与其他地方完全一致。\n\n以上为编辑摘编，非模型回答。\n02\n资料中的解释\n地方礼俗\n\n地方解释可以并存。关系是否充分，需要结合全文与地方语境审读。\n\n03\n回到资料原文\n\nS02 · 国家级非遗项目条目\n\n端午节（汨罗江畔端午习俗）\n定位摘录 1\n“赛龙舟”\n\n中国非物质文化遗产网\n项目介绍 · 第一、二段 · 网页核对 2026-11-16\n\n打开官方原文，核对完整语境 ↗\n\n短摘录分别展示，不拼成连续引文。来源已定位不等于文化关系已认证。农历节期与活动均按此条目摘编，不视作每年活动安排。\n\n＋ 存入观察档案\n查看档案 1 ↗"
+    },
+    {
+      "check": "equivalent_list",
+      "text": "端午节\n→\n苏州 / 汨罗江畔\n关系待独立审读\n纪念传统\n水上与生活实践\n节期节奏\n\nCULTURAL STRATA\n\n沿着实践，读到解释与证据\n三维\n列表\n复位 ↺\n\n3 条摘编关系 · 与三维视图同源\n\n苏州\n龙舟竞渡 → 地方纪念\nS01 · 来源已定位\n↗\n苏州\n佩香包 → 日常生活智慧\nS01 · 来源已定位\n↗\n汨罗江畔\n赛龙舟 → 地方礼俗\nS02 · 来源已定位\n↗\n候选问题\n舟的共同意象，能否说明同一传承？\n待核查\n↗\n12 个关系节点 · 13 条资料/解释连线\n按内容关系布局 · 非地图 · 非事实认证"
+    },
+    {
+      "check": "shared_task_comparison",
+      "result": {
+        "choices": [
+          "suzhou",
+          "miluo"
+        ],
+        "common": "◇现有摘编共同记录 1 项细节两份资料都记录竞渡；它们的纪念解释仍分别保留。查看双方出处 ↗",
+        "overflow": false,
+        "task": "演示任务 / 端午苏州和汨罗的端午习俗有什么不同？返回导览与回答 ↗"
+      }
+    },
+    {
+      "check": "portal_1024",
+      "result": {
+        "overflow": false,
+        "viewport": [
+          1024,
+          768
+        ]
+      }
+    },
+    {
+      "check": "duanwu_1024",
+      "result": {
+        "overflow": false,
+        "viewport": [
+          1024,
+          768
+        ]
+      }
+    },
+    {
+      "check": "agent_1024",
+      "result": {
+        "canvas": 1,
+        "graph": "12 个关系节点 · 13 条资料/解释连线按内容关系布局 · 非地图 · 非事实认证",
+        "overflow": false,
+        "viewport": [
+          1024,
+          768
+        ]
+      }
+    },
+    {
+      "check": "portal_390",
+      "result": {
+        "overflow": false,
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "check": "duanwu_390",
+      "result": {
+        "overflow": false,
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "check": "agent_390",
+      "result": {
+        "list": "3 条摘编关系 · 与三维视图同源",
+        "mode": "演示模式 · 未连接模型",
+        "overflow": false,
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "check": "mobile_list_to_source",
+      "source": "https://szfy.wglj.suzhou.com.cn/fy-project/16"
+    },
+    {
+      "check": "insufficient_unopened_mobile",
+      "text": "AI 文化导览\n\n让问题，带你深入。\n演示模式 · 未连接模型\n想了解什么地方文化？\n8 / 500\n探索这个问题 ↗\n\n本地摘编筛选与引用联动可操作。回答由既有资料拼接，未执行生成式回答。\n\n当前探索主题\n中秋节如何祭月？\n\n端午篇 / 未定位地方范围\n\n执行记录\n本地 0 ms · 模型调用 0\n\n资料不足 · 暂不形成结论\n\n该节日专题尚未开放，当前没有可供回答的专题资料。\n\n检索到的摘编资料\n0 条\n查看关联图谱 ↓"
+    },
+    {
+      "check": "pending_topic_still_gated",
+      "url": "http://127.0.0.1:5175/#/",
+      "text": "策展中\n×\n\n节日目录 / 月色 / 相聚\n\n中秋篇，\n留待下一次相见。\n\n拟研究不同地方的祭月、灯俗与相聚方式，尚未开发专题内容。\n\n尚未开放专题页面、文化探索或资料检索。\n\n继续翻阅目录"
+    },
+    {
+      "check": "comparison_scope_updates_guide",
+      "query": "500",
+      "result": {
+        "graphContext": "端午节 → 苏州 / 西塞 关系待独立审读",
+        "input": "苏州和西塞的端午习俗有什么不同？",
+        "task": "演示任务 / 端午苏州和西塞的端午习俗有什么不同？返回导览与回答 ↗"
+      }
+    },
+    {
+      "check": "final_execution_trace",
+      "text": "AI 文化导览\n\n让问题，带你深入。\n演示模式 · 未连接模型\n想了解什么地方文化？\n16 / 500\n探索这个问题 ↗\n\n本地摘编筛选与引用联动可操作。回答由既有资料拼接，未执行生成式回答。\n\n当前探索主题\n苏州和汨罗的端午习俗有什么不同？\n\n端午篇 / 苏州、汨罗江畔\n\n执行记录\n本地 0.4 ms · 模型调用 0\n✓\n任务规划本地演示\n\n本地规则识别2个地方；没有调用规划模型。\n\n✓\nRAG 检索本地演示\n\n演示：筛选预置摘编5条；未运行在线RAG或向量检索。\n\n✓\n知识关系探索本地演示\n\n按地方和阅读维度组织现有关系，保留来源ID。\n\n✓\n证据核查本地演示\n\n本地字段检查保留5条；不验证网页现状、引句语义或历史结论。\n\n—\n语义核验未执行\n\n尚未接入，不产生模型支持或人工认证记录。\n\n✓\n结果展示本地演示\n\n展示预置摘编及引用，可定位图谱。\n\n摘编结果 · 待独立审读\n\n苏州：龙舟竞渡 → 地方纪念；佩香包 → 日常生活智慧；地方纪念 → 伍子胥。\n\nS01 · 龙舟竞渡 ↗S01 · 佩香包 ↗S01 · 地方纪念 ↗\n\n汨罗江畔：赛龙舟 → 地方礼俗；地方祭祀 → 屈原。\n\nS02 · 赛龙舟 ↗S02 · 地方祭祀 ↗\n\n两地摘编都记录竞渡；地方纪念与仪式组合需要分别阅读。\n\nS01 · 龙舟竞渡 ↗S02 · 赛龙舟 ↗\n检索到的摘编资料\n5 条\n查看关联图谱 ↓\n对照这两个地方 ↗"
+    },
+    {
+      "check": "final_console",
+      "logs": []
+    },
+    {
+      "check": "final_mobile_empty_result",
+      "result": {
+        "overflow": false,
+        "relationCount": 0,
+        "status": "资料不足 · 暂不形成结论",
+        "title": "中秋节如何祭月？",
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "check": "mobile_heading_final",
+      "result": {
+        "font": "22px",
+        "height": 33,
+        "overflow": false
+      }
+    }
+  ],
+  "final_console": []
+}

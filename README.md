@@ -1,18 +1,19 @@
 # Festive Mosaic · 同节异俗
 
-**《同节异俗》（Festive Mosaic）——基于多源文化证据的中国传统节俗智能交互探索系统。** 这是可扩展的多节日数字文化探索平台，端午为首期已开放专题。文化前端位于 `design/prototype/`，由 VerifiAtlas D6 基线派生；下方保留原项目说明与验证记录。
+**《同节异俗》——融合 AI Agent、RAG、知识图谱和交互可视化的中国传统节俗文化探索平台。** 当前开放端午专题，完成本地文化导览演示、可交互图谱、来源阅读和地方对照。文化前端位于 `design/prototype/`；下方保留原科研项目说明与验证记录。
 
 - [设计审查与本轮交付](design/REVIEW_FOR_CHAT.md)
+- [最新：艺术素材、AI导览演示、图谱联动与截图](docs/AGENT_GRAPH_UI_REVIEW.md)
 - [多节日平台架构升级：路由、配置、截图与浏览器验收](docs/PLATFORM_ARCHITECTURE_REVIEW.md)
 - [2026-11-17 首页视觉重构：截图、新旧对照与验收](design/HOME_VISUAL_REVIEW.md)
 - [原型启动方法](design/prototype/README.md)：在 `design/prototype` 执行 `npm.cmd run dev`，打开 <http://127.0.0.1:5175/>。新克隆先在 `frontend` 执行 `npm.cmd ci`，复用现有依赖。
 - [产品概念](design/01_PRODUCT_CONCEPT.md) · [交互与视觉](design/02_INTERACTION_AND_VISUAL.md) · [内容与迁移](design/03_CONTENT_AND_MIGRATION.md) · [研究来源](design/00_RESEARCH.md)
 
-![同节异俗平台门户](design/screenshots/platform/portal-1440.jpg)
+![同节异俗艺术门户](design/screenshots/agent-graph/portal-1440.jpg)
 
-![首期端午专题](design/screenshots/platform/duanwu-1440.jpg)
+![文化导览与知识图谱](design/screenshots/agent-graph/agent-workspace-1440.jpg)
 
-这是明确标记 DEMO 的静态高保真原型，没有调用 DeepSeek 或接入真实文化检索。原生产前后端与 D6 结果保持不变，尚未开始正式文化系统迁移。成果推送到 [Festive-Mosaic](https://github.com/iuqllTo2048/Festive-Mosaic)。
+文化导览明确标记演示模式：可输入问题，实际筛选本地摘编、定位图谱、查看引用并进入同范围对照；没有调用DeepSeek或在线RAG。六张本地艺术资产已按页面职责集成。原科研生产前后端与D6结果保持不变。成果推送到 [Festive-Mosaic](https://github.com/iuqllTo2048/Festive-Mosaic)。
 
 ---
 

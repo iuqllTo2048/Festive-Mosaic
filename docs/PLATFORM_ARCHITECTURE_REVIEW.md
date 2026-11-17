@@ -1,5 +1,7 @@
 # Festive Mosaic｜多节日平台架构审查
 
+后续艺术与导览阶段已完成：正式多节日主视觉已提供并集成，新增可操作的本地文化导览演示与图谱联动。最新能力和截图见 [AGENT_GRAPH_UI_REVIEW.md](AGENT_GRAPH_UI_REVIEW.md)；本文保留前一阶段架构与验收记录。
+
 日期：2026-11-17。起始代码：`6957d3de3d2b0bf854ac3734969e2e4af454fd88`。工作目录：`E:\VerifiAtlas`，文化前端：`design/prototype`。目标远程为 [Festive-Mosaic](https://github.com/iuqllTo2048/Festive-Mosaic)，不是原科研远程。
 
 ## 产品定位与本轮结果

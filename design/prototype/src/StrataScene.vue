@@ -2,8 +2,8 @@
 import {onMounted,onBeforeUnmount,watch,ref} from 'vue'
 import * as T from 'three'
 import {OrbitControls} from '../../../frontend/node_modules/three/examples/jsm/controls/OrbitControls.js'
-const props=defineProps({data:Object,selected:String,focusLayer:String,view:{type:String,default:'strata'}})
-const emit=defineEmits(['select','fallback'])
+const props=defineProps({data:Object,selected:String,focusLayer:String,focusNode:String,view:{type:String,default:'strata'}})
+const emit=defineEmits(['select','focus','fallback'])
 const host=ref(null),hover=ref('')
 let renderer,scene,camera,controls,group,observer,ray,point,hits=[],lines=[],active=true
 function paint(){if(active&&renderer)renderer.render(scene,camera)}
@@ -18,8 +18,10 @@ function label(text,color){
 function highlight(){
   if(!group)return
   const related=new Set()
+  const focus=props.data.nodes.find(n=>n.id===props.focusNode)
+  if(focus&&!props.selected){related.add(focus.id);props.data.nodes.filter(n=>focus.type==='festival'||n.theme===focus.theme).forEach(n=>related.add(n.id))}
   props.data.edges.filter(e=>e.claim===props.selected).forEach(e=>{related.add(e.source);related.add(e.target)})
-  group.traverse(o=>{if(o.userData.node){ const n=o.userData.node;let yes=(!props.selected||related.has(n.id)||n.claim===props.selected)&&(!props.focusLayer||props.focusLayer===n.type); if(o.material)o.material.opacity=o.userData.hit?0:yes?1:.19 } if(o.userData.edge&&o.material)o.material.opacity=(!props.selected||o.userData.edge.claim===props.selected) ? .8 : .12})
+  group.traverse(o=>{if(o.userData.node){ const n=o.userData.node;let yes=(!(props.selected||props.focusNode)||related.has(n.id)||props.selected&&n.claim===props.selected)&&(!props.focusLayer||props.focusLayer===n.type); if(o.material)o.material.opacity=o.userData.hit?0:yes?1:.19 } if(o.userData.edge&&o.material)o.material.opacity=(!(props.selected||props.focusNode)||props.selected&&o.userData.edge.claim===props.selected||!props.selected&&related.has(o.userData.edge.source)&&related.has(o.userData.edge.target)) ? .8 : .12})
   paint()
 }
 function draw(){
@@ -49,8 +51,9 @@ function draw(){
 function resize(){if(!renderer||!host.value)return;const r=host.value.getBoundingClientRect();renderer.setSize(Math.max(1,r.width),Math.max(1,r.height));camera.aspect=r.width/Math.max(1,r.height);camera.updateProjectionMatrix();reset()}
 function reset(){if(!camera||!host.value||!props.data.nodes.length)return;const rect=host.value.getBoundingClientRect(),tan=Math.tan(camera.fov*Math.PI/360);const xs=props.data.nodes.map(n=>n.x),ys=props.data.nodes.map(n=>n.y);const distance=Math.max(300,(Math.max(...ys)-Math.min(...ys)+100)/(2*tan),(Math.max(...xs)-Math.min(...xs)+150)/(2*tan*camera.aspect));const centerY=(Math.max(...ys)+Math.min(...ys))/2;camera.position.set(0,centerY+(props.view==='flat'?0:distance*.17),distance);controls.target.set(0,centerY,0);controls.update();const unit=2*distance*tan/Math.max(1,rect.height);group?.traverse(o=>{if(o.userData.labelSize){o.scale.set(o.userData.labelSize[0]*unit,o.userData.labelSize[1]*unit,1);o.position.y=-18*unit}});paint()}
 function pick(event){const r=host.value.getBoundingClientRect();point.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(point,camera);return ray.intersectObjects(hits,false)[0]?.object.userData.node}
-function move(event){const n=pick(event);hover.value=n?`${n.type==='source'?'资料出处':n.type==='interpretation'?'文化解释':n.type==='uncertain'?'候选联系':'地方实践'} · ${n.label}`:'';host.value.style.cursor=n?'pointer':'grab'}
-function click(event){const n=pick(event);if(n)emit('select',n.claim);else{ray.params.Line.threshold=3;const link=ray.intersectObjects(lines,false)[0]?.object.userData.edge;if(link)emit('select',link.claim)}}
+function move(event){const n=pick(event);const names={source:'资料来源',interpretation:'文化解释',uncertain:'候选联系',festival:'节日',topic:'地方习俗',practice:'仪式活动',shared:'共同记录'};hover.value=n?`${names[n.type]||'文化关系'} · ${n.label}`:'';host.value.style.cursor=n?'pointer':'grab'}
+function click(event){const n=pick(event);if(n){emit('focus',n.id);if(n.claim)emit('select',n.claim)}else{ray.params.Line.threshold=8;const link=ray.intersectObjects(lines,false)[0]?.object.userData.edge;if(link?.claim)emit('select',link.claim);else if(link)emit('focus',link.target)}}
+function focus(id){const node=props.data.nodes.find(n=>n.id===id);if(!node||!controls)return;controls.target.set(node.x,node.y-70,0);controls.update();highlight()}
 function lost(event){event.preventDefault();emit('fallback')}
 onMounted(()=>{try{
   renderer=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor('#f5f2eb',0);host.value.appendChild(renderer.domElement)
@@ -58,8 +61,8 @@ onMounted(()=>{try{
   controls=new OrbitControls(camera,renderer.domElement);controls.enablePan=false;controls.enableDamping=false;controls.minDistance=340;controls.maxDistance=950;controls.maxPolarAngle=Math.PI*.8;controls.addEventListener('change',paint)
   observer=new ResizeObserver(resize);observer.observe(host.value);host.value.addEventListener('pointermove',move);host.value.addEventListener('click',click);renderer.domElement.addEventListener('webglcontextlost',lost);draw();resize()
 }catch{emit('fallback')}})
-watch(()=>props.data,draw);watch(()=>[props.selected,props.focusLayer],highlight);watch(()=>props.view,reset)
+watch(()=>props.data,draw);watch(()=>[props.selected,props.focusLayer,props.focusNode],highlight);watch(()=>props.view,reset)
 onBeforeUnmount(()=>{active=false;observer?.disconnect();host.value?.removeEventListener('pointermove',move);host.value?.removeEventListener('click',click);controls?.dispose();dispose(group);renderer?.domElement.removeEventListener('webglcontextlost',lost);renderer?.dispose();renderer?.forceContextLoss()})
-defineExpose({reset})
+defineExpose({reset,focus})
 </script>
 <template><div ref="host" class="strata-canvas" role="img" aria-label="文化层理三维关系。实践、解释、证据分层；虚线是资料出处或待核查联系。可使用下方等价列表。"></div><p class="graph-hover" aria-live="polite">{{hover || '拖动改变视角 · 点击关系查看依据 · 不表示地理位置'}}</p></template>

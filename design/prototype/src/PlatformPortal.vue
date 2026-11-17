@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { festivals, statusLabels, type Festival } from './festivals.ts'
-const emit = defineEmits<{festival:[id:string]; explore:[]; compare:[]; source:[]}>()
+const emit = defineEmits<{festival:[id:string]; explore:[]; guide:[]; compare:[]; source:[]}>()
 const pending = ref<Festival | null>(null)
 const pendingDialog = ref<HTMLDialogElement | null>(null)
-const previewRoot = `${import.meta.env.BASE_URL}previews/`
+const artRoot = `${import.meta.env.BASE_URL}images/art/`
 function choose(festival: Festival) {
   if (festival.status === 'published') emit('festival', festival.festival_id)
   else { pending.value = festival; pendingDialog.value?.showModal() }
@@ -15,11 +15,13 @@ function choose(festival: Festival) {
   <div class="platform-portal">
     <section class="portal-opening" aria-labelledby="portal-title">
       <div class="portal-manifesto">
+        <img class="portal-main-art" :src="artRoot+'portal_festival_hero.webp'" alt="灯笼、月色、春枝与龙舟交织的多节日版画" fetchpriority="high">
         <p class="portal-overline">中国传统节俗数字文化探索平台</p>
         <h1 id="portal-title">同一个节日，<br>走进<span>不同的</span><br><em>地方世界。</em></h1>
-        <p class="portal-intro">同样的节日，在不同地方拥有不同的文化实践与地方记忆。从一个节日出发，读习俗、看联系，再回到资料。</p>
-        <a href="#festival-index" class="portal-index-link" @click.prevent="($event.currentTarget as HTMLAnchorElement).ownerDocument.getElementById('festival-index')?.scrollIntoView()">翻阅节日目录 <span>↓</span></a>
-        <div class="portal-edition"><b>首期展厅 · 端午</b><span>苏州 / 汨罗江畔 / 西塞</span><button @click="emit('festival','duanwu')">进入已开放专题 ↗</button></div>
+        <p class="portal-intro">向 AI 文化导览提出问题，在知识图谱里展开地方习俗、文化解释与资料之间的联系。</p>
+        <div class="portal-main-actions"><button class="button primary" @click="emit('guide')">AI 文化导览 ↗</button><button class="button" @click="emit('explore')">探索文化知识图谱 ↗</button></div>
+        <p class="portal-demo-note">当前导览为演示模式 · 端午资料可阅读、可对照、可追溯</p>
+        <div class="portal-edition"><b>首期展厅 · 端午</b><span>苏州 / 汨罗江畔 / 西塞</span><button @click="emit('festival','duanwu')">进入端午专题 ↗</button></div>
       </div>
       <div id="festival-index" class="festival-index" aria-label="传统节日专题目录">
         <header><span>节日目录</span><span>壹篇已开放 · 其余待续</span></header>
@@ -37,14 +39,11 @@ function choose(festival: Festival) {
     </section>
 
     <section class="portal-method" aria-labelledby="method-title">
-      <header class="method-heading"><p class="portal-overline">从端午篇，认识一种阅读方法</p><h2 id="method-title">不止认识节日。<br><span>也理解地方之间的联系。</span></h2><p>先读苏州与汨罗共同记录的竞渡，<br>再追问：相似的实践，是否拥有相同的解释？</p></header>
-      <div class="method-body">
-        <button class="portal-real-preview" @click="emit('explore')" aria-label="进入端午文化层理探索"><img :src="previewRoot+'cultural-strata.jpg'" width="1425" height="891" alt="现有文化层理工作台，按实践、解释、资料组织文化关系" loading="lazy"><span>端午篇 / 文化知识网络 <b>进入层理探索 ↗</b></span></button>
-        <div class="method-reading">
-          <div class="method-line"><span>01</span><div><h3>从地方差异进入</h3><p>苏州资料记载纪念伍子胥，汨罗条目记载祭祀屈原。让不同的地方解释并读。</p></div></div>
-          <div class="method-line"><span>02</span><div><h3>把关系展开，再对照</h3><p>在实践、解释与依据之间移动，比较竞渡与送神舟的记录。</p><button @click="emit('compare')">打开端午异俗对照镜 ↗</button></div></div>
-          <div class="method-line"><span>03</span><div><h3>让每条说法回到出处</h3><blockquote>“以龙舟竞渡等活动纪念伍子胥”</blockquote><p>S01 · 苏州市非物质文化遗产保护管理办公室</p><button @click="emit('source')">阅读摘录与原始资料 ↗</button></div></div>
-        </div>
+      <header class="method-heading"><p class="portal-overline">以问题为线索，以资料为依据</p><h2 id="method-title">一段探索，<span>从好奇走向理解。</span></h2><p>提问 → 本地资料筛选 → 知识关系 → 来源阅读<br>先在端午篇，体验一条完整的探索路径。</p></header>
+      <div class="portal-feature-stories">
+        <article class="feature-guide"><img :src="artRoot+'feature_ai_guide.webp'" alt="人物与文化图卷构成的导览插画" loading="lazy"><div><span>01 / 带着问题出发</span><h3>AI 文化导览</h3><p>“苏州和汨罗的端午习俗有什么不同？”<br>输入问题，查看任务记录、摘编回答和图谱引用。</p><button @click="emit('guide')">打开文化导览 <b>↗</b></button><small>演示模式 · 未连接模型或在线RAG</small></div></article>
+        <article><img :src="artRoot+'feature_comparison.webp'" alt="不同节俗意象并置的对照版画" loading="lazy"><div><span>02 / 在相似处看见差异</span><h3>异俗对照镜</h3><p>把两地实践并读，分清共同元素与各自的文化解释。</p><button @click="emit('compare')">进入地方对照 <b>↗</b></button></div></article>
+        <article><img :src="artRoot+'feature_source_trace.webp'" alt="书页与档案材料构成的资料溯源插画" loading="lazy"><div><span>03 / 让说法回到出处</span><h3>文化资料溯源</h3><p>从图谱或回答进入资料剖面，阅读摘录与官方原文。</p><button @click="emit('source')">读一份文化资料 <b>↗</b></button></div></article>
       </div>
       <div class="portal-closing"><span>读到的联系，留下的疑问，都可以存入个人观察档案。</span><button @click="emit('festival','duanwu')">从第一座展厅开始 <b>端午篇 ↗</b></button></div>
     </section>

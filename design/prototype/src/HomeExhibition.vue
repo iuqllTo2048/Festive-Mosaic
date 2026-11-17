@@ -8,6 +8,7 @@ const emit = defineEmits<{
   compare: []
   source: []
   about: []
+  guide: []
 }>()
 const imageRoot = `${import.meta.env.BASE_URL}images/`
 const previewRoot = `${import.meta.env.BASE_URL}previews/`
@@ -27,7 +28,7 @@ function exploreQuestion(id: string) {
   <div class="exhibition-home">
     <section class="print-hero" aria-labelledby="exhibition-title">
       <div class="print-hero-art">
-        <img :src="imageRoot + 'hero_dragon_boat.webp'" width="1672" height="941"
+        <img :src="imageRoot + 'art/duanwu_dragon_boat.webp'"
           alt="版画风格的龙舟竞渡，朱红船身穿行于深青水纹之间，龙首向前昂起。"
           fetchpriority="high" decoding="async">
       </div>
@@ -36,7 +37,7 @@ function exploreQuestion(id: string) {
         <h1 id="exhibition-title">同一个端午，<br>不同的<span>地方记忆。</span></h1>
         <p class="exhibition-intro">在苏州、汨罗和黄石西塞，端午形成了不同的地方文化实践。沿着仪式与纪念传统，走近各地的端午，也读一读它们留下的资料。</p>
         <div class="exhibition-actions">
-          <button class="exhibition-primary" @click="emit('explore', 'practice')">开始探索 <span aria-hidden="true">↗</span></button>
+          <button class="exhibition-primary" @click="emit('guide')">AI 文化导览 <span aria-hidden="true">↗</span></button>
           <button class="exhibition-secondary" @click="emit('compare')">对照地方习俗 <span aria-hidden="true">→</span></button>
         </div>
       </div>
@@ -50,7 +51,7 @@ function exploreQuestion(id: string) {
       </header>
       <div class="traditions-layout">
         <figure class="collage-panel">
-          <div class="collage-window"><img :src="imageRoot + 'cultural_collage.webp'" width="1672" height="941" alt="以舟、织物、水纹和香包构成的文化纸艺拼贴。" loading="lazy" decoding="async"></div>
+          <div class="collage-window"><img :src="imageRoot + 'art/duanwu_collage.webp'" width="1672" height="941" alt="以舟、织物、水纹和香包构成的文化纸艺拼贴。" loading="lazy" decoding="async"></div>
           <figcaption><span>节俗里的器物与记忆</span><span>端午专题图版</span></figcaption>
         </figure>
         <div class="tradition-entries">
