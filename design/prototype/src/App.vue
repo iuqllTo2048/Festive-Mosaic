@@ -1,10 +1,16 @@
 <script setup>
 import {ref,computed,defineAsyncComponent,onMounted,onBeforeUnmount} from 'vue'
 import HomeExhibition from './HomeExhibition.vue'
-import {themes,claims,sources,questions,excerpts,themeById,claimById,compare,graphFor} from './content.mjs'
+import PlatformPortal from './PlatformPortal.vue'
+import {festivalById,statusLabels} from './festivals.ts'
+import {parseRoute,routeHash} from './navigation.ts'
+import {getFestivalContent,festivalGraph} from './festival-content.ts'
+import {excerpts,themeById,claimById,compare} from './content.mjs'
+const {themes,claims,sources,questions}=getFestivalContent('duanwu')
 const StrataScene=defineAsyncComponent(()=>import('./StrataScene.vue'))
-const routes=['home','explore','compare','archive']
-const page=ref(routes.includes(location.hash.slice(1))?location.hash.slice(1):'home')
+const route=ref(parseRoute(location.hash))
+const page=computed(()=>route.value.page)
+const unavailableFestival=computed(()=>festivalById(route.value.festival_id||''))
 const questionId=ref('memory'),dimension=ref('memory'),pairA=ref('suzhou'),pairB=ref('miluo'),themeFilter=ref('all')
 const layer=ref(''),listView=ref(innerWidth<760),cameraView=ref('strata'),scene=ref(null),selected=ref(''),drawer=ref(null),about=ref(null)
 const notice=ref(''),fallback=ref(false),saved=ref([]),notes=ref(''),archiveQuestion=ref(''),draftObjects=ref([]),storageAvailable=ref(true)
@@ -13,18 +19,25 @@ try{const value=JSON.parse(localStorage.getItem('festive-mosaic-demo-v1')||'{}')
 const activeQuestion=computed(()=>questions.find(q=>q.id===questionId.value))
 const pair=computed(()=>[pairA.value,pairB.value])
 const ids=computed(()=>page.value==='compare'?pair.value:themeFilter.value==='all'?themes.map(t=>t.id):[themeFilter.value])
-const graph=computed(()=>graphFor(ids.value,page.value==='compare'?'compare':'strata',dimension.value))
+const graph=computed(()=>festivalGraph('duanwu',ids.value,page.value==='compare'?'compare':'strata',dimension.value))
 const comparison=computed(()=>compare(pairA.value,pairB.value,dimension.value))
 const current=computed(()=>claimById(selected.value)||claims[0])
 const source=computed(()=>sources[current.value.source])
 const comparisonPeers=computed(()=>page.value==='compare'&&comparison.value.common.includes(current.value.feature)?comparison.value.commonClaims.filter(c=>c.feature===current.value.feature):[])
 const visibleClaims=computed(()=>claims.filter(c=>ids.value.includes(c.theme)&&c.dimension===dimension.value))
-const savedClaims=computed(()=>saved.value.map(claimById).filter(Boolean))
+const savedClaims=computed(()=>saved.value.map(id=>claims.find(c=>c.id===id)).filter(Boolean))
 const archiveObjects=computed(()=>[...new Set([...draftObjects.value,...savedClaims.value.map(c=>c.theme).filter(Boolean)])].map(themeById))
 const commonSaved=computed(()=>savedClaims.value.filter(c=>c.theme&&savedClaims.value.some(other=>other.id!==c.id&&other.theme!==c.theme&&other.feature===c.feature)))
 function toast(text){notice.value=text;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>notice.value='',4500)}
-function persist(){try{localStorage.setItem('festive-mosaic-demo-v1',JSON.stringify({saved:saved.value,notes:notes.value,question:archiveQuestion.value,objects:draftObjects.value}));storageAvailable.value=true}catch{storageAvailable.value=false}}
-function go(next){page.value=next;try{history.replaceState(null,'','#'+next)}catch{} window.scrollTo({top:0,behavior:'instant'})}
+function persist(){try{localStorage.setItem('festive-mosaic-demo-v1',JSON.stringify({schema_version:2,saved:saved.value,saved_refs:savedClaims.value.map(c=>({festival_id:c.festival_id,cultural_topic_id:c.cultural_topic_id,claim_id:c.id})),notes:notes.value,question:archiveQuestion.value,objects:draftObjects.value}));storageAvailable.value=true}catch{storageAvailable.value=false}}
+function syncRoute(){route.value=parseRoute(location.hash);window.scrollTo({top:0,behavior:'instant'})}
+function skipToMain(){document.getElementById('main')?.focus();document.getElementById('main')?.scrollIntoView()}
+function go(next,id='duanwu'){
+  const hash=routeHash(next,id)
+  if(location.hash!==hash)history.pushState(null,'',hash)
+  syncRoute()
+}
+function openFestival(id){const next=parseRoute(routeHash('festival',id));go(next.page==='festival'?'festival':'unavailable',id)}
 function enter(question){questionId.value=question.id;dimension.value=question.id;selected.value='';themeFilter.value='all';layer.value='';go('explore')}
 function setDimension(value){dimension.value=value;selected.value='';layer.value=''}
 function openClaim(id){selected.value=id;if(!drawer.value.open)drawer.value.showModal()}
@@ -37,27 +50,32 @@ function startCompare(){go('compare');setDimension(dimension.value)}
 function unavailable(){fallback.value=true;listView.value=true;toast('三维视图暂不可用，已显示同一批文化关系列表。')}
 function onResize(){if(innerWidth<760)listView.value=true}
 function onEscape(event){if(event.key==='Escape'&&!document.querySelector('dialog[open]')){selected.value='';layer.value=''}}
-onMounted(()=>{window.addEventListener('resize',onResize);window.addEventListener('keydown',onEscape)})
-onBeforeUnmount(()=>{clearTimeout(noticeTimer);window.removeEventListener('resize',onResize);window.removeEventListener('keydown',onEscape)})
+onMounted(()=>{window.addEventListener('resize',onResize);window.addEventListener('keydown',onEscape);window.addEventListener('popstate',syncRoute);window.addEventListener('hashchange',syncRoute)})
+onBeforeUnmount(()=>{clearTimeout(noticeTimer);window.removeEventListener('resize',onResize);window.removeEventListener('keydown',onEscape);window.removeEventListener('popstate',syncRoute);window.removeEventListener('hashchange',syncRoute)})
 </script>
 
 <template>
-  <a class="skip-link" href="#main">跳至主要内容</a>
-  <header class="masthead" :class="{'is-exhibition':page==='home'}">
-    <button class="brand" @click="go('home')" aria-label="同节异俗 首页"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span><b>同节异俗</b><small>FESTIVE MOSAIC</small></span></button>
-    <nav aria-label="主要导航"><button :class="{active:page==='home'||page==='explore'}" @click="page==='home'?enter(questions[1]):go('explore')"><span>01</span> 文化探索</button><button :class="{active:page==='compare'}" @click="startCompare"><span>02</span> 异俗对照镜</button><button :class="{active:page==='archive'}" @click="go('archive')"><span>03</span> 观察档案 <i class="saved-count">{{saved.length}}</i></button></nav>
-    <button class="edition" @click="about?.showModal()">端午 · 第一期 <span>↗</span></button>
+  <a class="skip-link" href="#main" @click.prevent="skipToMain">跳至主要内容</a>
+  <header class="masthead platform-masthead" :class="{'is-exhibition':page==='festival'}">
+    <button class="brand" @click="go('portal')" aria-label="同节异俗 平台首页"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span><b>同节异俗</b><small>FESTIVE MOSAIC</small></span></button>
+    <nav aria-label="主要导航"><button :class="{active:page==='portal'}" @click="go('portal')">节日目录</button><button :class="{active:page==='festival'||page==='explore'||page==='compare'}" @click="go('festival')">端午篇</button><button :class="{active:page==='archive'}" @click="go('archive')">观察档案 <i class="saved-count">{{saved.length}}</i></button></nav>
+    <button class="edition" @click="about?.showModal()">关于文化馆 <span>↗</span></button>
   </header>
-  <main id="main">
-    <HomeExhibition v-if="page==='home'"
+  <main id="main" tabindex="-1">
+    <PlatformPortal v-if="page==='portal'" @festival="openFestival" @explore="enter(questions[1])" @compare="setDimension('practice');startCompare()" @source="openClaim('sz-race')"/>
+    <template v-else-if="page==='festival'">
+    <div class="festival-context"><button @click="go('portal')">← 节日目录</button><span>端午篇｜不同的地方记忆</span><div><button @click="enter(questions[1])">文化探索 ↗</button><button @click="setDimension('practice');startCompare()">地方对照 ↗</button><button @click="go('archive')">观察档案 ↗</button></div></div>
+    <HomeExhibition
       @explore="enter(questions.find(q=>q.id===$event))"
       @theme="enter(questions[1]);themeFilter=$event"
       @compare="setDimension('practice');startCompare()"
       @source="openClaim('sz-race')"
       @about="about?.showModal()"/>
+    </template>
+    <section v-else-if="page==='unavailable'" class="route-unavailable"><p class="portal-overline">{{unavailableFestival?statusLabels[unavailableFestival.status]:'未找到页面'}}</p><h1>{{unavailableFestival?unavailableFestival.name+'篇尚未开放':'这条展厅路径暂不可用。'}}</h1><p>{{unavailableFestival?.description||'请从节日目录进入已开放的专题。'}}</p><button class="button primary" @click="go('portal')">回到节日目录</button></section>
 
     <template v-else-if="page==='explore'||page==='compare'">
-      <div class="workspace-title"><div><p class="eyebrow"><button @click="go('home')">端午地方记录</button> / {{page==='compare'?'异俗对照镜':'文化层理探索'}}</p><h1>{{page==='compare'?'让共同点与差异，同时被看见。':activeQuestion.title}}</h1></div><button v-if="page==='explore'" class="button primary" @click="startCompare">打开异俗对照镜 <span>↗</span></button><button v-else class="button" @click="go('explore')">回到层理探索 ↗</button></div>
+      <div class="workspace-title"><div><p class="eyebrow"><button @click="go('portal')">节日目录</button> / <button @click="go('festival')">端午篇</button> / {{page==='compare'?'异俗对照镜':'文化层理探索'}}</p><h1>{{page==='compare'?'让共同点与差异，同时被看见。':activeQuestion.title}}</h1></div><button v-if="page==='explore'" class="button primary" @click="startCompare">打开异俗对照镜 <span>↗</span></button><button v-else class="button" @click="go('explore')">回到层理探索 ↗</button></div>
       <div v-if="page==='compare'" class="pair-selector"><span class="label">正在对照</span><label class="pair-choice"><small>主题 A</small><select v-model="pairA" aria-label="对照主题 A"><option v-for="t in themes" :key="t.id" :value="t.id" :disabled="t.id===pairB">{{t.full}}</option></select></label><span class="pair-divider" aria-hidden="true">⇄</span><label class="pair-choice"><small>主题 B</small><select v-model="pairB" aria-label="对照主题 B"><option v-for="t in themes" :key="t.id" :value="t.id" :disabled="t.id===pairA">{{t.full}}</option></select></label><p>共同出现，不等于全部相同。<br>未被记录，也不等于不存在。</p></div>
       <div class="workspace-grid" :class="{'is-compare':page==='compare'}">
         <aside v-if="page==='explore'" class="theme-rail"><p class="eyebrow">地方资料 / 03</p><button class="all-themes" :class="{chosen:themeFilter==='all'}" @click="themeFilter='all'">并读三地资料 <span>↗</span></button><button v-for="t in themes" :key="t.id" class="theme-entry" :class="{chosen:themeFilter===t.id}" @click="themeFilter=t.id"><small>{{t.number}} / {{t.source}}</small><h2>{{t.name}}</h2><p>{{t.subtitle}}</p><span>阅读此地 →</span></button><div class="rail-note"><span class="mini-index">编者说明</span><p>地方解释可以并存。<br>不以单一起源覆盖多样实践。</p><button @click="about?.showModal()">关于这次摘编 ↗</button></div></aside>
@@ -76,6 +94,7 @@ onBeforeUnmount(()=>{clearTimeout(noticeTimer);window.removeEventListener('resiz
     </template>
 
     <template v-else-if="page==='archive'">
+      <div class="festival-context"><button @click="go('portal')">← 节日目录</button><span>个人文化观察档案 · 当前记录来自端午篇</span><div><button @click="go('festival')">返回端午专题 ↗</button></div></div>
       <section class="archive-header"><p class="eyebrow">PERSONAL CULTURAL FIELDNOTES / 本地草稿</p><h1>把发现留下，<br>也把问题留下。</h1><div><p>文化观察档案 <span>001 / DEMO</span></p><button class="button" @click="startCompare">返回对照，继续观察 ↗</button></div></section>
       <div class="archive-layout"><aside class="archive-meta"><span class="mini-index">这一次，我在观察</span><h2>{{archiveQuestion||'尚未保存探索主题'}}</h2><p>{{archiveObjects.length?archiveObjects.map(t=>t.name).join(' / '):'选择两个地方，保存一条你想继续理解的文化关系。'}}</p><dl><dt>资料范围</dt><dd>官方网页静态摘编</dd><dt>核验状态</dt><dd>来源可定位 / 待人工审读</dd><dt>保存位置</dt><dd>{{storageAvailable?'当前浏览器本地':'仅当前会话 · 本地存储不可用'}}</dd></dl></aside><section class="archive-main"><div class="archive-section-title"><h2>已保存的文化关系</h2><span>{{saved.length}} 条</span></div><div v-if="!saved.length" class="archive-empty"><span>＋</span><h3>从一条关系开始，形成自己的观察。</h3><p>回到探索或对照界面，查看说法剖面，再将值得保留的关系存入这里。</p><button class="button primary" @click="startCompare">去看两种地方实践 ↗</button></div><article v-for="c in savedClaims" :key="c.id" class="saved-relation"><span class="eyebrow">{{c.theme?themeById(c.theme).name:'待核查问题'}} / {{c.source||'未定位依据'}}</span><button @click="openClaim(c.id)"><h3>{{c.title}}</h3><span>↗</span></button><p>{{c.text}}</p><small>{{c.status==='uncertain'?'证据不足 · 不生成事实结论':'来源已定位 · 文化解释待独立人工审读'}}</small></article><section class="observed-summary"><h3>共同点与差异</h3><p>{{commonSaved.length?'你保存的关系中，至少两地共享同一记录元素。点击各条来源继续核对解释。':'当前保存内容尚不足以整理跨地方共同点。保留各自记录，继续寻找另一份资料。'}}</p><p>不同地方的解释并存，不自动标记为冲突。</p></section><label class="fieldnote" for="fieldnote">仍想继续核查的问题 <textarea id="fieldnote" v-model="notes" maxlength="500" rows="4" placeholder="例如：竞渡和送神舟的联系，还需要哪些地方文献？" @input="persist"></textarea><small>{{notes.length}} / 500 · 由你记录，不由模型代写</small></label><p class="archive-limit">这是一份浏览器内的设计原型草稿。尚未提供账号、云同步或正式导出。</p></section></div>
     </template>
@@ -84,5 +103,5 @@ onBeforeUnmount(()=>{clearTimeout(noticeTimer);window.removeEventListener('resiz
   <div v-if="notice" class="toast" role="status">{{notice}}</div>
 
   <dialog ref="drawer" class="claim-drawer" aria-labelledby="claim-title"><header><div><p class="eyebrow">CULTURAL CLAIM TRACE</p><span>文化说法剖面</span></div><button class="close-button" @click="drawer.close()" aria-label="关闭说法剖面">×</button></header><div class="drawer-content"><p class="claim-context">{{current.theme?themeById(current.theme).full:'跨地方候选关系'}} <span>静态摘编 · DEMO</span></p><h2 id="claim-title">{{current.title}}</h2><div v-if="comparisonPeers.length" class="peer-sources" aria-label="共同元素的双方出处"><p>共同记录的元素，分别阅读双方资料</p><button v-for="peer in comparisonPeers" :key="peer.id" :aria-pressed="selected===peer.id" @click="selected=peer.id">{{themeById(peer.theme).name}} · {{peer.source}} ↗</button></div><p class="status-badge" :class="current.status">{{current.status==='uncertain'?'○ 证据不足 · 候选联系':'◇ 来源已定位 · 待人工审读'}}</p><div class="trace-step"><b>01</b><div><h3>看到的地方实践</h3><strong>{{current.practice}}</strong><p>{{current.text}}</p><small>以上为编辑摘编，非模型回答。</small></div></div><div class="trace-step"><b>02</b><div><h3>资料中的解释</h3><strong>{{current.interpretation}}</strong><p>地方解释可以并存。关系是否充分，需要结合全文与地方语境审读。</p></div></div><div class="trace-step"><b>03</b><div><h3>回到资料原文</h3><template v-if="source"><p class="source-catalog">{{source.id}} · {{source.category}}</p><h4>{{source.title}}</h4><blockquote v-for="(quote,index) in excerpts[current.id]||[source.quote]" :key="quote"><small>定位摘录 {{index+1}}</small>“{{quote}}”</blockquote><p class="source-location">{{source.publisher}}<br>{{source.locator}} · 网页核对 {{source.checked}}</p><a class="source-link" :href="source.url" target="_blank" rel="noopener noreferrer">打开官方原文，核对完整语境 ↗</a><p class="source-warning">短摘录分别展示，不拼成连续引文。来源已定位不等于文化关系已认证。{{source.note}}</p></template><div v-else class="unknown-source"><h4>把空白留在档案里。</h4><p>当前没有充分材料支持这一候选联系。相关条目只能提供背景，不能证明同一传承。</p><button v-for="s in Object.values(sources).slice(0,3)" :key="s.id" @click="selected=claims.find(c=>c.source===s.id).id">继续阅读 {{s.title}} ↗</button></div></div></div></div><footer><button class="button primary" @click="toggleSave(current.id)">{{saved.includes(current.id)?'已存入 · 移出此条':'＋ 存入观察档案'}}</button><button class="text-link" @click="drawer.close();go('archive')">查看档案 {{saved.length}} ↗</button></footer></dialog>
-  <dialog ref="about" class="about-dialog" aria-labelledby="about-title"><div class="about-heading"><p class="eyebrow">ABOUT THIS EDITION</p><button class="close-button" @click="about.close()" aria-label="关闭说明">×</button></div><h2 id="about-title">一份开放的地方节俗阅读。</h2><p>《同节异俗》是独立高保真设计原型。内容来自官方网页摘编，三维位置按实践、解释与资料关系组织，不使用地图。没有连接检索、模型或事实认证服务。</p><div class="status-explanation"><p><b>◇ 来源已定位</b><span>本原型已核对网页文字的位置。</span></p><p><b>△ 模型认为支持</b><span>未来状态；本原型未执行模型判断。</span></p><p><b>□ 人工已核对</b><span>未来状态；当前独立人工核验为0。</span></p><p><b>○ 证据不足</b><span>候选联系不进入已记录关系。</span></p><p><b>≠ 解释差异</b><span>地方传统不同，不自动判断互相矛盾。</span></p></div><div class="about-sources"><a v-for="s in Object.values(sources)" :key="s.id" :href="s.url" target="_blank" rel="noopener noreferrer">{{s.id}} · {{s.title}} ↗</a></div><p class="muted">本期视觉使用龙舟竞渡与文化拼贴两张艺术作品。地方内容可沿资料编号阅读，已保存的观察保留在当前浏览器。</p></dialog>
+  <dialog ref="about" class="about-dialog" aria-labelledby="about-title"><div class="about-heading"><p class="eyebrow">关于同节异俗</p><button class="close-button" @click="about.close()" aria-label="关闭说明">×</button></div><h2 id="about-title">一座持续策展的节俗文化馆。</h2><p>《同节异俗》面向多个中国传统节日，首期开放端午篇。内容来自官方网页摘编，三维位置按实践、解释与资料关系组织。当前没有连接检索或模型服务。</p><div class="status-explanation"><p><b>◇ 来源已定位</b><span>本原型已核对网页文字的位置。</span></p><p><b>△ 模型认为支持</b><span>未来状态；本原型未执行模型判断。</span></p><p><b>□ 人工已核对</b><span>未来状态；当前独立人工核验为0。</span></p><p><b>○ 证据不足</b><span>候选联系不进入已记录关系。</span></p><p><b>≠ 解释差异</b><span>地方传统不同，不自动判断互相矛盾。</span></p></div><div class="about-sources"><a v-for="s in Object.values(sources)" :key="s.id" :href="s.url" target="_blank" rel="noopener noreferrer">{{s.id}} · {{s.title}} ↗</a></div><p class="muted">端午篇使用龙舟竞渡与文化拼贴两张艺术作品。地方内容可沿资料编号阅读，已保存的观察保留在当前浏览器。</p></dialog>
 </template>

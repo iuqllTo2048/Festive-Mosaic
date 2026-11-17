@@ -1,6 +1,6 @@
 # 《同节异俗》｜设计阶段审查与下一轮决策
 
-本文件保留2026-11-16原始设计阶段记录。2026-11-17首页已使用新艺术资产重构，当前视觉与验收请读 [HOME_VISUAL_REVIEW.md](HOME_VISUAL_REVIEW.md)。
+本文件保留2026-11-16原始设计阶段记录。2026-11-17先完成艺术首页重构，再升级为多节日门户；当前架构、截图与验收以 [PLATFORM_ARCHITECTURE_REVIEW.md](../docs/PLATFORM_ARCHITECTURE_REVIEW.md) 为准。原龙舟视觉记录见 [HOME_VISUAL_REVIEW.md](HOME_VISUAL_REVIEW.md)。
 
 日期：2026-11-16。基线：VerifiAtlas D6 `bf953027528630796ef37b78baaeab2cbf8d803c`。工作分支：`design/cultural-exploration`。新远程：`https://github.com/iuqllTo2048/Festive-Mosaic`。这是独立设计阶段，不是原 D7；完成后等待设计审核，不自动进入正式文化迁移。
 

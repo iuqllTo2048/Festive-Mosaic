@@ -9,10 +9,11 @@
     "checkJs": false,
     "skipLibCheck": true,
     "noEmit": true,
+    "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "paths": { "vue": ["../../frontend/node_modules/vue"] },
     "typeRoots": ["../../frontend/node_modules/@types"],
     "types": ["node"]
   },
-  "include": ["src/HomeExhibition.vue", "src/home-env.d.ts"]
+  "include": ["src/HomeExhibition.vue", "src/PlatformPortal.vue", "src/*.ts"]
 }

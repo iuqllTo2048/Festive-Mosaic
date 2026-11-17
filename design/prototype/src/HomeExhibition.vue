@@ -40,7 +40,7 @@ function exploreQuestion(id: string) {
           <button class="exhibition-secondary" @click="emit('compare')">对照地方习俗 <span aria-hidden="true">→</span></button>
         </div>
       </div>
-      <a class="exhibition-scroll" href="#local-traditions"><span>走近三种地方端午</span><span aria-hidden="true">↓</span></a>
+      <a class="exhibition-scroll" href="#local-traditions" @click.prevent="($event.currentTarget as HTMLAnchorElement).ownerDocument.getElementById('local-traditions')?.scrollIntoView()"><span>走近三种地方端午</span><span aria-hidden="true">↓</span></a>
     </section>
 
     <section id="local-traditions" class="local-traditions" aria-labelledby="traditions-title">
