@@ -1,19 +1,13 @@
 # Festive Mosaic · 同节异俗
 
-**《同节异俗》——融合 AI Agent、RAG、知识图谱和交互可视化的中国传统节俗文化探索平台。** 当前开放端午专题，完成本地文化导览演示、可交互图谱、来源阅读和地方对照。文化前端位于 `design/prototype/`；下方保留原科研项目说明与验证记录。
+当前处于前端展示重构准备。旧首页、美术与截图已撤下，原素材本地归档；保留多节日架构、文化资料、导览演示、图谱、地方对照、来源与观察档案。平台和端午页面暂用简洁的功能入口，新视觉方案尚未确定。
 
-- [设计审查与本轮交付](design/REVIEW_FOR_CHAT.md)
-- [最新：艺术素材、AI导览演示、图谱联动与截图](docs/AGENT_GRAPH_UI_REVIEW.md)
-- [多节日平台架构升级：路由、配置、截图与浏览器验收](docs/PLATFORM_ARCHITECTURE_REVIEW.md)
-- [2026-11-17 首页视觉重构：截图、新旧对照与验收](design/HOME_VISUAL_REVIEW.md)
-- [原型启动方法](design/prototype/README.md)：在 `design/prototype` 执行 `npm.cmd run dev`，打开 <http://127.0.0.1:5175/>。新克隆先在 `frontend` 执行 `npm.cmd ci`，复用现有依赖。
-- [产品概念](design/01_PRODUCT_CONCEPT.md) · [交互与视觉](design/02_INTERACTION_AND_VISUAL.md) · [内容与迁移](design/03_CONTENT_AND_MIGRATION.md) · [研究来源](design/00_RESEARCH.md)
+- [清理范围、归档恢复与重构基线](docs/FRONTEND_REBUILD_BASELINE.md)
+- [下一轮重构交接](design/REVIEW_FOR_CHAT.md)
+- [原型启动与保留模块](design/prototype/README.md)
+- [产品框架](design/01_PRODUCT_CONCEPT.md) · [展示层待定事项](design/02_INTERACTION_AND_VISUAL.md) · [内容与迁移](design/03_CONTENT_AND_MIGRATION.md) · [来源台账](design/00_RESEARCH.md)
 
-![同节异俗艺术门户](design/screenshots/agent-graph/portal-1440.jpg)
-
-![文化导览与知识图谱](design/screenshots/agent-graph/agent-workspace-1440.jpg)
-
-文化导览明确标记演示模式：可输入问题，实际筛选本地摘编、定位图谱、查看引用并进入同范围对照；没有调用DeepSeek或在线RAG。六张本地艺术资产已按页面职责集成。原科研生产前后端与D6结果保持不变。成果推送到 [Festive-Mosaic](https://github.com/iuqllTo2048/Festive-Mosaic)。
+文化原型位于 design/prototype，启动后访问 <http://127.0.0.1:5175/>。当前只有端午资料；导览是本地演示，没有接入真实文化Agent或在线RAG。文化改动推送到 [Festive-Mosaic](https://github.com/iuqllTo2048/Festive-Mosaic)，原科研项目保留。
 
 ---
 

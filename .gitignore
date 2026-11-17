@@ -26,3 +26,6 @@ dist/
 .DS_Store
 Thumbs.db
 .idea/
+
+# Local source-art and retired presentation backups (never publish)
+/.local-archive/

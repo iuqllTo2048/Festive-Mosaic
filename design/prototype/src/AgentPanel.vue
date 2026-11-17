@@ -6,13 +6,12 @@ const props=defineProps<{task:GuideTask|null; selected:string}>()
 const emit=defineEmits<{ask:[question:string]; focus:[id:string]; source:[id:string]; graph:[]; compare:[]}>()
 const question=ref(guideExample)
 watch(()=>props.task?.question,value=>{if(value)question.value=value},{immediate:true})
-const art=`${import.meta.env.BASE_URL}images/art/feature_ai_guide.webp`
 const topicName=(id:string)=>themes.find(t=>t.id===id)?.name||id
 const citationLabel=(task:GuideTask,id:string)=>`${task.evidence.find(e=>e.claim_id===id)?.source_id||'资料'} · ${claims.find(c=>c.id===id)?.practice||'关系'}`
 </script>
 <template>
   <aside class="agent-panel" aria-label="AI文化导览面板">
-    <header class="agent-panel-heading"><div><p>AI 文化导览</p><h2>让问题，带你深入。</h2><span class="demo-pill">演示模式 · 未连接模型</span></div><img :src="art" alt="翻阅文化图卷的导览人物插画" width="120" height="110"></header>
+    <header class="agent-panel-heading"><div><p>AI 文化导览</p><h2>让问题，带你深入。</h2><span class="demo-pill">演示模式 · 未连接模型</span></div></header>
     <form class="guide-form" @submit.prevent="emit('ask',question)"><label for="guide-question">想了解什么地方文化？</label><textarea id="guide-question" v-model="question" rows="3" maxlength="500" placeholder="例如：苏州和汨罗的端午习俗有什么不同？"></textarea><div><span>{{question.length}} / 500</span><button class="button primary" :disabled="!question.trim()" type="submit">探索这个问题 ↗</button></div></form>
     <p class="guide-mode-note">本地摘编筛选与引用联动可操作。回答由既有资料拼接，未执行生成式回答。</p>
     <template v-if="task">

@@ -3,7 +3,11 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "strict": true,
     "allowJs": true,
     "checkJs": false,
@@ -11,9 +15,21 @@
     "noEmit": true,
     "allowImportingTsExtensions": true,
     "baseUrl": ".",
-    "paths": { "vue": ["../../frontend/node_modules/vue"] },
-    "typeRoots": ["../../frontend/node_modules/@types"],
-    "types": ["node"]
+    "paths": {
+      "vue": [
+        "../../frontend/node_modules/vue"
+      ]
+    },
+    "typeRoots": [
+      "../../frontend/node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src/HomeExhibition.vue", "src/PlatformPortal.vue", "src/AgentPanel.vue", "src/*.ts"]
+  "include": [
+    "src/RebuildEntry.vue",
+    "src/AgentPanel.vue",
+    "src/*.ts"
+  ]
 }
