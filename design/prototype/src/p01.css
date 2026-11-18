@@ -17,8 +17,12 @@
 .p01-panorama { position:relative; height:calc(100svh - 100vw * 162 / 1589); min-height:460px; overflow:hidden; background:#f2daba; }
 .p01-panorama-svg { display:block; width:100%; height:100%; }
 .p01-expansion-layer,.p01-moving-ribbon { pointer-events:none; }
+.p01-motion-control { position:absolute; bottom:16px; right:18px; display:flex; align-items:center; gap:7px; min-height:40px; padding:7px 12px; border:1px solid #b88e5f; border-radius:3px; color:#653b22; background:#fbebd6ee; font-size:12px; cursor:pointer; }
+.p01-motion-control:hover { background:#fff4e3; border-color:#8f562e; }
+.p01-motion-control:focus-visible { outline:2px solid #8d4729; outline-offset:3px; }
 .p01-festival-hit,.p01-center-hit { fill:transparent; stroke:transparent; cursor:pointer; pointer-events:all; outline:none; -webkit-tap-highlight-color:transparent; }
 .p01-festival-hit:focus-visible,.p01-center-hit:focus-visible { stroke:#fff5c4; stroke-width:5px; outline:none; }
+.p01-panorama:not([data-active=""]) .p01-festival-hit:focus-visible { stroke:transparent; }
 .p01-center-hint { opacity:1; }
 .p01-art-status { position:absolute; bottom:18px; left:24px; padding:8px 12px; font-size:13px; background:#f9e9d2; border:1px solid #b98951; }
 .p01-mobile-festivals { display:none; }

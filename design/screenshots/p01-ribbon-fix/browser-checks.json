@@ -1,0 +1,263 @@
+{
+  "date": "2026-11-18",
+  "baseline": "a3ea1dc44b112c985a2d0b052c5b73f450a6fe4f",
+  "url": "http://127.0.0.1:5175/",
+  "mode": "production homepage; visible user motion control enabled; system reduced motion remains true",
+  "method": "Keyboard focus and native button activation. All screenshots are actual browser captures. No event dispatch or animation freezing.",
+  "pointer_check": "NOT VERIFIED: IAB AX drag changed CSS hover but did not start application hover. Windows get_window_state timed out twice; no further retry. Human mouse hover remains to be confirmed.",
+  "capture_note": "DOM progress is read before each capture; the compositor can lag the DOM. Six sequential screenshots were retained rather than claiming exact percentage images.",
+  "observations": [
+    {
+      "check": "system-reduced static hover",
+      "result": {
+        "active": "",
+        "phase": "idle"
+      }
+    },
+    {
+      "check": "production pointer spring unfold",
+      "result": {
+        "active": "",
+        "phase": "idle",
+        "progress": "0.0000",
+        "ribbonPaths": 0
+      }
+    },
+    {
+      "check": "production keyboard spring unfold",
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.7937",
+        "ribbonPaths": 60
+      }
+    },
+    {
+      "check": "spring live frame 0",
+      "at": 1794969453987,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.0354"
+      }
+    },
+    {
+      "check": "spring live frame 1",
+      "at": 1794969454331,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.0354"
+      }
+    },
+    {
+      "check": "spring live frame 2",
+      "at": 1794969454671,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.5375"
+      }
+    },
+    {
+      "check": "spring live frame 3",
+      "at": 1794969455059,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.5729"
+      }
+    },
+    {
+      "check": "spring live frame 4",
+      "at": 1794969455444,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.7708"
+      }
+    },
+    {
+      "check": "system/explicit preference",
+      "result": {
+        "reduced": "false",
+        "system": true
+      }
+    },
+    {
+      "check": "final spring frame 0",
+      "at": 1794969508354,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.0333"
+      }
+    },
+    {
+      "check": "final spring frame 1",
+      "at": 1794969508626,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.0333"
+      }
+    },
+    {
+      "check": "final spring frame 2",
+      "at": 1794969508887,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.0333"
+      }
+    },
+    {
+      "check": "final spring frame 3",
+      "at": 1794969509156,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.5333"
+      }
+    },
+    {
+      "check": "final spring frame 4",
+      "at": 1794969509475,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.5999"
+      }
+    },
+    {
+      "check": "final spring frame 5",
+      "at": 1794969509741,
+      "result": {
+        "active": "spring",
+        "phase": "expanding",
+        "progress": "0.5999"
+      }
+    },
+    {
+      "check": "spring to mid-autumn collapse",
+      "result": {
+        "active": "spring",
+        "desired": "mid-autumn",
+        "phase": "collapsing",
+        "progress": "0.8204"
+      }
+    },
+    {
+      "check": "next festival expanding",
+      "result": {
+        "active": "",
+        "desired": "mid-autumn",
+        "phase": "idle",
+        "progress": "0.0000"
+      }
+    },
+    {
+      "check": "screenshot sequence 0",
+      "at": 1794969558938,
+      "result": {
+        "phase": "expanding",
+        "progress": "0.0021"
+      }
+    },
+    {
+      "check": "screenshot sequence 1",
+      "at": 1794969559305,
+      "result": {
+        "phase": "expanding",
+        "progress": "0.1834"
+      }
+    },
+    {
+      "check": "screenshot sequence 2",
+      "at": 1794969559649,
+      "result": {
+        "phase": "expanding",
+        "progress": "0.3604"
+      }
+    },
+    {
+      "check": "screenshot sequence 3",
+      "at": 1794969560012,
+      "result": {
+        "phase": "expanding",
+        "progress": "0.5333"
+      }
+    },
+    {
+      "check": "screenshot sequence 4",
+      "at": 1794969560386,
+      "result": {
+        "phase": "expanding",
+        "progress": "0.7250"
+      }
+    },
+    {
+      "check": "screenshot sequence 5",
+      "at": 1794969560742,
+      "result": {
+        "phase": "expanding",
+        "progress": "0.9041"
+      }
+    },
+    {
+      "check": "mid-autumn completion",
+      "result": {
+        "active": "mid-autumn",
+        "phase": "expanded",
+        "progress": "1.0000"
+      }
+    },
+    {
+      "check": "pause static",
+      "result": {
+        "active": "",
+        "phase": "idle",
+        "reduced": "true"
+      }
+    },
+    {
+      "check": "1024 layout",
+      "result": {
+        "height": 768,
+        "motionControl": true,
+        "overflow": false,
+        "width": 1024
+      }
+    },
+    {
+      "check": "390 layout",
+      "result": {
+        "festivalButtons": 5,
+        "height": 844,
+        "overflow": false,
+        "width": 390
+      }
+    },
+    {
+      "check": "reload retains full motion",
+      "result": {
+        "button": "播放飘带动效",
+        "reduced": "true",
+        "system": true
+      }
+    },
+    {
+      "check": "explicit full choice after reload (wait for mounted control)",
+      "result": {
+        "button": "暂停飘带动效",
+        "reduced": "false"
+      }
+    }
+  ],
+  "console": [],
+  "capture_limit": "390 screenshot contained a stale compositor black segment; removed. A fresh temporary-tab capture failed twice; not counted as mobile visual pass. Temporary tab closed and viewport reset.",
+  "finalPreference": {
+    "button": "暂停飘带动效",
+    "reduced": "false"
+  }
+}

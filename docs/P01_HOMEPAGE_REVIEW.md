@@ -1,5 +1,7 @@
 # Festive Mosaic P01｜五节画卷首页验收
 
+> 首次交付的历史记录。用户体验发现正式页直接覆盖，后续返修已增加正式动效开关、静态降级和有宽度的飘带；当前实现与本轮验证以[P01飘带返修](P01_RIBBON_FIX.md)为准。本文原验收数据保留，不代表返修后的复测。
+
 日期：2026-11-18。代码基线：`f639a7ebeb83813bb4652458f7ef33d0ce0ee8c9`。
 
 依据用户提供的 `photoResource/FestiveMosaic_P01_Codex_Package/docs/CODEX_PROMPT_P01_HOMEPAGE.md` 与 `ASSET_MANIFEST.md` 实施。仅首页、首页导航与必要跳转调整；不开发P02，不修改科研项目，不连接后端。

@@ -2,7 +2,8 @@
 
 P01五节画卷首页已按photoResource素材与提示词实现：原图导航、节日目录、花饰提示、固定分区及两秒展开/回卷。端午链接保留的交互原型，其余节日显示尚未开放。本轮只做首页。
 
-- [最新：首页动效、截图、测试与限制](docs/P01_HOMEPAGE_REVIEW.md)
+- [最新：P01飘带动效返修与实际验收](docs/P01_RIBBON_FIX.md)
+- [首次首页交付记录](docs/P01_HOMEPAGE_REVIEW.md)
 
 ![五节画卷首页](design/screenshots/p01/default-1440.jpg)
 

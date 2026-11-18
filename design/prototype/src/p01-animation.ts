@@ -52,20 +52,59 @@ export class PanoramaAnimation {
 }
 
 export type Point = { x:number; y:number }
-// A sampled source contour grows to an outer frame, including rounded corner overscan.
-export function unfoldContour(seed: Point[], origin: [number,number], progress: number) {
-  const p = Math.max(0, Math.min(1, progress))
-  const eased = p*p*(3-2*p)
-  const [cx,cy] = origin
-  const points = seed.map((point,index) => {
-    const dx=point.x-cx, dy=point.y-cy
-    const tx = dx > 0 ? (1906-cx)/dx : dx < 0 ? (-320-cx)/dx : Infinity
-    const ty = dy > 0 ? (1312-cy)/dy : dy < 0 ? (-235-cy)/dy : Infinity
-    const distance = Math.min(tx,ty)
-    const wind = Math.sin(Math.PI*p)*Math.sin(index*.26+p*4)*15
-    return {x:point.x+(cx+dx*distance-point.x)*eased+wind, y:point.y+(cy+dy*distance-point.y)*eased+wind*.45}
-  })
+export type MotionPreference = 'system' | 'full' | 'reduced'
+export function motionIsReduced(systemReduced: boolean, preference: MotionPreference) {
+  return preference === 'system' ? systemReduced : preference === 'reduced'
+}
+const clamp=(value:number)=>Math.max(0,Math.min(1,value))
+function smoothPath(points:Point[]) {
   if (!points.length) return ''
   const mid=(a:Point,b:Point)=>`${((a.x+b.x)/2).toFixed(2)} ${((a.y+b.y)/2).toFixed(2)}`
   return `M${mid(points[points.length-1]!,points[0]!)} ` + points.map((point,index)=>`Q${point.x.toFixed(2)} ${point.y.toFixed(2)} ${mid(point,points[(index+1)%points.length]!)}`).join(' ') + ' Z'
+}
+// Geometry depends on progress alone: collapse retraces the same folds, including
+// a partially interrupted reveal. Time-based CSS waves would break that guarantee.
+function contourPoints(seed: Point[], origin: [number,number], progress: number) {
+  const p = Math.max(0, Math.min(1, progress))
+  const eased = p*p
+  const [cx,cy] = origin
+  const reach=Math.max(...[[0,85],[1586,85],[1586,992],[0,992]].map(([x,y])=>Math.hypot(x!-cx,y!-cy)))+110
+  return seed.map((point,index) => {
+    const dx=point.x-cx, dy=point.y-cy
+    // Expand towards an enclosing circle, rather than a rectangle: the visible
+    // front stays a sweeping, rippling curve instead of becoming a picture frame.
+    const t=index/seed.length, radius=Math.hypot(dx,dy)||1
+    const distance=reach/radius
+    const wind = Math.sin(Math.PI*p)*(Math.sin(t*Math.PI*4-p*5)*46+Math.sin(t*Math.PI*10+p*4)*18)
+    return {x:point.x+(cx+dx*distance-point.x)*eased+dx/radius*wind, y:point.y+(cy+dy*distance-point.y)*eased+dy/radius*wind}
+  })
+}
+export function unfoldContour(seed: Point[], origin: [number,number], progress: number) {
+  return smoothPath(contourPoints(seed,origin,progress))
+}
+
+// A filled, variable-width silk band rides the reveal seam. The front, dark
+// reverse folds and two gold hems are real surfaces, rather than a thin outline.
+export function unfoldRibbon(seed:Point[], origin:[number,number], progress:number) {
+  const p=clamp(progress), center=contourPoints(seed,origin,p)
+  const empty={mask:'',body:'',outer:'',inner:'',crease:'',folds:[] as {path:string;opacity:number}[],opacity:0}
+  if(center.length<3)return empty
+  const area=center.reduce((sum,point,i)=>{const next=center[(i+1)%center.length]!;return sum+point.x*next.y-next.x*point.y},0)
+  const outside:Point[]=[],inside:Point[]=[],crease:Point[]=[],folds:{path:string;opacity:number}[]=[]
+  for(let i=0;i<center.length;i++) {
+    const point=center[i]!,prev=center[(i+center.length-1)%center.length]!,next=center[(i+1)%center.length]!
+    const tx=next.x-prev.x,ty=next.y-prev.y,length=Math.hypot(tx,ty)||1,side=area>=0?1:-1
+    const nx=ty/length*side,ny=-tx/length*side,t=i/center.length
+    const twist=Math.sin(t*Math.PI*6-p*Math.PI*2)
+    const width=(22+44*Math.sin(Math.PI*p))*(.65+.35*Math.abs(twist))
+    outside.push({x:point.x+nx*width*.58,y:point.y+ny*width*.58})
+    inside.push({x:point.x-nx*width*.42,y:point.y-ny*width*.42})
+    crease.push({x:point.x+nx*width*twist*.18,y:point.y+ny*width*twist*.18})
+  }
+  for(let i=0;i<center.length;i++) {
+    const j=(i+1)%center.length,t=(i+.5)/center.length
+    const shade=clamp(-Math.sin(t*Math.PI*6-p*Math.PI*2))*.62
+    if(shade>.02)folds.push({path:`M${outside[i]!.x},${outside[i]!.y} L${outside[j]!.x},${outside[j]!.y} L${inside[j]!.x},${inside[j]!.y} L${inside[i]!.x},${inside[i]!.y} Z`,opacity:shade})
+  }
+  return {mask:smoothPath(center),body:smoothPath(outside)+' '+smoothPath(inside),outer:smoothPath(outside),inner:smoothPath(inside),crease:smoothPath(crease),folds,opacity:Math.min(1,p*14)*Math.min(1,(1-p)*12)}
 }

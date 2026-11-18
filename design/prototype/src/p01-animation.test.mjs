@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { PanoramaAnimation, EXPANSION_MS, unfoldContour } from './p01-animation.ts'
+import { PanoramaAnimation, EXPANSION_MS, unfoldContour, unfoldRibbon, motionIsReduced } from './p01-animation.ts'
 import { scenes } from './p01-scenes.ts'
 import { parseRoute, routeHash } from './navigation.ts'
 
@@ -60,4 +60,26 @@ test('contour coordinates remain finite and reverse along the same geometric pat
   assert.equal(new Set(paths).size,5)
   assert.ok(paths.every(path=>!/(NaN|Infinity)/.test(path)))
   assert.equal(unfoldContour(seed,[300,350],.25),paths[1])
+})
+
+test('explicit visitor motion choice overrides system preference without changing it',()=>{
+  assert.equal(motionIsReduced(true,'system'),true)
+  assert.equal(motionIsReduced(false,'system'),false)
+  assert.equal(motionIsReduced(true,'full'),false)
+  assert.equal(motionIsReduced(false,'reduced'),true)
+})
+
+test('filled ribbon follows the reveal seam and reverses all its folds deterministically',()=>{
+  const seed=[{x:0,y:100},{x:500,y:200},{x:700,y:500},{x:0,y:500}]
+  const ribbon=unfoldRibbon(seed,[300,350],.4)
+  assert.equal(ribbon.mask,unfoldContour(seed,[300,350],.4))
+  assert.notEqual(ribbon.outer,ribbon.inner)
+  assert.equal(ribbon.opacity,1)
+  assert.ok(ribbon.folds.length>0)
+  assert.ok(!/(NaN|Infinity)/.test(JSON.stringify(ribbon)))
+  unfoldRibbon(seed,[300,350],.8)
+  assert.deepEqual(unfoldRibbon(seed,[300,350],.4),ribbon)
+  assert.equal(unfoldRibbon(seed,[300,350],0).opacity,0)
+  assert.equal(unfoldRibbon(seed,[300,350],1).opacity,0)
+  assert.equal(unfoldRibbon([],[300,350],.5).body,'')
 })
