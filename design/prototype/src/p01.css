@@ -1,6 +1,6 @@
-.p01-home { background:#f1d8b7; min-height:100svh; color:#542b16; }
+.p01-home { display:flex; flex-direction:column; height:100svh; background:#f1d8b7; color:#542b16; }
 .p01-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
-.p01-navigation { position:relative; z-index:20; width:100%; aspect-ratio:1589/162; background:#f4ddbc; }
+.p01-navigation { position:relative; z-index:20; flex-shrink:0; width:100%; aspect-ratio:1589/162; background:#f4ddbc; }
 .p01-nav-art { width:100%; height:auto; display:block; }
 .p01-mobile-brand-art,.p01-mobile-nav-art { display:none; }
 .p01-nav-hit { position:absolute; padding:0; background:transparent; border:0; cursor:pointer; min-height:44px; }
@@ -14,12 +14,9 @@
 .p01-festival-menu>img { display:block; width:100%; height:auto; }
 .p01-menu-item { position:absolute; left:8%; width:84%; height:17%; padding:0; background:transparent; cursor:pointer; }
 .p01-menu-item:hover { background:#9637190b; }
-.p01-panorama { position:relative; height:calc(100svh - 100vw * 162 / 1589); min-height:460px; overflow:hidden; background:#f2daba; }
+.p01-panorama { position:relative; flex:1; min-height:0; overflow:hidden; background:#f2daba; }
 .p01-panorama-svg { display:block; width:100%; height:100%; }
 .p01-expansion-layer,.p01-moving-ribbon { pointer-events:none; }
-.p01-motion-control { position:absolute; bottom:16px; right:18px; display:flex; align-items:center; gap:7px; min-height:40px; padding:7px 12px; border:1px solid #b88e5f; border-radius:3px; color:#653b22; background:#fbebd6ee; font-size:12px; cursor:pointer; }
-.p01-motion-control:hover { background:#fff4e3; border-color:#8f562e; }
-.p01-motion-control:focus-visible { outline:2px solid #8d4729; outline-offset:3px; }
 .p01-festival-hit,.p01-center-hit { fill:transparent; stroke:transparent; cursor:pointer; pointer-events:all; outline:none; -webkit-tap-highlight-color:transparent; }
 .p01-festival-hit:focus-visible,.p01-center-hit:focus-visible { stroke:#fff5c4; stroke-width:5px; outline:none; }
 .p01-panorama:not([data-active=""]) .p01-festival-hit:focus-visible { stroke:transparent; }
@@ -29,6 +26,7 @@
 @media(prefers-reduced-motion:no-preference) { .p01-center-hint { animation:p01-hint-in 200ms ease-out both; } }
 @keyframes p01-hint-in { from {opacity:0;transform:translateY(5px)} to {opacity:1;transform:translateY(0)} }
 @media(max-width:759px) {
+  .p01-home { display:block; height:auto; }
   .p01-navigation { height:116px; aspect-ratio:auto; }
   .p01-nav-art { display:none; }
   .p01-mobile-brand-art { display:block; position:absolute; top:4px; left:calc(50% - 128px); width:256px; height:63px; }
@@ -39,7 +37,7 @@
   .p01-archive { left:44%; top:66px; width:23%; height:44px; }
   .p01-about { left:73%; top:66px; width:25%; height:44px; }
   .p01-festival-menu { width:258px; top:43px; left:0; right:auto; }
-  .p01-panorama { height:auto; min-height:0; aspect-ratio:1586/907; }
+  .p01-panorama { aspect-ratio:1586/907; }
   .p01-panorama-svg { height:auto; aspect-ratio:1586/907; }
   .p01-mobile-festivals { display:block; padding:16px 24px 24px; background:#f5e0c3; }
   .p01-mobile-festivals>p { font-size:13px; color:#7f5537; margin-bottom:10px; }

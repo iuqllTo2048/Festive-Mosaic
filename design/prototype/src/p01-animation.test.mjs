@@ -62,7 +62,7 @@ test('contour coordinates remain finite and reverse along the same geometric pat
   assert.equal(unfoldContour(seed,[300,350],.25),paths[1])
 })
 
-test('explicit visitor motion choice overrides system preference without changing it',()=>{
+test('configured component motion mode resolves independently from the system preference',()=>{
   assert.equal(motionIsReduced(true,'system'),true)
   assert.equal(motionIsReduced(false,'system'),false)
   assert.equal(motionIsReduced(true,'full'),false)

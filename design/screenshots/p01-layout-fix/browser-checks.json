@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-18",
+  "baseline": "136147e74c4a44d21918971f9de72627b26ab998",
+  "url": "http://127.0.0.1:5175/",
+  "scope": "remove unrequested motion controls and reserved bottom whitespace",
+  "observations": [
+    {
+      "check": "actual preview layout",
+      "result": {
+        "controls": 0,
+        "homeHeight": 871.3333740234375,
+        "horizontalOverflow": false,
+        "panoramaBottom": 871.3333358764648,
+        "panoramaHeight": 788.21875,
+        "reduced": "false",
+        "svgHeight": 788.21875,
+        "viewport": [
+          815,
+          871
+        ]
+      }
+    },
+    {
+      "check": "1440x900",
+      "result": {
+        "controls": 0,
+        "homeHeight": 900,
+        "horizontalOverflow": false,
+        "panoramaBottom": 900.0000305175781,
+        "panoramaHeight": 753.1979370117188,
+        "reduced": "false",
+        "svgHeight": 753.1979370117188,
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "check": "1024x768",
+      "result": {
+        "controls": 0,
+        "homeHeight": 768,
+        "horizontalOverflow": false,
+        "panoramaBottom": 768.0000228881836,
+        "panoramaHeight": 663.6041870117188,
+        "reduced": "false",
+        "svgHeight": 663.6041870117188,
+        "viewport": [
+          1024,
+          768
+        ]
+      }
+    },
+    {
+      "check": "390x844",
+      "result": {
+        "controls": 0,
+        "homeHeight": 695.1354370117188,
+        "horizontalOverflow": false,
+        "panoramaBottom": 339.03125,
+        "panoramaHeight": 223.03125,
+        "reduced": "false",
+        "svgHeight": 223.03125,
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    },
+    {
+      "check": "automatic expansion without controls",
+      "result": {
+        "controls": 0,
+        "phase": "expanding",
+        "reduced": "false"
+      }
+    },
+    {
+      "check": "expansion complete",
+      "result": {
+        "phase": "expanded",
+        "progress": "1.0000"
+      }
+    }
+  ],
+  "console": [],
+  "limits": "Mouse hover automation not rerun; this round verified focus-triggered use of the same animation. Native mobile touch not tested. Narrow desktop composition uses proportional cover cropping."
+}
